@@ -1,0 +1,328 @@
+<!DOCTYPE html>
+<html>
+<head>
+    
+    <meta http-equiv="content-type" content="text/html; charset=UTF-8" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css"/>
+    
+        <script>
+            L_NO_TOUCH = false;
+            L_DISABLE_3D = false;
+        </script>
+    
+    <style>html, body {width: 100%;height: 100%;margin: 0;padding: 0;}</style>
+    <style>#map {position:absolute;top:0;bottom:0;right:0;left:0;}</style>
+    <script src="https://cdn.jsdelivr.net/npm/leaflet@1.9.3/dist/leaflet.js"></script>
+    <script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/Leaflet.awesome-markers/2.0.2/leaflet.awesome-markers.js"></script>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/leaflet@1.9.3/dist/leaflet.css"/>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/css/bootstrap.min.css"/>
+    <link rel="stylesheet" href="https://netdna.bootstrapcdn.com/bootstrap/3.0.0/css/bootstrap-glyphicons.css"/>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@6.2.0/css/all.min.css"/>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/Leaflet.awesome-markers/2.0.2/leaflet.awesome-markers.css"/>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/python-visualization/folium/folium/templates/leaflet.awesome.rotate.min.css"/>
+    
+            <meta name="viewport" content="width=device-width,
+                initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
+            <style>
+                #map_9feeaebb9dd21082122de78834906a85 {
+                    position: relative;
+                    width: 100.0%;
+                    height: 100.0%;
+                    left: 0.0%;
+                    top: 0.0%;
+                }
+                .leaflet-container { font-size: 1rem; }
+            </style>
+        
+</head>
+<body>
+    
+    <div style="position: fixed; top: 10px; left: 50%; transform: translateX(-50%); z-index: 1000; background: white; padding: 15px 30px; border-radius: 12px; box-shadow: 0 4px 20px rgba(0,0,0,0.15); font-family: -apple-system, sans-serif; text-align: center; border: 2px solid #9b59b6;"><div style="font-size: 20px; font-weight: 700; color: #9b59b6;">Salón ACME</div><div style="font-size: 12px; color: #666; margin-top: 4px;">5 eventos • Feb 4-8, 2026</div></div>
+    
+            <div class="folium-map" id="map_9feeaebb9dd21082122de78834906a85" ></div>
+        
+</body>
+<script>
+    
+    
+            var map_9feeaebb9dd21082122de78834906a85 = L.map(
+                "map_9feeaebb9dd21082122de78834906a85",
+                {
+                    center: [19.4365, -99.1525],
+                    crs: L.CRS.EPSG3857,
+                    ...{
+  "zoom": 15,
+  "zoomControl": true,
+  "preferCanvas": false,
+}
+
+                }
+            );
+
+            
+
+        
+    
+            var tile_layer_279e86b7271686e297aafbaeedb3c802 = L.tileLayer(
+                "https://{s}.basemaps.cartocdn.com/light_all/{z}/{x}/{y}{r}.png",
+                {
+  "minZoom": 0,
+  "maxZoom": 20,
+  "maxNativeZoom": 20,
+  "noWrap": false,
+  "attribution": "\u0026copy; \u003ca href=\"https://www.openstreetmap.org/copyright\"\u003eOpenStreetMap\u003c/a\u003e contributors \u0026copy; \u003ca href=\"https://carto.com/attributions\"\u003eCARTO\u003c/a\u003e",
+  "subdomains": "abcd",
+  "detectRetina": false,
+  "tms": false,
+  "opacity": 1,
+}
+
+            );
+        
+    
+            tile_layer_279e86b7271686e297aafbaeedb3c802.addTo(map_9feeaebb9dd21082122de78834906a85);
+        
+    
+            var marker_e58c47f8aed805cd31869d4a7f66c459 = L.marker(
+                [19.4365, -99.1525],
+                {
+}
+            ).addTo(map_9feeaebb9dd21082122de78834906a85);
+        
+    
+            var icon_ef77dff74d680d7e1d87d45e29b99793 = L.AwesomeMarkers.icon(
+                {
+  "markerColor": "purple",
+  "iconColor": "white",
+  "icon": "building",
+  "prefix": "fa",
+  "extraClasses": "fa-rotate-0",
+}
+            );
+        
+    
+        var popup_91fd2cc962a6dce227285cb043d4c26f = L.popup({
+  "maxWidth": 370,
+});
+
+        
+            
+                var html_5fa754255100525f601926efde4ccc88 = $(`<div id="html_5fa754255100525f601926efde4ccc88" style="width: 100.0%; height: 100.0%;">     <div style="font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif; width: 340px; padding: 5px;">         <div style="border-left: 4px solid #e67e22; padding-left: 12px; margin-bottom: 12px;">             <h3 style="margin: 0 0 8px 0; font-size: 15px; color: #1e3a5f; line-height: 1.3;">Salón ACME - Preview VIP</h3>             <div style="font-size: 13px; color: #555; margin-bottom: 4px;"><strong>FRONTÓN MÉXICO</strong></div>         </div>         <div style="display: flex; gap: 15px; margin-bottom: 10px; font-size: 12px;">             <div style="background: #f0f4f8; padding: 6px 10px; border-radius: 4px;"><strong>⏰</strong> 19:00</div>             <div style="background: #e67e2215; color: #e67e22; padding: 6px 10px; border-radius: 4px; font-weight: 600;">Privado</div>         </div>         <div style="font-size: 12px; color: #666; margin-bottom: 10px;">             <div><strong>📍</strong> Tabacalera</div>             <div style="margin-left: 18px; color: #888;">Plaza de la República s/n</div>         </div>         <div style="background: #f8fafc; border-radius: 8px; padding: 10px; margin-bottom: 10px; font-size: 11px;">             <div style="font-weight: 600; color: #1e3a5f; margin-bottom: 6px;">📞 Contacto</div>             <div style="margin: 3px 0;"><i class="fa fa-phone" style="width: 16px; color: #4a90d9;"></i> <a href="tel:+52 55 5535 0060" style="color: #4a90d9; text-decoration: none;">+52 55 5535 0060</a></div><div style="margin: 3px 0;"><i class="fa fa-envelope" style="width: 16px; color: #4a90d9;"></i> <a href="mailto:info@frontonmexico.com" style="color: #4a90d9; text-decoration: none;">info@frontonmexico.com</a></div><div style="margin: 3px 0;"><i class="fa fa-globe" style="width: 16px; color: #4a90d9;"></i> <a href="https://frontonmexico.com" target="_blank" style="color: #4a90d9; text-decoration: none;">frontonmexico.com</a></div>         </div>         <div style="font-size: 12px; color: #444; line-height: 1.5; border-top: 1px solid #e8ecf0; padding-top: 10px;">             Acceso exclusivo antes de la apertura general.         </div>     </div>     </div>`)[0];
+                popup_91fd2cc962a6dce227285cb043d4c26f.setContent(html_5fa754255100525f601926efde4ccc88);
+            
+        
+
+        marker_e58c47f8aed805cd31869d4a7f66c459.bindPopup(popup_91fd2cc962a6dce227285cb043d4c26f)
+        ;
+
+        
+    
+    
+            marker_e58c47f8aed805cd31869d4a7f66c459.bindTooltip(
+                `<div>
+                     <b>04/02 19:00</b><br>Salón ACME - Preview VIP
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+                marker_e58c47f8aed805cd31869d4a7f66c459.setIcon(icon_ef77dff74d680d7e1d87d45e29b99793);
+            
+    
+            var marker_d026f8bf7c2e04922dac078f00af8915 = L.marker(
+                [19.4365, -99.1525],
+                {
+}
+            ).addTo(map_9feeaebb9dd21082122de78834906a85);
+        
+    
+            var icon_2a09bc359872306c05e4d4f02d779d70 = L.AwesomeMarkers.icon(
+                {
+  "markerColor": "purple",
+  "iconColor": "white",
+  "icon": "building",
+  "prefix": "fa",
+  "extraClasses": "fa-rotate-0",
+}
+            );
+        
+    
+        var popup_28b0535103af05afb334d253c8b3183b = L.popup({
+  "maxWidth": 370,
+});
+
+        
+            
+                var html_28e2ce795e3e0837baf0f3a397c3d0c4 = $(`<div id="html_28e2ce795e3e0837baf0f3a397c3d0c4" style="width: 100.0%; height: 100.0%;">     <div style="font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif; width: 340px; padding: 5px;">         <div style="border-left: 4px solid #4a90d9; padding-left: 12px; margin-bottom: 12px;">             <h3 style="margin: 0 0 8px 0; font-size: 15px; color: #1e3a5f; line-height: 1.3;">Salón ACME - Día 1</h3>             <div style="font-size: 13px; color: #555; margin-bottom: 4px;"><strong>FRONTÓN MÉXICO</strong></div>         </div>         <div style="display: flex; gap: 15px; margin-bottom: 10px; font-size: 12px;">             <div style="background: #f0f4f8; padding: 6px 10px; border-radius: 4px;"><strong>⏰</strong> 12:00</div>             <div style="background: #4a90d915; color: #4a90d9; padding: 6px 10px; border-radius: 4px; font-weight: 600;">Público</div>         </div>         <div style="font-size: 12px; color: #666; margin-bottom: 10px;">             <div><strong>📍</strong> Tabacalera</div>             <div style="margin-left: 18px; color: #888;">Plaza de la República s/n</div>         </div>         <div style="background: #f8fafc; border-radius: 8px; padding: 10px; margin-bottom: 10px; font-size: 11px;">             <div style="font-weight: 600; color: #1e3a5f; margin-bottom: 6px;">📞 Contacto</div>             <div style="margin: 3px 0;"><i class="fa fa-phone" style="width: 16px; color: #4a90d9;"></i> <a href="tel:+52 55 5535 0060" style="color: #4a90d9; text-decoration: none;">+52 55 5535 0060</a></div><div style="margin: 3px 0;"><i class="fa fa-envelope" style="width: 16px; color: #4a90d9;"></i> <a href="mailto:info@frontonmexico.com" style="color: #4a90d9; text-decoration: none;">info@frontonmexico.com</a></div><div style="margin: 3px 0;"><i class="fa fa-globe" style="width: 16px; color: #4a90d9;"></i> <a href="https://frontonmexico.com" target="_blank" style="color: #4a90d9; text-decoration: none;">frontonmexico.com</a></div>         </div>         <div style="font-size: 12px; color: #444; line-height: 1.5; border-top: 1px solid #e8ecf0; padding-top: 10px;">             Arte independiente y experimental.         </div>     </div>     </div>`)[0];
+                popup_28b0535103af05afb334d253c8b3183b.setContent(html_28e2ce795e3e0837baf0f3a397c3d0c4);
+            
+        
+
+        marker_d026f8bf7c2e04922dac078f00af8915.bindPopup(popup_28b0535103af05afb334d253c8b3183b)
+        ;
+
+        
+    
+    
+            marker_d026f8bf7c2e04922dac078f00af8915.bindTooltip(
+                `<div>
+                     <b>05/02 12:00</b><br>Salón ACME - Día 1
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+                marker_d026f8bf7c2e04922dac078f00af8915.setIcon(icon_2a09bc359872306c05e4d4f02d779d70);
+            
+    
+            var marker_68aed50e098078a53e6fc6fd5b3a5dc1 = L.marker(
+                [19.4365, -99.1525],
+                {
+}
+            ).addTo(map_9feeaebb9dd21082122de78834906a85);
+        
+    
+            var icon_2a2a1ce4e35e962c76a329fd2685ab05 = L.AwesomeMarkers.icon(
+                {
+  "markerColor": "purple",
+  "iconColor": "white",
+  "icon": "building",
+  "prefix": "fa",
+  "extraClasses": "fa-rotate-0",
+}
+            );
+        
+    
+        var popup_248180ff491c159361bb364afdbedf2a = L.popup({
+  "maxWidth": 370,
+});
+
+        
+            
+                var html_c43f6a776073712e4f5118ca975c5ff7 = $(`<div id="html_c43f6a776073712e4f5118ca975c5ff7" style="width: 100.0%; height: 100.0%;">     <div style="font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif; width: 340px; padding: 5px;">         <div style="border-left: 4px solid #4a90d9; padding-left: 12px; margin-bottom: 12px;">             <h3 style="margin: 0 0 8px 0; font-size: 15px; color: #1e3a5f; line-height: 1.3;">Salón ACME - Día 2</h3>             <div style="font-size: 13px; color: #555; margin-bottom: 4px;"><strong>FRONTÓN MÉXICO</strong></div>         </div>         <div style="display: flex; gap: 15px; margin-bottom: 10px; font-size: 12px;">             <div style="background: #f0f4f8; padding: 6px 10px; border-radius: 4px;"><strong>⏰</strong> 12:00</div>             <div style="background: #4a90d915; color: #4a90d9; padding: 6px 10px; border-radius: 4px; font-weight: 600;">Público</div>         </div>         <div style="font-size: 12px; color: #666; margin-bottom: 10px;">             <div><strong>📍</strong> Tabacalera</div>             <div style="margin-left: 18px; color: #888;">Plaza de la República s/n</div>         </div>         <div style="background: #f8fafc; border-radius: 8px; padding: 10px; margin-bottom: 10px; font-size: 11px;">             <div style="font-weight: 600; color: #1e3a5f; margin-bottom: 6px;">📞 Contacto</div>             <div style="margin: 3px 0;"><i class="fa fa-phone" style="width: 16px; color: #4a90d9;"></i> <a href="tel:+52 55 5535 0060" style="color: #4a90d9; text-decoration: none;">+52 55 5535 0060</a></div><div style="margin: 3px 0;"><i class="fa fa-envelope" style="width: 16px; color: #4a90d9;"></i> <a href="mailto:info@frontonmexico.com" style="color: #4a90d9; text-decoration: none;">info@frontonmexico.com</a></div><div style="margin: 3px 0;"><i class="fa fa-globe" style="width: 16px; color: #4a90d9;"></i> <a href="https://frontonmexico.com" target="_blank" style="color: #4a90d9; text-decoration: none;">frontonmexico.com</a></div>         </div>         <div style="font-size: 12px; color: #444; line-height: 1.5; border-top: 1px solid #e8ecf0; padding-top: 10px;">             Proyectos de artistas emergentes.         </div>     </div>     </div>`)[0];
+                popup_248180ff491c159361bb364afdbedf2a.setContent(html_c43f6a776073712e4f5118ca975c5ff7);
+            
+        
+
+        marker_68aed50e098078a53e6fc6fd5b3a5dc1.bindPopup(popup_248180ff491c159361bb364afdbedf2a)
+        ;
+
+        
+    
+    
+            marker_68aed50e098078a53e6fc6fd5b3a5dc1.bindTooltip(
+                `<div>
+                     <b>06/02 12:00</b><br>Salón ACME - Día 2
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+                marker_68aed50e098078a53e6fc6fd5b3a5dc1.setIcon(icon_2a2a1ce4e35e962c76a329fd2685ab05);
+            
+    
+            var marker_d4cfdc780338cd9b77c4dc2c38074dd0 = L.marker(
+                [19.4365, -99.1525],
+                {
+}
+            ).addTo(map_9feeaebb9dd21082122de78834906a85);
+        
+    
+            var icon_8f7f5deb4efb6c67947554773c5b9c56 = L.AwesomeMarkers.icon(
+                {
+  "markerColor": "purple",
+  "iconColor": "white",
+  "icon": "building",
+  "prefix": "fa",
+  "extraClasses": "fa-rotate-0",
+}
+            );
+        
+    
+        var popup_376c951f1664a414aa275b30b81ca102 = L.popup({
+  "maxWidth": 370,
+});
+
+        
+            
+                var html_323ec11960c2b41fe63298105f830cdb = $(`<div id="html_323ec11960c2b41fe63298105f830cdb" style="width: 100.0%; height: 100.0%;">     <div style="font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif; width: 340px; padding: 5px;">         <div style="border-left: 4px solid #4a90d9; padding-left: 12px; margin-bottom: 12px;">             <h3 style="margin: 0 0 8px 0; font-size: 15px; color: #1e3a5f; line-height: 1.3;">Salón ACME - Día 3</h3>             <div style="font-size: 13px; color: #555; margin-bottom: 4px;"><strong>FRONTÓN MÉXICO</strong></div>         </div>         <div style="display: flex; gap: 15px; margin-bottom: 10px; font-size: 12px;">             <div style="background: #f0f4f8; padding: 6px 10px; border-radius: 4px;"><strong>⏰</strong> 12:00</div>             <div style="background: #4a90d915; color: #4a90d9; padding: 6px 10px; border-radius: 4px; font-weight: 600;">Público</div>         </div>         <div style="font-size: 12px; color: #666; margin-bottom: 10px;">             <div><strong>📍</strong> Tabacalera</div>             <div style="margin-left: 18px; color: #888;">Plaza de la República s/n</div>         </div>         <div style="background: #f8fafc; border-radius: 8px; padding: 10px; margin-bottom: 10px; font-size: 11px;">             <div style="font-weight: 600; color: #1e3a5f; margin-bottom: 6px;">📞 Contacto</div>             <div style="margin: 3px 0;"><i class="fa fa-phone" style="width: 16px; color: #4a90d9;"></i> <a href="tel:+52 55 5535 0060" style="color: #4a90d9; text-decoration: none;">+52 55 5535 0060</a></div><div style="margin: 3px 0;"><i class="fa fa-envelope" style="width: 16px; color: #4a90d9;"></i> <a href="mailto:info@frontonmexico.com" style="color: #4a90d9; text-decoration: none;">info@frontonmexico.com</a></div><div style="margin: 3px 0;"><i class="fa fa-globe" style="width: 16px; color: #4a90d9;"></i> <a href="https://frontonmexico.com" target="_blank" style="color: #4a90d9; text-decoration: none;">frontonmexico.com</a></div>         </div>         <div style="font-size: 12px; color: #444; line-height: 1.5; border-top: 1px solid #e8ecf0; padding-top: 10px;">             Charlas y performances especiales.         </div>     </div>     </div>`)[0];
+                popup_376c951f1664a414aa275b30b81ca102.setContent(html_323ec11960c2b41fe63298105f830cdb);
+            
+        
+
+        marker_d4cfdc780338cd9b77c4dc2c38074dd0.bindPopup(popup_376c951f1664a414aa275b30b81ca102)
+        ;
+
+        
+    
+    
+            marker_d4cfdc780338cd9b77c4dc2c38074dd0.bindTooltip(
+                `<div>
+                     <b>07/02 12:00</b><br>Salón ACME - Día 3
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+                marker_d4cfdc780338cd9b77c4dc2c38074dd0.setIcon(icon_8f7f5deb4efb6c67947554773c5b9c56);
+            
+    
+            var marker_1ea21fecd27950a0230898fa3fbad85f = L.marker(
+                [19.4365, -99.1525],
+                {
+}
+            ).addTo(map_9feeaebb9dd21082122de78834906a85);
+        
+    
+            var icon_12a9fa80b6a9fbf44a5171d491937f05 = L.AwesomeMarkers.icon(
+                {
+  "markerColor": "purple",
+  "iconColor": "white",
+  "icon": "building",
+  "prefix": "fa",
+  "extraClasses": "fa-rotate-0",
+}
+            );
+        
+    
+        var popup_6222165702a8e21eaaf3f731388dda21 = L.popup({
+  "maxWidth": 370,
+});
+
+        
+            
+                var html_fc852fd23b61bffdf3c533198cd2121d = $(`<div id="html_fc852fd23b61bffdf3c533198cd2121d" style="width: 100.0%; height: 100.0%;">     <div style="font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif; width: 340px; padding: 5px;">         <div style="border-left: 4px solid #4a90d9; padding-left: 12px; margin-bottom: 12px;">             <h3 style="margin: 0 0 8px 0; font-size: 15px; color: #1e3a5f; line-height: 1.3;">Salón ACME - Cierre</h3>             <div style="font-size: 13px; color: #555; margin-bottom: 4px;"><strong>FRONTÓN MÉXICO</strong></div>         </div>         <div style="display: flex; gap: 15px; margin-bottom: 10px; font-size: 12px;">             <div style="background: #f0f4f8; padding: 6px 10px; border-radius: 4px;"><strong>⏰</strong> 12:00</div>             <div style="background: #4a90d915; color: #4a90d9; padding: 6px 10px; border-radius: 4px; font-weight: 600;">Público</div>         </div>         <div style="font-size: 12px; color: #666; margin-bottom: 10px;">             <div><strong>📍</strong> Tabacalera</div>             <div style="margin-left: 18px; color: #888;">Plaza de la República s/n</div>         </div>         <div style="background: #f8fafc; border-radius: 8px; padding: 10px; margin-bottom: 10px; font-size: 11px;">             <div style="font-weight: 600; color: #1e3a5f; margin-bottom: 6px;">📞 Contacto</div>             <div style="margin: 3px 0;"><i class="fa fa-phone" style="width: 16px; color: #4a90d9;"></i> <a href="tel:+52 55 5535 0060" style="color: #4a90d9; text-decoration: none;">+52 55 5535 0060</a></div><div style="margin: 3px 0;"><i class="fa fa-envelope" style="width: 16px; color: #4a90d9;"></i> <a href="mailto:info@frontonmexico.com" style="color: #4a90d9; text-decoration: none;">info@frontonmexico.com</a></div><div style="margin: 3px 0;"><i class="fa fa-globe" style="width: 16px; color: #4a90d9;"></i> <a href="https://frontonmexico.com" target="_blank" style="color: #4a90d9; text-decoration: none;">frontonmexico.com</a></div>         </div>         <div style="font-size: 12px; color: #444; line-height: 1.5; border-top: 1px solid #e8ecf0; padding-top: 10px;">             Último día del Salón ACME.         </div>     </div>     </div>`)[0];
+                popup_6222165702a8e21eaaf3f731388dda21.setContent(html_fc852fd23b61bffdf3c533198cd2121d);
+            
+        
+
+        marker_1ea21fecd27950a0230898fa3fbad85f.bindPopup(popup_6222165702a8e21eaaf3f731388dda21)
+        ;
+
+        
+    
+    
+            marker_1ea21fecd27950a0230898fa3fbad85f.bindTooltip(
+                `<div>
+                     <b>08/02 12:00</b><br>Salón ACME - Cierre
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+                marker_1ea21fecd27950a0230898fa3fbad85f.setIcon(icon_12a9fa80b6a9fbf44a5171d491937f05);
+            
+</script>
+</html>
