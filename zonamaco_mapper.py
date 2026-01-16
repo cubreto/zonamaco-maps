@@ -779,7 +779,7 @@ def create_premium_index(days_info: List[dict], all_events: List[Event], output_
         .stat-pill.total {{ background: var(--bg-light); color: var(--text-secondary); }}
         .stat-pill.publico {{ background: var(--blue-light); color: var(--blue-primary); }}
         .stat-pill.privado {{ background: var(--orange-light); color: var(--orange-primary); }}
-        .day-card-preview {{ background: var(--bg-light); border-radius: 8px; padding: 10px; margin-bottom: 12px; max-height: 140px; overflow-y: auto; }}
+        .day-card-preview {{ background: var(--bg-light); border-radius: 8px; padding: 10px; margin-bottom: 12px; max-height: 250px; overflow-y: auto; }}
         .preview-event {{ display: flex; align-items: center; gap: 8px; padding: 6px 8px; background: var(--white); border-radius: 6px; margin-bottom: 4px; border-left: 3px solid transparent; font-size: 11px; }}
         .preview-event.publico {{ border-left-color: var(--blue-primary); }}
         .preview-event.privado {{ border-left-color: var(--orange-primary); }}
@@ -874,7 +874,7 @@ def create_premium_index(days_info: List[dict], all_events: List[Event], output_
             const dow = parseInt(card.dataset.day);
             const preview = card.querySelector('.day-card-preview');
             const dayEvents = eventsByDay[dow] || [];
-            const html = dayEvents.slice(0, 4).map(e => `<div class="preview-event ${{e.category.toLowerCase()}}"><span class="preview-time">${{e.time}}</span><span class="preview-title">${{e.organizer}}</span></div>`).join('');
+            const html = dayEvents.map(e => `<div class="preview-event ${{e.category.toLowerCase()}}"><span class="preview-time">${{e.time}}</span><span class="preview-title">${{e.organizer}}</span></div>`).join('');
             preview.innerHTML = html || '<p style="color: var(--text-muted); font-size: 11px; text-align: center; padding: 15px;">Sin eventos</p>';
         }});
     </script>
