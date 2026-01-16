@@ -1,31 +1,33 @@
 #!/usr/bin/env python3
 """
-ZonaMaco Week Mapper v4.0
+ZonaMaco Week Mapper v4.1
 -------------------------
 Enhanced with:
 - Venue contact info (phone, email, website)
 - Arrow routes between venues
 - Centro Banamex MACO VIP
 - Material Art Fair & Salón ACME pages
+- Validation report (v4.1)
+- Fixed click-to-pan (v4.1)
+- venue_key support (v4.1)
 """
 
 import os
+import sys
 from datetime import datetime
-from typing import Dict, List, Optional
-from dataclasses import dataclass
+from typing import Dict, List, Optional, Tuple
+from dataclasses import dataclass, field
+from collections import Counter
 import json
 
+# Fail fast if folium not installed
 try:
     import folium
     from folium.plugins import AntPath
     from folium.features import DivIcon
 except ImportError:
-    print("Installing required packages...")
-    import subprocess
-    subprocess.run(["pip", "install", "folium"], check=True)
-    import folium
-    from folium.plugins import AntPath
-    from folium.features import DivIcon
+    print("ERROR: folium not installed. Run: pip install folium")
+    sys.exit(1)
 
 
 # =============================================================================
@@ -222,6 +224,7 @@ class Event:
     category: str
     venue: Optional[Venue] = None
     fair: str = "zonamaco"
+    venue_key: Optional[str] = None  # Explicit venue override (takes priority over organizer matching)
 
     @property
     def time_period(self) -> str:
@@ -254,14 +257,84 @@ class Event:
         }
 
 
-def get_venue(organizer: str) -> Optional[Venue]:
+def get_venue(organizer: str, venue_key: Optional[str] = None) -> Optional[Venue]:
+    """Get venue by key or organizer name. venue_key takes priority."""
+    # Priority 1: Explicit venue_key
+    if venue_key:
+        key_upper = venue_key.upper().strip()
+        if key_upper in VENUES:
+            return VENUES[key_upper]
+
+    # Priority 2: Exact organizer match
     org_upper = organizer.upper().strip()
     if org_upper in VENUES:
         return VENUES[org_upper]
+
+    # Priority 3: Substring matching (less reliable)
     for key, venue in VENUES.items():
         if key in org_upper or org_upper in key:
             return venue
     return None
+
+
+def validate_events(events: List[Event]) -> None:
+    """Validate events and print a report. Call after parsing to catch issues early."""
+    print("\n" + "="*60)
+    print("VALIDATION REPORT")
+    print("="*60)
+
+    valid_categories = {"Público", "Privado"}
+    issues = {"missing_coords": [], "unknown_category": [], "duplicates": []}
+
+    # Check for missing coordinates
+    for e in events:
+        if e.lat is None or e.lon is None:
+            issues["missing_coords"].append(e.organizer)
+
+    # Check for unknown categories
+    for e in events:
+        if e.category not in valid_categories:
+            issues["unknown_category"].append((e.organizer, e.category))
+
+    # Check for duplicates (same organizer, date, title)
+    seen = Counter()
+    for e in events:
+        key = (e.date.isoformat(), e.organizer, e.title)
+        seen[key] += 1
+    for key, count in seen.items():
+        if count > 1:
+            issues["duplicates"].append((key[1], key[2], count))
+
+    # Print report
+    if issues["missing_coords"]:
+        print(f"\nMISSING_COORDS ({len(issues['missing_coords'])} events without location):")
+        for org in sorted(set(issues["missing_coords"])):
+            count = issues["missing_coords"].count(org)
+            print(f"  - {org} ({count} events)")
+    else:
+        print("\nMISSING_COORDS: None - all events have coordinates")
+
+    if issues["unknown_category"]:
+        print(f"\nUNKNOWN_CATEGORY ({len(issues['unknown_category'])}):")
+        for org, cat in issues["unknown_category"]:
+            print(f"  - {org}: '{cat}' (expected: Público or Privado)")
+    else:
+        print("\nUNKNOWN_CATEGORY: None - all categories valid")
+
+    if issues["duplicates"]:
+        print(f"\nDUPLICATES ({len(issues['duplicates'])}):")
+        for org, title, count in issues["duplicates"]:
+            print(f"  - {org}: '{title}' appears {count} times")
+    else:
+        print("\nDUPLICATES: None - no duplicate events")
+
+    total_issues = len(issues["missing_coords"]) + len(issues["unknown_category"]) + len(issues["duplicates"])
+    print(f"\n{'='*60}")
+    if total_issues == 0:
+        print(f"VALIDATION PASSED - {len(events)} events OK")
+    else:
+        print(f"VALIDATION WARNING - {total_issues} issues found in {len(events)} events")
+    print("="*60 + "\n")
 
 
 def parse_events() -> List[Event]:
@@ -389,19 +462,23 @@ def parse_events() -> List[Event]:
 
     events = []
     for item in events_data:
-        if len(item) == 6:
+        venue_key = None
+        if len(item) == 7:
+            dt, org, title, desc, cat, fair, venue_key = item
+        elif len(item) == 6:
             dt, org, title, desc, cat, fair = item
         else:
             dt, org, title, desc, cat = item
             fair = "zonamaco"
-        venue = get_venue(org)
-        events.append(Event(date=dt, organizer=org, title=title, description=desc, category=cat, venue=venue, fair=fair))
+        venue = get_venue(org, venue_key)
+        events.append(Event(date=dt, organizer=org, title=title, description=desc, category=cat, venue=venue, fair=fair, venue_key=venue_key))
     return events
 
 
 def parse_material_events() -> List[Event]:
     """Material Art Fair events at Expo Reforma."""
     events_data = [
+        # Format: (datetime, organizer, title, desc, category) or (datetime, organizer, title, desc, category, venue_key)
         (datetime(2026, 2, 4, 18, 0), "EXPO REFORMA", "Material Art Fair - VIP Preview", "Acceso exclusivo para coleccionistas antes de la apertura.", "Privado"),
         (datetime(2026, 2, 5, 11, 0), "EXPO REFORMA", "Material Art Fair - Día 1", "Feria de arte emergente y diseño.", "Público"),
         (datetime(2026, 2, 6, 11, 0), "EXPO REFORMA", "Material Art Fair - Día 2", "Galerías emergentes de México y Latinoamérica.", "Público"),
@@ -409,15 +486,18 @@ def parse_material_events() -> List[Event]:
         (datetime(2026, 2, 8, 11, 0), "EXPO REFORMA", "Material Art Fair - Cierre", "Último día de la feria Material.", "Público"),
     ]
     events = []
-    for dt, org, title, desc, cat in events_data:
-        venue = get_venue(org)
-        events.append(Event(date=dt, organizer=org, title=title, description=desc, category=cat, venue=venue, fair="material"))
+    for item in events_data:
+        venue_key = item[5] if len(item) == 6 else None
+        dt, org, title, desc, cat = item[:5]
+        venue = get_venue(org, venue_key)
+        events.append(Event(date=dt, organizer=org, title=title, description=desc, category=cat, venue=venue, fair="material", venue_key=venue_key))
     return events
 
 
 def parse_acme_events() -> List[Event]:
     """Salón ACME events at Frontón México."""
     events_data = [
+        # Format: (datetime, organizer, title, desc, category) or (datetime, organizer, title, desc, category, venue_key)
         (datetime(2026, 2, 4, 19, 0), "FRONTÓN MÉXICO", "Salón ACME - Preview VIP", "Acceso exclusivo antes de la apertura general.", "Privado"),
         (datetime(2026, 2, 5, 12, 0), "FRONTÓN MÉXICO", "Salón ACME - Día 1", "Arte independiente y experimental.", "Público"),
         (datetime(2026, 2, 6, 12, 0), "FRONTÓN MÉXICO", "Salón ACME - Día 2", "Proyectos de artistas emergentes.", "Público"),
@@ -425,9 +505,11 @@ def parse_acme_events() -> List[Event]:
         (datetime(2026, 2, 8, 12, 0), "FRONTÓN MÉXICO", "Salón ACME - Cierre", "Último día del Salón ACME.", "Público"),
     ]
     events = []
-    for dt, org, title, desc, cat in events_data:
-        venue = get_venue(org)
-        events.append(Event(date=dt, organizer=org, title=title, description=desc, category=cat, venue=venue, fair="acme"))
+    for item in events_data:
+        venue_key = item[5] if len(item) == 6 else None
+        dt, org, title, desc, cat = item[:5]
+        venue = get_venue(org, venue_key)
+        events.append(Event(date=dt, organizer=org, title=title, description=desc, category=cat, venue=venue, fair="acme", venue_key=venue_key))
     return events
 
 
@@ -494,9 +576,13 @@ def create_timeline_html(events: List[Event], day_date: datetime) -> str:
     afternoon = sorted([e for e in events if e.time_period == "afternoon"], key=lambda x: x.date)
     evening = sorted([e for e in events if e.time_period == "evening"], key=lambda x: x.date)
 
+    # JavaScript helper to find Leaflet map (Folium uses map_<uuid> not 'map')
+    find_map_js = """(function(){var m=Object.values(window).find(function(v){return v&&v._leaflet_id&&v.setView});if(m){m.setView([%s,%s],16)}})()"""
+
     def event_item(e: Event) -> str:
         cat_color = CATEGORY_COLORS.get(e.category, "#666")
-        return f"""<div style="padding: 8px 10px; margin: 4px 0; background: white; border-radius: 6px; border-left: 3px solid {cat_color}; font-size: 11px; cursor: pointer; box-shadow: 0 1px 3px rgba(0,0,0,0.08);" onclick="map.setView([{e.lat}, {e.lon}], 16)"><div style="font-weight: 600; color: #1e3a5f;">{e.date.strftime('%H:%M')}</div><div style="color: #666; white-space: nowrap; overflow: hidden; text-overflow: ellipsis;">{e.organizer}</div></div>"""
+        onclick_js = find_map_js % (e.lat, e.lon) if e.lat and e.lon else ""
+        return f"""<div style="padding: 8px 10px; margin: 4px 0; background: white; border-radius: 6px; border-left: 3px solid {cat_color}; font-size: 11px; cursor: pointer; box-shadow: 0 1px 3px rgba(0,0,0,0.08);" onclick="{onclick_js}"><div style="font-weight: 600; color: #1e3a5f;">{e.date.strftime('%H:%M')}</div><div style="color: #666; white-space: nowrap; overflow: hidden; text-overflow: ellipsis;">{e.organizer}</div></div>"""
 
     def period_section(title: str, events_list: List[Event], color: str) -> str:
         if not events_list:
@@ -891,8 +977,9 @@ def main():
     os.makedirs(output_dir, exist_ok=True)
 
     print("=" * 60)
-    print("   ZonaMaco 2026 - Generador de Mapas v4.0")
+    print("   ZonaMaco 2026 - Generador de Mapas v4.1")
     print("   + Material Art Fair + Salón ACME")
+    print("   + Validation + venue_key support")
     print("=" * 60)
 
     # Parse all events
@@ -900,12 +987,16 @@ def main():
     material_events = parse_material_events()
     acme_events = parse_acme_events()
 
+    # Validate all events (prints report)
+    all_events = events + material_events + acme_events
+    validate_events(all_events)
+
     print(f"\n📊 ZonaMaco: {len(events)} eventos")
     print(f"📊 Material: {len(material_events)} eventos")
     print(f"📊 ACME: {len(acme_events)} eventos")
-    print(f"📊 TOTAL: {len(events) + len(material_events) + len(acme_events)} eventos")
-    print(f"\n🔵 Públicos: {sum(1 for e in events if e.category == 'Público')}")
-    print(f"🟠 Privados: {sum(1 for e in events if e.category == 'Privado')}")
+    print(f"📊 TOTAL: {len(all_events)} eventos")
+    print(f"\n🔵 Públicos: {sum(1 for e in all_events if e.category == 'Público')}")
+    print(f"🟠 Privados: {sum(1 for e in all_events if e.category == 'Privado')}")
 
     # Group by day
     events_by_day: Dict[datetime, List[Event]] = {}
