@@ -1,0 +1,1100 @@
+<!DOCTYPE html>
+<html>
+<head>
+    
+    <meta http-equiv="content-type" content="text/html; charset=UTF-8" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css"/>
+    
+        <script>
+            L_NO_TOUCH = false;
+            L_DISABLE_3D = false;
+        </script>
+    
+    <style>html, body {width: 100%;height: 100%;margin: 0;padding: 0;}</style>
+    <style>#map {position:absolute;top:0;bottom:0;right:0;left:0;}</style>
+    <script src="https://cdn.jsdelivr.net/npm/leaflet@1.9.3/dist/leaflet.js"></script>
+    <script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/Leaflet.awesome-markers/2.0.2/leaflet.awesome-markers.js"></script>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/leaflet@1.9.3/dist/leaflet.css"/>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/css/bootstrap.min.css"/>
+    <link rel="stylesheet" href="https://netdna.bootstrapcdn.com/bootstrap/3.0.0/css/bootstrap-glyphicons.css"/>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@6.2.0/css/all.min.css"/>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/Leaflet.awesome-markers/2.0.2/leaflet.awesome-markers.css"/>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/python-visualization/folium/folium/templates/leaflet.awesome.rotate.min.css"/>
+    
+            <meta name="viewport" content="width=device-width,
+                initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
+            <style>
+                #map_143f787d2d0bab0def970f01d36f9a2c {
+                    position: relative;
+                    width: 100.0%;
+                    height: 100.0%;
+                    left: 0.0%;
+                    top: 0.0%;
+                }
+                .leaflet-container { font-size: 1rem; }
+            </style>
+        
+    <script src="https://cdn.jsdelivr.net/npm/leaflet-ant-path@1.1.2/dist/leaflet-ant-path.min.js"></script>
+</head>
+<body>
+    
+    <div style="position: fixed; top: 10px; right: 10px; width: 220px; max-height: 90vh; background: #f8fafc; border-radius: 12px; padding: 15px; z-index: 1000; box-shadow: 0 4px 20px rgba(0,0,0,0.1); overflow-y: auto; font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif; border: 1px solid #e2e8f0;"><div style="text-align: center; margin-bottom: 15px; padding-bottom: 10px; border-bottom: 2px solid #e2e8f0;"><div style="font-size: 18px; font-weight: 700; color: #1e3a5f;">Viernes</div><div style="font-size: 12px; color: #64748b;">6 de Febrero</div><div style="font-size: 11px; color: #94a3b8; margin-top: 4px;">19 eventos</div></div><div style="margin-bottom: 15px;"><div style="font-size: 11px; font-weight: 700; color: #f39c12; margin-bottom: 6px; padding: 4px 8px; background: #f39c1215; border-radius: 4px;">☀️ Mañana (12)</div><div style="padding: 8px 10px; margin: 4px 0; background: white; border-radius: 6px; border-left: 3px solid #e67e22; font-size: 11px; cursor: pointer; box-shadow: 0 1px 3px rgba(0,0,0,0.08);" onclick="map.setView([19.3534, -99.1894], 16)"><div style="font-weight: 600; color: #1e3a5f;">09:30</div><div style="color: #666; white-space: nowrap; overflow: hidden; text-overflow: ellipsis;">MUSEO DE ARTE CARRILLO GIL</div></div><div style="padding: 8px 10px; margin: 4px 0; background: white; border-radius: 6px; border-left: 3px solid #e67e22; font-size: 11px; cursor: pointer; box-shadow: 0 1px 3px rgba(0,0,0,0.08);" onclick="map.setView([19.4165, -99.1745], 16)"><div style="font-weight: 600; color: #1e3a5f;">09:30</div><div style="color: #666; white-space: nowrap; overflow: hidden; text-overflow: ellipsis;">LATINOU</div></div><div style="padding: 8px 10px; margin: 4px 0; background: white; border-radius: 6px; border-left: 3px solid #4a90d9; font-size: 11px; cursor: pointer; box-shadow: 0 1px 3px rgba(0,0,0,0.08);" onclick="map.setView([19.4215, -99.1865], 16)"><div style="font-weight: 600; color: #1e3a5f;">10:00</div><div style="color: #666; white-space: nowrap; overflow: hidden; text-overflow: ellipsis;">LAGOALGO</div></div><div style="padding: 8px 10px; margin: 4px 0; background: white; border-radius: 6px; border-left: 3px solid #e67e22; font-size: 11px; cursor: pointer; box-shadow: 0 1px 3px rgba(0,0,0,0.08);" onclick="map.setView([19.4189, -99.1658], 16)"><div style="font-weight: 600; color: #1e3a5f;">10:00</div><div style="color: #666; white-space: nowrap; overflow: hidden; text-overflow: ellipsis;">SAENGER GALERÍA</div></div><div style="padding: 8px 10px; margin: 4px 0; background: white; border-radius: 6px; border-left: 3px solid #e67e22; font-size: 11px; cursor: pointer; box-shadow: 0 1px 3px rgba(0,0,0,0.08);" onclick="map.setView([19.4142, -99.1695], 16)"><div style="font-weight: 600; color: #1e3a5f;">10:00</div><div style="color: #666; white-space: nowrap; overflow: hidden; text-overflow: ellipsis;">AMBAR QUIJANO</div></div><div style="padding: 8px 10px; margin: 4px 0; background: white; border-radius: 6px; border-left: 3px solid #e67e22; font-size: 11px; cursor: pointer; box-shadow: 0 1px 3px rgba(0,0,0,0.08);" onclick="map.setView([19.4189, -99.1658], 16)"><div style="font-weight: 600; color: #1e3a5f;">10:00</div><div style="color: #666; white-space: nowrap; overflow: hidden; text-overflow: ellipsis;">SAENGER GALERÍA</div></div><div style="padding: 8px 10px; margin: 4px 0; background: white; border-radius: 6px; border-left: 3px solid #e67e22; font-size: 11px; cursor: pointer; box-shadow: 0 1px 3px rgba(0,0,0,0.08);" onclick="map.setView([19.4152, -99.1725], 16)"><div style="font-weight: 600; color: #1e3a5f;">11:00</div><div style="color: #666; white-space: nowrap; overflow: hidden; text-overflow: ellipsis;">MARCHANTE ARTE CONTEMPORÁNEO & PROYECTO H</div></div><div style="padding: 8px 10px; margin: 4px 0; background: white; border-radius: 6px; border-left: 3px solid #e67e22; font-size: 11px; cursor: pointer; box-shadow: 0 1px 3px rgba(0,0,0,0.08);" onclick="map.setView([19.4168, -99.1688], 16)"><div style="font-weight: 600; color: #1e3a5f;">11:00</div><div style="color: #666; white-space: nowrap; overflow: hidden; text-overflow: ellipsis;">LS / GALERÍA & CASA ABIERTA MONTE</div></div><div style="padding: 8px 10px; margin: 4px 0; background: white; border-radius: 6px; border-left: 3px solid #e67e22; font-size: 11px; cursor: pointer; box-shadow: 0 1px 3px rgba(0,0,0,0.08);" onclick="map.setView([19.3183, -99.1867], 16)"><div style="font-weight: 600; color: #1e3a5f;">11:00</div><div style="color: #666; white-space: nowrap; overflow: hidden; text-overflow: ellipsis;">MUAC</div></div><div style="padding: 8px 10px; margin: 4px 0; background: white; border-radius: 6px; border-left: 3px solid #e67e22; font-size: 11px; cursor: pointer; box-shadow: 0 1px 3px rgba(0,0,0,0.08);" onclick="map.setView([19.4175, -99.1698], 16)"><div style="font-weight: 600; color: #1e3a5f;">11:00</div><div style="color: #666; white-space: nowrap; overflow: hidden; text-overflow: ellipsis;">GALERÍA KAREN HUBER</div></div><div style="padding: 8px 10px; margin: 4px 0; background: white; border-radius: 6px; border-left: 3px solid #e67e22; font-size: 11px; cursor: pointer; box-shadow: 0 1px 3px rgba(0,0,0,0.08);" onclick="map.setView([19.4189, -99.1658], 16)"><div style="font-weight: 600; color: #1e3a5f;">11:00</div><div style="color: #666; white-space: nowrap; overflow: hidden; text-overflow: ellipsis;">SAENGER GALERÍA</div></div><div style="padding: 8px 10px; margin: 4px 0; background: white; border-radius: 6px; border-left: 3px solid #e67e22; font-size: 11px; cursor: pointer; box-shadow: 0 1px 3px rgba(0,0,0,0.08);" onclick="map.setView([19.4142, -99.1695], 16)"><div style="font-weight: 600; color: #1e3a5f;">11:45</div><div style="color: #666; white-space: nowrap; overflow: hidden; text-overflow: ellipsis;">AMBAR QUIJANO</div></div></div><div style="margin-bottom: 15px;"><div style="font-size: 11px; font-weight: 700; color: #e67e22; margin-bottom: 6px; padding: 4px 8px; background: #e67e2215; border-radius: 4px;">🌤️ Tarde (2)</div><div style="padding: 8px 10px; margin: 4px 0; background: white; border-radius: 6px; border-left: 3px solid #4a90d9; font-size: 11px; cursor: pointer; box-shadow: 0 1px 3px rgba(0,0,0,0.08);" onclick="map.setView([19.4352, -99.1412], 16)"><div style="font-weight: 600; color: #1e3a5f;">12:00</div><div style="color: #666; white-space: nowrap; overflow: hidden; text-overflow: ellipsis;">MUSEO DEL PALACIO DE BELLAS ARTES</div></div><div style="padding: 8px 10px; margin: 4px 0; background: white; border-radius: 6px; border-left: 3px solid #4a90d9; font-size: 11px; cursor: pointer; box-shadow: 0 1px 3px rgba(0,0,0,0.08);" onclick="map.setView([19.4186, -99.1625], 16)"><div style="font-weight: 600; color: #1e3a5f;">13:00</div><div style="color: #666; white-space: nowrap; overflow: hidden; text-overflow: ellipsis;">ARRÓNIZ</div></div></div><div style="margin-bottom: 15px;"><div style="font-size: 11px; font-weight: 700; color: #1e3a5f; margin-bottom: 6px; padding: 4px 8px; background: #1e3a5f15; border-radius: 4px;">🌙 Noche (5)</div><div style="padding: 8px 10px; margin: 4px 0; background: white; border-radius: 6px; border-left: 3px solid #4a90d9; font-size: 11px; cursor: pointer; box-shadow: 0 1px 3px rgba(0,0,0,0.08);" onclick="map.setView([19.4142, -99.1695], 16)"><div style="font-weight: 600; color: #1e3a5f;">19:00</div><div style="color: #666; white-space: nowrap; overflow: hidden; text-overflow: ellipsis;">AMBAR QUIJANO</div></div><div style="padding: 8px 10px; margin: 4px 0; background: white; border-radius: 6px; border-left: 3px solid #4a90d9; font-size: 11px; cursor: pointer; box-shadow: 0 1px 3px rgba(0,0,0,0.08);" onclick="map.setView([19.4178, -99.1715], 16)"><div style="font-weight: 600; color: #1e3a5f;">19:00</div><div style="color: #666; white-space: nowrap; overflow: hidden; text-overflow: ellipsis;">BREUER STUDIO</div></div><div style="padding: 8px 10px; margin: 4px 0; background: white; border-radius: 6px; border-left: 3px solid #e67e22; font-size: 11px; cursor: pointer; box-shadow: 0 1px 3px rgba(0,0,0,0.08);" onclick="map.setView([19.4215, -99.1786], 16)"><div style="font-weight: 600; color: #1e3a5f;">19:00</div><div style="color: #666; white-space: nowrap; overflow: hidden; text-overflow: ellipsis;">MUSEO DE ARTE MODERNO</div></div><div style="padding: 8px 10px; margin: 4px 0; background: white; border-radius: 6px; border-left: 3px solid #e67e22; font-size: 11px; cursor: pointer; box-shadow: 0 1px 3px rgba(0,0,0,0.08);" onclick="map.setView([19.4198, -99.1702], 16)"><div style="font-weight: 600; color: #1e3a5f;">19:00</div><div style="color: #666; white-space: nowrap; overflow: hidden; text-overflow: ellipsis;">NOUVEL</div></div><div style="padding: 8px 10px; margin: 4px 0; background: white; border-radius: 6px; border-left: 3px solid #e67e22; font-size: 11px; cursor: pointer; box-shadow: 0 1px 3px rgba(0,0,0,0.08);" onclick="map.setView([19.4354, -99.1487], 16)"><div style="font-weight: 600; color: #1e3a5f;">20:00</div><div style="color: #666; white-space: nowrap; overflow: hidden; text-overflow: ellipsis;">MUSEO KALUZ</div></div></div></div>
+    <div style="position: fixed; bottom: 30px; left: 10px; z-index: 1000; background: white; padding: 12px 15px; border-radius: 8px; box-shadow: 0 2px 10px rgba(0,0,0,0.1); font-family: -apple-system, sans-serif; font-size: 11px; border: 1px solid #e2e8f0;"><div style="font-weight: 700; margin-bottom: 8px; color: #1e3a5f;">Leyenda</div><div style="margin: 4px 0;"><span style="color: #4a90d9;">●</span> Público</div><div style="margin: 4px 0;"><span style="color: #e67e22;">●</span> Privado</div><div style="margin-top: 8px; padding-top: 8px; border-top: 1px solid #e2e8f0;"><div><i class="fa fa-university"></i> Museo</div><div><i class="fa fa-image"></i> Galería</div><div><i class="fa fa-bed"></i> Hotel</div><div><i class="fa fa-paint-brush"></i> Estudio</div></div></div>
+    
+            <div class="folium-map" id="map_143f787d2d0bab0def970f01d36f9a2c" ></div>
+        
+</body>
+<script>
+    
+    
+            var map_143f787d2d0bab0def970f01d36f9a2c = L.map(
+                "map_143f787d2d0bab0def970f01d36f9a2c",
+                {
+                    center: [19.410884210526316, -99.16983157894737],
+                    crs: L.CRS.EPSG3857,
+                    ...{
+  "zoom": 14,
+  "zoomControl": true,
+  "preferCanvas": false,
+}
+
+                }
+            );
+            L.control.scale().addTo(map_143f787d2d0bab0def970f01d36f9a2c);
+
+            
+
+        
+    
+            var tile_layer_2dc788539eff66b70a66725ff97c1768 = L.tileLayer(
+                "https://{s}.basemaps.cartocdn.com/light_all/{z}/{x}/{y}{r}.png",
+                {
+  "minZoom": 0,
+  "maxZoom": 20,
+  "maxNativeZoom": 20,
+  "noWrap": false,
+  "attribution": "\u0026copy; \u003ca href=\"https://www.openstreetmap.org/copyright\"\u003eOpenStreetMap\u003c/a\u003e contributors \u0026copy; \u003ca href=\"https://carto.com/attributions\"\u003eCARTO\u003c/a\u003e",
+  "subdomains": "abcd",
+  "detectRetina": false,
+  "tms": false,
+  "opacity": 1,
+}
+
+            );
+        
+    
+            tile_layer_2dc788539eff66b70a66725ff97c1768.addTo(map_143f787d2d0bab0def970f01d36f9a2c);
+        
+    
+            var tile_layer_656f71f28054793fd432f9bb796ec245 = L.tileLayer(
+                "https://tile.openstreetmap.org/{z}/{x}/{y}.png",
+                {
+  "minZoom": 0,
+  "maxZoom": 19,
+  "maxNativeZoom": 19,
+  "noWrap": false,
+  "attribution": "\u0026copy; \u003ca href=\"https://www.openstreetmap.org/copyright\"\u003eOpenStreetMap\u003c/a\u003e contributors",
+  "subdomains": "abc",
+  "detectRetina": false,
+  "tms": false,
+  "opacity": 1,
+}
+
+            );
+        
+    
+            tile_layer_656f71f28054793fd432f9bb796ec245.addTo(map_143f787d2d0bab0def970f01d36f9a2c);
+        
+    
+            var feature_group_02673426de53bc983a607d98d5d2e3d1 = L.featureGroup(
+                {
+}
+            );
+        
+    
+            ant_path_b42b968e657d2c4bc77e2e851de47884 = L.polyline.antPath(
+              [[19.3534, -99.1894], [19.4165, -99.1745], [19.4215, -99.1865], [19.4189, -99.1658], [19.4142, -99.1695], [19.4189, -99.1658], [19.4152, -99.1725], [19.4168, -99.1688], [19.3183, -99.1867], [19.4175, -99.1698], [19.4189, -99.1658], [19.4142, -99.1695], [19.4352, -99.1412], [19.4186, -99.1625], [19.4142, -99.1695], [19.4178, -99.1715], [19.4215, -99.1786], [19.4198, -99.1702], [19.4354, -99.1487]],
+              {
+  "stroke": true,
+  "color": "#4a90d9",
+  "weight": 3,
+  "opacity": 0.7,
+  "lineCap": "round",
+  "lineJoin": "round",
+  "dashArray": [
+10,
+20,
+],
+  "dashOffset": null,
+  "fill": false,
+  "fillColor": "#4a90d9",
+  "fillOpacity": 0.2,
+  "fillRule": "evenodd",
+  "bubblingMouseEvents": true,
+  "smoothFactor": 1.0,
+  "noClip": false,
+  "paused": false,
+  "reverse": false,
+  "hardwareAcceleration": false,
+  "delay": 1000,
+  "pulseColor": "#fff",
+}
+        ).addTo(feature_group_02673426de53bc983a607d98d5d2e3d1);
+        
+    
+            var feature_group_4ebc0c1aaff3d433d07f73c754c68510 = L.featureGroup(
+                {
+}
+            );
+        
+    
+            var marker_ea098b878fad7513853fd4906709722f = L.marker(
+                [19.4215, -99.1865],
+                {
+}
+            ).addTo(feature_group_4ebc0c1aaff3d433d07f73c754c68510);
+        
+    
+            var icon_ced18b2636eea213646820eb7893b544 = L.AwesomeMarkers.icon(
+                {
+  "markerColor": "blue",
+  "iconColor": "white",
+  "icon": "landmark",
+  "prefix": "fa",
+  "extraClasses": "fa-rotate-0",
+}
+            );
+        
+    
+        var popup_fba599d28fc0c7c4c79fc93b9f89bf92 = L.popup({
+  "maxWidth": 350,
+});
+
+        
+            
+                var html_257a104a27864e4c3ec4bdd8d31b9842 = $(`<div id="html_257a104a27864e4c3ec4bdd8d31b9842" style="width: 100.0%; height: 100.0%;">     <div style="font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif; width: 320px; padding: 5px;">         <div style="border-left: 4px solid #4a90d9; padding-left: 12px; margin-bottom: 12px;">             <h3 style="margin: 0 0 8px 0; font-size: 15px; color: #1e3a5f; line-height: 1.3;">'Alucinaciones' + 'Rafa Esparza: Juntxs'</h3>             <div style="font-size: 13px; color: #555; margin-bottom: 4px;"><strong>LAGOALGO</strong></div>         </div>         <div style="display: flex; gap: 15px; margin-bottom: 10px; font-size: 12px;">             <div style="background: #f0f4f8; padding: 6px 10px; border-radius: 4px;"><strong>⏰</strong> 10:00</div>             <div style="background: #4a90d915; color: #4a90d9; padding: 6px 10px; border-radius: 4px; font-weight: 600;">Público</div>         </div>         <div style="font-size: 12px; color: #666; margin-bottom: 8px;">             <div><strong>📍</strong> Chapultepec</div>             <div style="margin-left: 18px;">Lago Mayor 2da Sección</div>         </div>         <div style="font-size: 12px; color: #444; line-height: 1.5; border-top: 1px solid #e8ecf0; padding-top: 10px; margin-top: 8px;">             Trevor Paglen, Troika y Rafa Esparza.         </div>     </div>     </div>`)[0];
+                popup_fba599d28fc0c7c4c79fc93b9f89bf92.setContent(html_257a104a27864e4c3ec4bdd8d31b9842);
+            
+        
+
+        marker_ea098b878fad7513853fd4906709722f.bindPopup(popup_fba599d28fc0c7c4c79fc93b9f89bf92)
+        ;
+
+        
+    
+    
+            marker_ea098b878fad7513853fd4906709722f.bindTooltip(
+                `<div>
+                     <b>10:00</b> - LAGOALGO
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+                marker_ea098b878fad7513853fd4906709722f.setIcon(icon_ced18b2636eea213646820eb7893b544);
+            
+    
+            var marker_aee7fd7db4fd02f7c2a93950f7907744 = L.marker(
+                [19.4352, -99.1412],
+                {
+}
+            ).addTo(feature_group_4ebc0c1aaff3d433d07f73c754c68510);
+        
+    
+            var icon_75dc8536ec4befb8f57bf71db3c63e10 = L.AwesomeMarkers.icon(
+                {
+  "markerColor": "blue",
+  "iconColor": "white",
+  "icon": "university",
+  "prefix": "fa",
+  "extraClasses": "fa-rotate-0",
+}
+            );
+        
+    
+        var popup_ccb379e884c2f43539d9f26405845b5c = L.popup({
+  "maxWidth": 350,
+});
+
+        
+            
+                var html_df378d7d47c5155570e72ecb0e94013f = $(`<div id="html_df378d7d47c5155570e72ecb0e94013f" style="width: 100.0%; height: 100.0%;">     <div style="font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif; width: 320px; padding: 5px;">         <div style="border-left: 4px solid #4a90d9; padding-left: 12px; margin-bottom: 12px;">             <h3 style="margin: 0 0 8px 0; font-size: 15px; color: #1e3a5f; line-height: 1.3;">'Colosos' - Intervención coreográfica</h3>             <div style="font-size: 13px; color: #555; margin-bottom: 4px;"><strong>MUSEO DEL PALACIO DE BELLAS ARTES</strong></div>         </div>         <div style="display: flex; gap: 15px; margin-bottom: 10px; font-size: 12px;">             <div style="background: #f0f4f8; padding: 6px 10px; border-radius: 4px;"><strong>⏰</strong> 12:00</div>             <div style="background: #4a90d915; color: #4a90d9; padding: 6px 10px; border-radius: 4px; font-weight: 600;">Público</div>         </div>         <div style="font-size: 12px; color: #666; margin-bottom: 8px;">             <div><strong>📍</strong> Centro</div>             <div style="margin-left: 18px;">Av. Juárez s/n</div>         </div>         <div style="font-size: 12px; color: #444; line-height: 1.5; border-top: 1px solid #e8ecf0; padding-top: 10px; margin-top: 8px;">             Cuerpos Arquitectos en acción.         </div>     </div>     </div>`)[0];
+                popup_ccb379e884c2f43539d9f26405845b5c.setContent(html_df378d7d47c5155570e72ecb0e94013f);
+            
+        
+
+        marker_aee7fd7db4fd02f7c2a93950f7907744.bindPopup(popup_ccb379e884c2f43539d9f26405845b5c)
+        ;
+
+        
+    
+    
+            marker_aee7fd7db4fd02f7c2a93950f7907744.bindTooltip(
+                `<div>
+                     <b>12:00</b> - MUSEO DEL PALACIO DE BELLAS ARTES
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+                marker_aee7fd7db4fd02f7c2a93950f7907744.setIcon(icon_75dc8536ec4befb8f57bf71db3c63e10);
+            
+    
+            var marker_f976ce7832f688a4e5d7858e19799d59 = L.marker(
+                [19.4186, -99.1625],
+                {
+}
+            ).addTo(feature_group_4ebc0c1aaff3d433d07f73c754c68510);
+        
+    
+            var icon_7d7cd133df21bd8d34d0071a013bfa2b = L.AwesomeMarkers.icon(
+                {
+  "markerColor": "blue",
+  "iconColor": "white",
+  "icon": "image",
+  "prefix": "fa",
+  "extraClasses": "fa-rotate-0",
+}
+            );
+        
+    
+        var popup_de1df52d6227817cb0dc1db543230e7b = L.popup({
+  "maxWidth": 350,
+});
+
+        
+            
+                var html_5910e73c9a4618a355a35410b62350cf = $(`<div id="html_5910e73c9a4618a355a35410b62350cf" style="width: 100.0%; height: 100.0%;">     <div style="font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif; width: 320px; padding: 5px;">         <div style="border-left: 4px solid #4a90d9; padding-left: 12px; margin-bottom: 12px;">             <h3 style="margin: 0 0 8px 0; font-size: 15px; color: #1e3a5f; line-height: 1.3;">Open House: Mauro Giaconi 'Temporal Ventaja'</h3>             <div style="font-size: 13px; color: #555; margin-bottom: 4px;"><strong>ARRÓNIZ</strong></div>         </div>         <div style="display: flex; gap: 15px; margin-bottom: 10px; font-size: 12px;">             <div style="background: #f0f4f8; padding: 6px 10px; border-radius: 4px;"><strong>⏰</strong> 13:00</div>             <div style="background: #4a90d915; color: #4a90d9; padding: 6px 10px; border-radius: 4px; font-weight: 600;">Público</div>         </div>         <div style="font-size: 12px; color: #666; margin-bottom: 8px;">             <div><strong>📍</strong> Roma Norte</div>             <div style="margin-left: 18px;">Plaza Río de Janeiro 53</div>         </div>         <div style="font-size: 12px; color: #444; line-height: 1.5; border-top: 1px solid #e8ecf0; padding-top: 10px; margin-top: 8px;">             Tour por Obrera Centro.         </div>     </div>     </div>`)[0];
+                popup_de1df52d6227817cb0dc1db543230e7b.setContent(html_5910e73c9a4618a355a35410b62350cf);
+            
+        
+
+        marker_f976ce7832f688a4e5d7858e19799d59.bindPopup(popup_de1df52d6227817cb0dc1db543230e7b)
+        ;
+
+        
+    
+    
+            marker_f976ce7832f688a4e5d7858e19799d59.bindTooltip(
+                `<div>
+                     <b>13:00</b> - ARRÓNIZ
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+                marker_f976ce7832f688a4e5d7858e19799d59.setIcon(icon_7d7cd133df21bd8d34d0071a013bfa2b);
+            
+    
+            var marker_7da8dec44afc3af1c810c6cd8e93ffbd = L.marker(
+                [19.4142, -99.1695],
+                {
+}
+            ).addTo(feature_group_4ebc0c1aaff3d433d07f73c754c68510);
+        
+    
+            var icon_29fead04ea7ebd230775a622c2f50954 = L.AwesomeMarkers.icon(
+                {
+  "markerColor": "blue",
+  "iconColor": "white",
+  "icon": "image",
+  "prefix": "fa",
+  "extraClasses": "fa-rotate-0",
+}
+            );
+        
+    
+        var popup_2e8b2de36a4deb80d3f71a1d90cc75d0 = L.popup({
+  "maxWidth": 350,
+});
+
+        
+            
+                var html_5b3150639a4e25242e55d386b81de096 = $(`<div id="html_5b3150639a4e25242e55d386b81de096" style="width: 100.0%; height: 100.0%;">     <div style="font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif; width: 320px; padding: 5px;">         <div style="border-left: 4px solid #4a90d9; padding-left: 12px; margin-bottom: 12px;">             <h3 style="margin: 0 0 8px 0; font-size: 15px; color: #1e3a5f; line-height: 1.3;">Cóctel + activación: Mariana Garibay Raeke</h3>             <div style="font-size: 13px; color: #555; margin-bottom: 4px;"><strong>AMBAR QUIJANO</strong></div>         </div>         <div style="display: flex; gap: 15px; margin-bottom: 10px; font-size: 12px;">             <div style="background: #f0f4f8; padding: 6px 10px; border-radius: 4px;"><strong>⏰</strong> 19:00</div>             <div style="background: #4a90d915; color: #4a90d9; padding: 6px 10px; border-radius: 4px; font-weight: 600;">Público</div>         </div>         <div style="font-size: 12px; color: #666; margin-bottom: 8px;">             <div><strong>📍</strong> Roma Norte</div>             <div style="margin-left: 18px;">Colima 234</div>         </div>         <div style="font-size: 12px; color: #444; line-height: 1.5; border-top: 1px solid #e8ecf0; padding-top: 10px; margin-top: 8px;">             Diálogo con Manuela Riestra.         </div>     </div>     </div>`)[0];
+                popup_2e8b2de36a4deb80d3f71a1d90cc75d0.setContent(html_5b3150639a4e25242e55d386b81de096);
+            
+        
+
+        marker_7da8dec44afc3af1c810c6cd8e93ffbd.bindPopup(popup_2e8b2de36a4deb80d3f71a1d90cc75d0)
+        ;
+
+        
+    
+    
+            marker_7da8dec44afc3af1c810c6cd8e93ffbd.bindTooltip(
+                `<div>
+                     <b>19:00</b> - AMBAR QUIJANO
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+                marker_7da8dec44afc3af1c810c6cd8e93ffbd.setIcon(icon_29fead04ea7ebd230775a622c2f50954);
+            
+    
+            var marker_99da60b48ca3cf975f47810a0265f218 = L.marker(
+                [19.4178, -99.1715],
+                {
+}
+            ).addTo(feature_group_4ebc0c1aaff3d433d07f73c754c68510);
+        
+    
+            var icon_771ba18216b23de1cfcd0f96cffb32c4 = L.AwesomeMarkers.icon(
+                {
+  "markerColor": "blue",
+  "iconColor": "white",
+  "icon": "image",
+  "prefix": "fa",
+  "extraClasses": "fa-rotate-0",
+}
+            );
+        
+    
+        var popup_f894329266519e50d12a5dbec8365622 = L.popup({
+  "maxWidth": 350,
+});
+
+        
+            
+                var html_ed7d1b4fd75518c30365276d866caa24 = $(`<div id="html_ed7d1b4fd75518c30365276d866caa24" style="width: 100.0%; height: 100.0%;">     <div style="font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif; width: 320px; padding: 5px;">         <div style="border-left: 4px solid #4a90d9; padding-left: 12px; margin-bottom: 12px;">             <h3 style="margin: 0 0 8px 0; font-size: 15px; color: #1e3a5f; line-height: 1.3;">Inauguración: artistas nacionales e internacionales</h3>             <div style="font-size: 13px; color: #555; margin-bottom: 4px;"><strong>BREUER STUDIO</strong></div>         </div>         <div style="display: flex; gap: 15px; margin-bottom: 10px; font-size: 12px;">             <div style="background: #f0f4f8; padding: 6px 10px; border-radius: 4px;"><strong>⏰</strong> 19:00</div>             <div style="background: #4a90d915; color: #4a90d9; padding: 6px 10px; border-radius: 4px; font-weight: 600;">Público</div>         </div>         <div style="font-size: 12px; color: #666; margin-bottom: 8px;">             <div><strong>📍</strong> Roma Norte</div>             <div style="margin-left: 18px;">Tabasco 96</div>         </div>         <div style="font-size: 12px; color: #444; line-height: 1.5; border-top: 1px solid #e8ecf0; padding-top: 10px; margin-top: 8px;">             Diseño con precisión y conciencia.         </div>     </div>     </div>`)[0];
+                popup_f894329266519e50d12a5dbec8365622.setContent(html_ed7d1b4fd75518c30365276d866caa24);
+            
+        
+
+        marker_99da60b48ca3cf975f47810a0265f218.bindPopup(popup_f894329266519e50d12a5dbec8365622)
+        ;
+
+        
+    
+    
+            marker_99da60b48ca3cf975f47810a0265f218.bindTooltip(
+                `<div>
+                     <b>19:00</b> - BREUER STUDIO
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+                marker_99da60b48ca3cf975f47810a0265f218.setIcon(icon_771ba18216b23de1cfcd0f96cffb32c4);
+            
+    
+            feature_group_4ebc0c1aaff3d433d07f73c754c68510.addTo(map_143f787d2d0bab0def970f01d36f9a2c);
+        
+    
+            var feature_group_6dff3130f82b25a27a5bdc79d530bb00 = L.featureGroup(
+                {
+}
+            );
+        
+    
+            var marker_60b62f3ca83e284671b53efa363aa5e3 = L.marker(
+                [19.3534, -99.1894],
+                {
+}
+            ).addTo(feature_group_6dff3130f82b25a27a5bdc79d530bb00);
+        
+    
+            var icon_73672a834e0893990a1ad0303d7691a4 = L.AwesomeMarkers.icon(
+                {
+  "markerColor": "orange",
+  "iconColor": "white",
+  "icon": "university",
+  "prefix": "fa",
+  "extraClasses": "fa-rotate-0",
+}
+            );
+        
+    
+        var popup_8e489cb71bb23e44316a742ef794f031 = L.popup({
+  "maxWidth": 350,
+});
+
+        
+            
+                var html_a5909fb3d43ddd2d18d60ccb26eafccf = $(`<div id="html_a5909fb3d43ddd2d18d60ccb26eafccf" style="width: 100.0%; height: 100.0%;">     <div style="font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif; width: 320px; padding: 5px;">         <div style="border-left: 4px solid #e67e22; padding-left: 12px; margin-bottom: 12px;">             <h3 style="margin: 0 0 8px 0; font-size: 15px; color: #1e3a5f; line-height: 1.3;">Brunch MACG + recorridos</h3>             <div style="font-size: 13px; color: #555; margin-bottom: 4px;"><strong>MUSEO DE ARTE CARRILLO GIL</strong></div>         </div>         <div style="display: flex; gap: 15px; margin-bottom: 10px; font-size: 12px;">             <div style="background: #f0f4f8; padding: 6px 10px; border-radius: 4px;"><strong>⏰</strong> 09:30</div>             <div style="background: #e67e2215; color: #e67e22; padding: 6px 10px; border-radius: 4px; font-weight: 600;">Privado</div>         </div>         <div style="font-size: 12px; color: #666; margin-bottom: 8px;">             <div><strong>📍</strong> San Ángel</div>             <div style="margin-left: 18px;">Av. Revolución 1608</div>         </div>         <div style="font-size: 12px; color: #444; line-height: 1.5; border-top: 1px solid #e8ecf0; padding-top: 10px; margin-top: 8px;">             Gerzso, Botánica de Asfalto, y más.         </div>     </div>     </div>`)[0];
+                popup_8e489cb71bb23e44316a742ef794f031.setContent(html_a5909fb3d43ddd2d18d60ccb26eafccf);
+            
+        
+
+        marker_60b62f3ca83e284671b53efa363aa5e3.bindPopup(popup_8e489cb71bb23e44316a742ef794f031)
+        ;
+
+        
+    
+    
+            marker_60b62f3ca83e284671b53efa363aa5e3.bindTooltip(
+                `<div>
+                     <b>09:30</b> - MUSEO DE ARTE CARRILLO GIL
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+                marker_60b62f3ca83e284671b53efa363aa5e3.setIcon(icon_73672a834e0893990a1ad0303d7691a4);
+            
+    
+            var marker_979eb1997f67639fb5d0ac014db4f17e = L.marker(
+                [19.4165, -99.1745],
+                {
+}
+            ).addTo(feature_group_6dff3130f82b25a27a5bdc79d530bb00);
+        
+    
+            var icon_06b9fc50b93de763146ad2992fd2641a = L.AwesomeMarkers.icon(
+                {
+  "markerColor": "orange",
+  "iconColor": "white",
+  "icon": "image",
+  "prefix": "fa",
+  "extraClasses": "fa-rotate-0",
+}
+            );
+        
+    
+        var popup_bff5945dfa68d3942f794de72b629762 = L.popup({
+  "maxWidth": 350,
+});
+
+        
+            
+                var html_c26f190332f865b367a9d02d94d95f28 = $(`<div id="html_c26f190332f865b367a9d02d94d95f28" style="width: 100.0%; height: 100.0%;">     <div style="font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif; width: 320px; padding: 5px;">         <div style="border-left: 4px solid #e67e22; padding-left: 12px; margin-bottom: 12px;">             <h3 style="margin: 0 0 8px 0; font-size: 15px; color: #1e3a5f; line-height: 1.3;">Visita al estudio de Raúl Cordero</h3>             <div style="font-size: 13px; color: #555; margin-bottom: 4px;"><strong>LATINOU</strong></div>         </div>         <div style="display: flex; gap: 15px; margin-bottom: 10px; font-size: 12px;">             <div style="background: #f0f4f8; padding: 6px 10px; border-radius: 4px;"><strong>⏰</strong> 09:30</div>             <div style="background: #e67e2215; color: #e67e22; padding: 6px 10px; border-radius: 4px; font-weight: 600;">Privado</div>         </div>         <div style="font-size: 12px; color: #666; margin-bottom: 8px;">             <div><strong>📍</strong> Roma Norte</div>             <div style="margin-left: 18px;">Frontera 148</div>         </div>         <div style="font-size: 12px; color: #444; line-height: 1.5; border-top: 1px solid #e8ecf0; padding-top: 10px; margin-top: 8px;">             Visión íntima del proceso creativo.         </div>     </div>     </div>`)[0];
+                popup_bff5945dfa68d3942f794de72b629762.setContent(html_c26f190332f865b367a9d02d94d95f28);
+            
+        
+
+        marker_979eb1997f67639fb5d0ac014db4f17e.bindPopup(popup_bff5945dfa68d3942f794de72b629762)
+        ;
+
+        
+    
+    
+            marker_979eb1997f67639fb5d0ac014db4f17e.bindTooltip(
+                `<div>
+                     <b>09:30</b> - LATINOU
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+                marker_979eb1997f67639fb5d0ac014db4f17e.setIcon(icon_06b9fc50b93de763146ad2992fd2641a);
+            
+    
+            var marker_d343f2a9944770bd19e231837b4b6f14 = L.marker(
+                [19.4189, -99.1658],
+                {
+}
+            ).addTo(feature_group_6dff3130f82b25a27a5bdc79d530bb00);
+        
+    
+            var icon_fa1874f125df770d0f7b874fd1a54d2e = L.AwesomeMarkers.icon(
+                {
+  "markerColor": "orange",
+  "iconColor": "white",
+  "icon": "image",
+  "prefix": "fa",
+  "extraClasses": "fa-rotate-0",
+}
+            );
+        
+    
+        var popup_86ddb376c981c2acb23535e1d38a7e09 = L.popup({
+  "maxWidth": 350,
+});
+
+        
+            
+                var html_a8ac4d6512c31c1bdc64f59f51700f51 = $(`<div id="html_a8ac4d6512c31c1bdc64f59f51700f51" style="width: 100.0%; height: 100.0%;">     <div style="font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif; width: 320px; padding: 5px;">         <div style="border-left: 4px solid #e67e22; padding-left: 12px; margin-bottom: 12px;">             <h3 style="margin: 0 0 8px 0; font-size: 15px; color: #1e3a5f; line-height: 1.3;">Visita guiada: Gregor Hildebrandt</h3>             <div style="font-size: 13px; color: #555; margin-bottom: 4px;"><strong>SAENGER GALERÍA</strong></div>         </div>         <div style="display: flex; gap: 15px; margin-bottom: 10px; font-size: 12px;">             <div style="background: #f0f4f8; padding: 6px 10px; border-radius: 4px;"><strong>⏰</strong> 10:00</div>             <div style="background: #e67e2215; color: #e67e22; padding: 6px 10px; border-radius: 4px; font-weight: 600;">Privado</div>         </div>         <div style="font-size: 12px; color: #666; margin-bottom: 8px;">             <div><strong>📍</strong> Roma Norte</div>             <div style="margin-left: 18px;">Jalapa 31</div>         </div>         <div style="font-size: 12px; color: #444; line-height: 1.5; border-top: 1px solid #e8ecf0; padding-top: 10px; margin-top: 8px;">             Repetición de módulos, lleno y vacío.         </div>     </div>     </div>`)[0];
+                popup_86ddb376c981c2acb23535e1d38a7e09.setContent(html_a8ac4d6512c31c1bdc64f59f51700f51);
+            
+        
+
+        marker_d343f2a9944770bd19e231837b4b6f14.bindPopup(popup_86ddb376c981c2acb23535e1d38a7e09)
+        ;
+
+        
+    
+    
+            marker_d343f2a9944770bd19e231837b4b6f14.bindTooltip(
+                `<div>
+                     <b>10:00</b> - SAENGER GALERÍA
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+                marker_d343f2a9944770bd19e231837b4b6f14.setIcon(icon_fa1874f125df770d0f7b874fd1a54d2e);
+            
+    
+            var marker_ae6fa225e4dbd15e38944b63082704e0 = L.marker(
+                [19.4142, -99.1695],
+                {
+}
+            ).addTo(feature_group_6dff3130f82b25a27a5bdc79d530bb00);
+        
+    
+            var icon_89fe3dc9edd04adc13ce3faf7894b601 = L.AwesomeMarkers.icon(
+                {
+  "markerColor": "orange",
+  "iconColor": "white",
+  "icon": "image",
+  "prefix": "fa",
+  "extraClasses": "fa-rotate-0",
+}
+            );
+        
+    
+        var popup_d7ffa1ac8a34199dd0e2148503aa5283 = L.popup({
+  "maxWidth": 350,
+});
+
+        
+            
+                var html_604c8c60954c288d4c54e7511e4af369 = $(`<div id="html_604c8c60954c288d4c54e7511e4af369" style="width: 100.0%; height: 100.0%;">     <div style="font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif; width: 320px; padding: 5px;">         <div style="border-left: 4px solid #e67e22; padding-left: 12px; margin-bottom: 12px;">             <h3 style="margin: 0 0 8px 0; font-size: 15px; color: #1e3a5f; line-height: 1.3;">Visita al estudio de Andrea Bores</h3>             <div style="font-size: 13px; color: #555; margin-bottom: 4px;"><strong>AMBAR QUIJANO</strong></div>         </div>         <div style="display: flex; gap: 15px; margin-bottom: 10px; font-size: 12px;">             <div style="background: #f0f4f8; padding: 6px 10px; border-radius: 4px;"><strong>⏰</strong> 10:00</div>             <div style="background: #e67e2215; color: #e67e22; padding: 6px 10px; border-radius: 4px; font-weight: 600;">Privado</div>         </div>         <div style="font-size: 12px; color: #666; margin-bottom: 8px;">             <div><strong>📍</strong> Roma Norte</div>             <div style="margin-left: 18px;">Colima 234</div>         </div>         <div style="font-size: 12px; color: #444; line-height: 1.5; border-top: 1px solid #e8ecf0; padding-top: 10px; margin-top: 8px;">             Diálogo íntimo con los materiales.         </div>     </div>     </div>`)[0];
+                popup_d7ffa1ac8a34199dd0e2148503aa5283.setContent(html_604c8c60954c288d4c54e7511e4af369);
+            
+        
+
+        marker_ae6fa225e4dbd15e38944b63082704e0.bindPopup(popup_d7ffa1ac8a34199dd0e2148503aa5283)
+        ;
+
+        
+    
+    
+            marker_ae6fa225e4dbd15e38944b63082704e0.bindTooltip(
+                `<div>
+                     <b>10:00</b> - AMBAR QUIJANO
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+                marker_ae6fa225e4dbd15e38944b63082704e0.setIcon(icon_89fe3dc9edd04adc13ce3faf7894b601);
+            
+    
+            var marker_28b4edffd8f631aec9bf723faef9834a = L.marker(
+                [19.4189, -99.1658],
+                {
+}
+            ).addTo(feature_group_6dff3130f82b25a27a5bdc79d530bb00);
+        
+    
+            var icon_198c971b17ba6c5e52ec8fd088a6abea = L.AwesomeMarkers.icon(
+                {
+  "markerColor": "orange",
+  "iconColor": "white",
+  "icon": "image",
+  "prefix": "fa",
+  "extraClasses": "fa-rotate-0",
+}
+            );
+        
+    
+        var popup_2beaf986208f0dd51cdc89fa3cf3dee1 = L.popup({
+  "maxWidth": 350,
+});
+
+        
+            
+                var html_35451e29dd1c3ded10fbcc287f5a7dd1 = $(`<div id="html_35451e29dd1c3ded10fbcc287f5a7dd1" style="width: 100.0%; height: 100.0%;">     <div style="font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif; width: 320px; padding: 5px;">         <div style="border-left: 4px solid #e67e22; padding-left: 12px; margin-bottom: 12px;">             <h3 style="margin: 0 0 8px 0; font-size: 15px; color: #1e3a5f; line-height: 1.3;">Visita al estudio de Yoab Vera</h3>             <div style="font-size: 13px; color: #555; margin-bottom: 4px;"><strong>SAENGER GALERÍA</strong></div>         </div>         <div style="display: flex; gap: 15px; margin-bottom: 10px; font-size: 12px;">             <div style="background: #f0f4f8; padding: 6px 10px; border-radius: 4px;"><strong>⏰</strong> 10:00</div>             <div style="background: #e67e2215; color: #e67e22; padding: 6px 10px; border-radius: 4px; font-weight: 600;">Privado</div>         </div>         <div style="font-size: 12px; color: #666; margin-bottom: 8px;">             <div><strong>📍</strong> Roma Norte</div>             <div style="margin-left: 18px;">Jalapa 31</div>         </div>         <div style="font-size: 12px; color: #444; line-height: 1.5; border-top: 1px solid #e8ecf0; padding-top: 10px; margin-top: 8px;">             Casa familiar convertida en estudio.         </div>     </div>     </div>`)[0];
+                popup_2beaf986208f0dd51cdc89fa3cf3dee1.setContent(html_35451e29dd1c3ded10fbcc287f5a7dd1);
+            
+        
+
+        marker_28b4edffd8f631aec9bf723faef9834a.bindPopup(popup_2beaf986208f0dd51cdc89fa3cf3dee1)
+        ;
+
+        
+    
+    
+            marker_28b4edffd8f631aec9bf723faef9834a.bindTooltip(
+                `<div>
+                     <b>10:00</b> - SAENGER GALERÍA
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+                marker_28b4edffd8f631aec9bf723faef9834a.setIcon(icon_198c971b17ba6c5e52ec8fd088a6abea);
+            
+    
+            var marker_991527bb244507b82292e30747f33d5e = L.marker(
+                [19.4152, -99.1725],
+                {
+}
+            ).addTo(feature_group_6dff3130f82b25a27a5bdc79d530bb00);
+        
+    
+            var icon_4e2cba486f582d283e44c939ae5def57 = L.AwesomeMarkers.icon(
+                {
+  "markerColor": "orange",
+  "iconColor": "white",
+  "icon": "image",
+  "prefix": "fa",
+  "extraClasses": "fa-rotate-0",
+}
+            );
+        
+    
+        var popup_23dabb766a060690bdd2fa0a7dbedfed = L.popup({
+  "maxWidth": 350,
+});
+
+        
+            
+                var html_522d8804663e7b86020b0017f6e62c6f = $(`<div id="html_522d8804663e7b86020b0017f6e62c6f" style="width: 100.0%; height: 100.0%;">     <div style="font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif; width: 320px; padding: 5px;">         <div style="border-left: 4px solid #e67e22; padding-left: 12px; margin-bottom: 12px;">             <h3 style="margin: 0 0 8px 0; font-size: 15px; color: #1e3a5f; line-height: 1.3;">Visita al estudio de Román de Castro</h3>             <div style="font-size: 13px; color: #555; margin-bottom: 4px;"><strong>MARCHANTE ARTE CONTEMPORÁNEO & PROYECTO H</strong></div>         </div>         <div style="display: flex; gap: 15px; margin-bottom: 10px; font-size: 12px;">             <div style="background: #f0f4f8; padding: 6px 10px; border-radius: 4px;"><strong>⏰</strong> 11:00</div>             <div style="background: #e67e2215; color: #e67e22; padding: 6px 10px; border-radius: 4px; font-weight: 600;">Privado</div>         </div>         <div style="font-size: 12px; color: #666; margin-bottom: 8px;">             <div><strong>📍</strong> Roma Norte</div>                      </div>         <div style="font-size: 12px; color: #444; line-height: 1.5; border-top: 1px solid #e8ecf0; padding-top: 10px; margin-top: 8px;">             Espacio de creación del artista.         </div>     </div>     </div>`)[0];
+                popup_23dabb766a060690bdd2fa0a7dbedfed.setContent(html_522d8804663e7b86020b0017f6e62c6f);
+            
+        
+
+        marker_991527bb244507b82292e30747f33d5e.bindPopup(popup_23dabb766a060690bdd2fa0a7dbedfed)
+        ;
+
+        
+    
+    
+            marker_991527bb244507b82292e30747f33d5e.bindTooltip(
+                `<div>
+                     <b>11:00</b> - MARCHANTE ARTE CONTEMPORÁNEO & PROYECTO H
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+                marker_991527bb244507b82292e30747f33d5e.setIcon(icon_4e2cba486f582d283e44c939ae5def57);
+            
+    
+            var marker_9256c61b4bdc2fa529528141d4b9eb3d = L.marker(
+                [19.4168, -99.1688],
+                {
+}
+            ).addTo(feature_group_6dff3130f82b25a27a5bdc79d530bb00);
+        
+    
+            var icon_373259e5f7648855dd493d3b4038efcc = L.AwesomeMarkers.icon(
+                {
+  "markerColor": "orange",
+  "iconColor": "white",
+  "icon": "image",
+  "prefix": "fa",
+  "extraClasses": "fa-rotate-0",
+}
+            );
+        
+    
+        var popup_e5fa28e931f7bf9719ce96adbd485608 = L.popup({
+  "maxWidth": 350,
+});
+
+        
+            
+                var html_e9d7df8b1c48809f4eb897968b964dcf = $(`<div id="html_e9d7df8b1c48809f4eb897968b964dcf" style="width: 100.0%; height: 100.0%;">     <div style="font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif; width: 320px; padding: 5px;">         <div style="border-left: 4px solid #e67e22; padding-left: 12px; margin-bottom: 12px;">             <h3 style="margin: 0 0 8px 0; font-size: 15px; color: #1e3a5f; line-height: 1.3;">Diálogo: Coen, Tzucumo, Candiani, Rojo</h3>             <div style="font-size: 13px; color: #555; margin-bottom: 4px;"><strong>LS / GALERÍA & CASA ABIERTA MONTE</strong></div>         </div>         <div style="display: flex; gap: 15px; margin-bottom: 10px; font-size: 12px;">             <div style="background: #f0f4f8; padding: 6px 10px; border-radius: 4px;"><strong>⏰</strong> 11:00</div>             <div style="background: #e67e2215; color: #e67e22; padding: 6px 10px; border-radius: 4px; font-weight: 600;">Privado</div>         </div>         <div style="font-size: 12px; color: #666; margin-bottom: 8px;">             <div><strong>📍</strong> Roma Norte</div>                      </div>         <div style="font-size: 12px; color: #444; line-height: 1.5; border-top: 1px solid #e8ecf0; padding-top: 10px; margin-top: 8px;">             Arte y arquitectura en conversación.         </div>     </div>     </div>`)[0];
+                popup_e5fa28e931f7bf9719ce96adbd485608.setContent(html_e9d7df8b1c48809f4eb897968b964dcf);
+            
+        
+
+        marker_9256c61b4bdc2fa529528141d4b9eb3d.bindPopup(popup_e5fa28e931f7bf9719ce96adbd485608)
+        ;
+
+        
+    
+    
+            marker_9256c61b4bdc2fa529528141d4b9eb3d.bindTooltip(
+                `<div>
+                     <b>11:00</b> - LS / GALERÍA & CASA ABIERTA MONTE
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+                marker_9256c61b4bdc2fa529528141d4b9eb3d.setIcon(icon_373259e5f7648855dd493d3b4038efcc);
+            
+    
+            var marker_2fe1379bd30fdf75825e07cc4894b383 = L.marker(
+                [19.3183, -99.1867],
+                {
+}
+            ).addTo(feature_group_6dff3130f82b25a27a5bdc79d530bb00);
+        
+    
+            var icon_a36013be39f3189f294d166c429af32c = L.AwesomeMarkers.icon(
+                {
+  "markerColor": "orange",
+  "iconColor": "white",
+  "icon": "university",
+  "prefix": "fa",
+  "extraClasses": "fa-rotate-0",
+}
+            );
+        
+    
+        var popup_03e3be8a8e9fa23adfb6baefdccd5a0f = L.popup({
+  "maxWidth": 350,
+});
+
+        
+            
+                var html_49e56b21a108285922f8c093379ad912 = $(`<div id="html_49e56b21a108285922f8c093379ad912" style="width: 100.0%; height: 100.0%;">     <div style="font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif; width: 320px; padding: 5px;">         <div style="border-left: 4px solid #e67e22; padding-left: 12px; margin-bottom: 12px;">             <h3 style="margin: 0 0 8px 0; font-size: 15px; color: #1e3a5f; line-height: 1.3;">Brunch + preview: 'Los Grupos' y Néstor Jiménez</h3>             <div style="font-size: 13px; color: #555; margin-bottom: 4px;"><strong>MUAC</strong></div>         </div>         <div style="display: flex; gap: 15px; margin-bottom: 10px; font-size: 12px;">             <div style="background: #f0f4f8; padding: 6px 10px; border-radius: 4px;"><strong>⏰</strong> 11:00</div>             <div style="background: #e67e2215; color: #e67e22; padding: 6px 10px; border-radius: 4px; font-weight: 600;">Privado</div>         </div>         <div style="font-size: 12px; color: #666; margin-bottom: 8px;">             <div><strong>📍</strong> Ciudad Universitaria</div>             <div style="margin-left: 18px;">Insurgentes Sur 3000</div>         </div>         <div style="font-size: 12px; color: #444; line-height: 1.5; border-top: 1px solid #e8ecf0; padding-top: 10px; margin-top: 8px;">             Exposiciones próximas a inaugurar.         </div>     </div>     </div>`)[0];
+                popup_03e3be8a8e9fa23adfb6baefdccd5a0f.setContent(html_49e56b21a108285922f8c093379ad912);
+            
+        
+
+        marker_2fe1379bd30fdf75825e07cc4894b383.bindPopup(popup_03e3be8a8e9fa23adfb6baefdccd5a0f)
+        ;
+
+        
+    
+    
+            marker_2fe1379bd30fdf75825e07cc4894b383.bindTooltip(
+                `<div>
+                     <b>11:00</b> - MUAC
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+                marker_2fe1379bd30fdf75825e07cc4894b383.setIcon(icon_a36013be39f3189f294d166c429af32c);
+            
+    
+            var marker_01037eb1e67acce99930eabb667648cd = L.marker(
+                [19.4175, -99.1698],
+                {
+}
+            ).addTo(feature_group_6dff3130f82b25a27a5bdc79d530bb00);
+        
+    
+            var icon_adffcc85960745896a3d38a58a4e2966 = L.AwesomeMarkers.icon(
+                {
+  "markerColor": "orange",
+  "iconColor": "white",
+  "icon": "image",
+  "prefix": "fa",
+  "extraClasses": "fa-rotate-0",
+}
+            );
+        
+    
+        var popup_956d81e0cd296e29573186b02e4b53e3 = L.popup({
+  "maxWidth": 350,
+});
+
+        
+            
+                var html_f01097d79398c85593ca3942254ebbbb = $(`<div id="html_f01097d79398c85593ca3942254ebbbb" style="width: 100.0%; height: 100.0%;">     <div style="font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif; width: 320px; padding: 5px;">         <div style="border-left: 4px solid #e67e22; padding-left: 12px; margin-bottom: 12px;">             <h3 style="margin: 0 0 8px 0; font-size: 15px; color: #1e3a5f; line-height: 1.3;">Visita al estudio de César Rangel Ramos</h3>             <div style="font-size: 13px; color: #555; margin-bottom: 4px;"><strong>GALERÍA KAREN HUBER</strong></div>         </div>         <div style="display: flex; gap: 15px; margin-bottom: 10px; font-size: 12px;">             <div style="background: #f0f4f8; padding: 6px 10px; border-radius: 4px;"><strong>⏰</strong> 11:00</div>             <div style="background: #e67e2215; color: #e67e22; padding: 6px 10px; border-radius: 4px; font-weight: 600;">Privado</div>         </div>         <div style="font-size: 12px; color: #666; margin-bottom: 8px;">             <div><strong>📍</strong> Roma Norte</div>             <div style="margin-left: 18px;">Bucareli 120</div>         </div>         <div style="font-size: 12px; color: #444; line-height: 1.5; border-top: 1px solid #e8ecf0; padding-top: 10px; margin-top: 8px;">             Imágenes perfeccionadas por años.         </div>     </div>     </div>`)[0];
+                popup_956d81e0cd296e29573186b02e4b53e3.setContent(html_f01097d79398c85593ca3942254ebbbb);
+            
+        
+
+        marker_01037eb1e67acce99930eabb667648cd.bindPopup(popup_956d81e0cd296e29573186b02e4b53e3)
+        ;
+
+        
+    
+    
+            marker_01037eb1e67acce99930eabb667648cd.bindTooltip(
+                `<div>
+                     <b>11:00</b> - GALERÍA KAREN HUBER
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+                marker_01037eb1e67acce99930eabb667648cd.setIcon(icon_adffcc85960745896a3d38a58a4e2966);
+            
+    
+            var marker_ddb35799d9b98fb1489fcfc7d7a8034d = L.marker(
+                [19.4189, -99.1658],
+                {
+}
+            ).addTo(feature_group_6dff3130f82b25a27a5bdc79d530bb00);
+        
+    
+            var icon_e67d1924efbdfded7d85db723fbc94db = L.AwesomeMarkers.icon(
+                {
+  "markerColor": "orange",
+  "iconColor": "white",
+  "icon": "image",
+  "prefix": "fa",
+  "extraClasses": "fa-rotate-0",
+}
+            );
+        
+    
+        var popup_9f911cd054aeb7e4cba93e3432cfa8ca = L.popup({
+  "maxWidth": 350,
+});
+
+        
+            
+                var html_5021f795370e0db6ba68497531810373 = $(`<div id="html_5021f795370e0db6ba68497531810373" style="width: 100.0%; height: 100.0%;">     <div style="font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif; width: 320px; padding: 5px;">         <div style="border-left: 4px solid #e67e22; padding-left: 12px; margin-bottom: 12px;">             <h3 style="margin: 0 0 8px 0; font-size: 15px; color: #1e3a5f; line-height: 1.3;">Visitas guiadas: Yoab Vera y Diego Rivera</h3>             <div style="font-size: 13px; color: #555; margin-bottom: 4px;"><strong>SAENGER GALERÍA</strong></div>         </div>         <div style="display: flex; gap: 15px; margin-bottom: 10px; font-size: 12px;">             <div style="background: #f0f4f8; padding: 6px 10px; border-radius: 4px;"><strong>⏰</strong> 11:00</div>             <div style="background: #e67e2215; color: #e67e22; padding: 6px 10px; border-radius: 4px; font-weight: 600;">Privado</div>         </div>         <div style="font-size: 12px; color: #666; margin-bottom: 8px;">             <div><strong>📍</strong> Roma Norte</div>             <div style="margin-left: 18px;">Jalapa 31</div>         </div>         <div style="font-size: 12px; color: #444; line-height: 1.5; border-top: 1px solid #e8ecf0; padding-top: 10px; margin-top: 8px;">             Paisajes marinos y jardines.         </div>     </div>     </div>`)[0];
+                popup_9f911cd054aeb7e4cba93e3432cfa8ca.setContent(html_5021f795370e0db6ba68497531810373);
+            
+        
+
+        marker_ddb35799d9b98fb1489fcfc7d7a8034d.bindPopup(popup_9f911cd054aeb7e4cba93e3432cfa8ca)
+        ;
+
+        
+    
+    
+            marker_ddb35799d9b98fb1489fcfc7d7a8034d.bindTooltip(
+                `<div>
+                     <b>11:00</b> - SAENGER GALERÍA
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+                marker_ddb35799d9b98fb1489fcfc7d7a8034d.setIcon(icon_e67d1924efbdfded7d85db723fbc94db);
+            
+    
+            var marker_1aac68d70a209bfdee0a2be493b5ece3 = L.marker(
+                [19.4142, -99.1695],
+                {
+}
+            ).addTo(feature_group_6dff3130f82b25a27a5bdc79d530bb00);
+        
+    
+            var icon_c3f1c57a5c2eaa5da17add8d91598ba2 = L.AwesomeMarkers.icon(
+                {
+  "markerColor": "orange",
+  "iconColor": "white",
+  "icon": "image",
+  "prefix": "fa",
+  "extraClasses": "fa-rotate-0",
+}
+            );
+        
+    
+        var popup_61dbd7960dfbeff813fe51796c752831 = L.popup({
+  "maxWidth": 350,
+});
+
+        
+            
+                var html_2b4892a0b8cc9842413b376d44081588 = $(`<div id="html_2b4892a0b8cc9842413b376d44081588" style="width: 100.0%; height: 100.0%;">     <div style="font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif; width: 320px; padding: 5px;">         <div style="border-left: 4px solid #e67e22; padding-left: 12px; margin-bottom: 12px;">             <h3 style="margin: 0 0 8px 0; font-size: 15px; color: #1e3a5f; line-height: 1.3;">Visita al estudio de Juana Subercaseaux</h3>             <div style="font-size: 13px; color: #555; margin-bottom: 4px;"><strong>AMBAR QUIJANO</strong></div>         </div>         <div style="display: flex; gap: 15px; margin-bottom: 10px; font-size: 12px;">             <div style="background: #f0f4f8; padding: 6px 10px; border-radius: 4px;"><strong>⏰</strong> 11:45</div>             <div style="background: #e67e2215; color: #e67e22; padding: 6px 10px; border-radius: 4px; font-weight: 600;">Privado</div>         </div>         <div style="font-size: 12px; color: #666; margin-bottom: 8px;">             <div><strong>📍</strong> Roma Norte</div>             <div style="margin-left: 18px;">Colima 234</div>         </div>         <div style="font-size: 12px; color: #444; line-height: 1.5; border-top: 1px solid #e8ecf0; padding-top: 10px; margin-top: 8px;">             Pintora chilena radicada en CDMX.         </div>     </div>     </div>`)[0];
+                popup_61dbd7960dfbeff813fe51796c752831.setContent(html_2b4892a0b8cc9842413b376d44081588);
+            
+        
+
+        marker_1aac68d70a209bfdee0a2be493b5ece3.bindPopup(popup_61dbd7960dfbeff813fe51796c752831)
+        ;
+
+        
+    
+    
+            marker_1aac68d70a209bfdee0a2be493b5ece3.bindTooltip(
+                `<div>
+                     <b>11:45</b> - AMBAR QUIJANO
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+                marker_1aac68d70a209bfdee0a2be493b5ece3.setIcon(icon_c3f1c57a5c2eaa5da17add8d91598ba2);
+            
+    
+            var marker_d19c04148359dc47bc945a87979804aa = L.marker(
+                [19.4215, -99.1786],
+                {
+}
+            ).addTo(feature_group_6dff3130f82b25a27a5bdc79d530bb00);
+        
+    
+            var icon_ff2310c2d886f4502832b5ab120659a8 = L.AwesomeMarkers.icon(
+                {
+  "markerColor": "orange",
+  "iconColor": "white",
+  "icon": "university",
+  "prefix": "fa",
+  "extraClasses": "fa-rotate-0",
+}
+            );
+        
+    
+        var popup_d83d6a18b2e51053a43b6308cc8f2344 = L.popup({
+  "maxWidth": 350,
+});
+
+        
+            
+                var html_d8b9e3809839380d5b4e4ed65f2a3920 = $(`<div id="html_d8b9e3809839380d5b4e4ed65f2a3920" style="width: 100.0%; height: 100.0%;">     <div style="font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif; width: 320px; padding: 5px;">         <div style="border-left: 4px solid #e67e22; padding-left: 12px; margin-bottom: 12px;">             <h3 style="margin: 0 0 8px 0; font-size: 15px; color: #1e3a5f; line-height: 1.3;">Eli Keszler activa 'Jardín Inconcluso'</h3>             <div style="font-size: 13px; color: #555; margin-bottom: 4px;"><strong>MUSEO DE ARTE MODERNO</strong></div>         </div>         <div style="display: flex; gap: 15px; margin-bottom: 10px; font-size: 12px;">             <div style="background: #f0f4f8; padding: 6px 10px; border-radius: 4px;"><strong>⏰</strong> 19:00</div>             <div style="background: #e67e2215; color: #e67e22; padding: 6px 10px; border-radius: 4px; font-weight: 600;">Privado</div>         </div>         <div style="font-size: 12px; color: #666; margin-bottom: 8px;">             <div><strong>📍</strong> Chapultepec</div>             <div style="margin-left: 18px;">Paseo de la Reforma s/n</div>         </div>         <div style="font-size: 12px; color: #444; line-height: 1.5; border-top: 1px solid #e8ecf0; padding-top: 10px; margin-top: 8px;">             Performances, poesía y coreografía.         </div>     </div>     </div>`)[0];
+                popup_d83d6a18b2e51053a43b6308cc8f2344.setContent(html_d8b9e3809839380d5b4e4ed65f2a3920);
+            
+        
+
+        marker_d19c04148359dc47bc945a87979804aa.bindPopup(popup_d83d6a18b2e51053a43b6308cc8f2344)
+        ;
+
+        
+    
+    
+            marker_d19c04148359dc47bc945a87979804aa.bindTooltip(
+                `<div>
+                     <b>19:00</b> - MUSEO DE ARTE MODERNO
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+                marker_d19c04148359dc47bc945a87979804aa.setIcon(icon_ff2310c2d886f4502832b5ab120659a8);
+            
+    
+            var marker_48a603b86437b1d465a01c6d0852f07d = L.marker(
+                [19.4198, -99.1702],
+                {
+}
+            ).addTo(feature_group_6dff3130f82b25a27a5bdc79d530bb00);
+        
+    
+            var icon_653f4dff37c3c31aa43c65093488037b = L.AwesomeMarkers.icon(
+                {
+  "markerColor": "orange",
+  "iconColor": "white",
+  "icon": "image",
+  "prefix": "fa",
+  "extraClasses": "fa-rotate-0",
+}
+            );
+        
+    
+        var popup_37094f9997a9b8b30f05b2a3f0b741db = L.popup({
+  "maxWidth": 350,
+});
+
+        
+            
+                var html_fdde944f3316d8b1940a57c1d0423c3f = $(`<div id="html_fdde944f3316d8b1940a57c1d0423c3f" style="width: 100.0%; height: 100.0%;">     <div style="font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif; width: 320px; padding: 5px;">         <div style="border-left: 4px solid #e67e22; padding-left: 12px; margin-bottom: 12px;">             <h3 style="margin: 0 0 8px 0; font-size: 15px; color: #1e3a5f; line-height: 1.3;">Glass Reflections Cocktail</h3>             <div style="font-size: 13px; color: #555; margin-bottom: 4px;"><strong>NOUVEL</strong></div>         </div>         <div style="display: flex; gap: 15px; margin-bottom: 10px; font-size: 12px;">             <div style="background: #f0f4f8; padding: 6px 10px; border-radius: 4px;"><strong>⏰</strong> 19:00</div>             <div style="background: #e67e2215; color: #e67e22; padding: 6px 10px; border-radius: 4px; font-weight: 600;">Privado</div>         </div>         <div style="font-size: 12px; color: #666; margin-bottom: 8px;">             <div><strong>📍</strong> Roma Norte</div>             <div style="margin-left: 18px;">Orizaba 198</div>         </div>         <div style="font-size: 12px; color: #444; line-height: 1.5; border-top: 1px solid #e8ecf0; padding-top: 10px; margin-top: 8px;">             Primera vez en México, con Ciento.         </div>     </div>     </div>`)[0];
+                popup_37094f9997a9b8b30f05b2a3f0b741db.setContent(html_fdde944f3316d8b1940a57c1d0423c3f);
+            
+        
+
+        marker_48a603b86437b1d465a01c6d0852f07d.bindPopup(popup_37094f9997a9b8b30f05b2a3f0b741db)
+        ;
+
+        
+    
+    
+            marker_48a603b86437b1d465a01c6d0852f07d.bindTooltip(
+                `<div>
+                     <b>19:00</b> - NOUVEL
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+                marker_48a603b86437b1d465a01c6d0852f07d.setIcon(icon_653f4dff37c3c31aa43c65093488037b);
+            
+    
+            var marker_ecf0a6172b6fc513d97f0aaf99839509 = L.marker(
+                [19.4354, -99.1487],
+                {
+}
+            ).addTo(feature_group_6dff3130f82b25a27a5bdc79d530bb00);
+        
+    
+            var icon_9a8cf5b3b890cbf3e8e36ee3be3157dd = L.AwesomeMarkers.icon(
+                {
+  "markerColor": "orange",
+  "iconColor": "white",
+  "icon": "university",
+  "prefix": "fa",
+  "extraClasses": "fa-rotate-0",
+}
+            );
+        
+    
+        var popup_362684251e1089b338094d4cfa74554c = L.popup({
+  "maxWidth": 350,
+});
+
+        
+            
+                var html_e76ee66b760c9c62841844c1adb74394 = $(`<div id="html_e76ee66b760c9c62841844c1adb74394" style="width: 100.0%; height: 100.0%;">     <div style="font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif; width: 320px; padding: 5px;">         <div style="border-left: 4px solid #e67e22; padding-left: 12px; margin-bottom: 12px;">             <h3 style="margin: 0 0 8px 0; font-size: 15px; color: #1e3a5f; line-height: 1.3;">Cóctel + recorrido: 'El Jardín de Velasco'</h3>             <div style="font-size: 13px; color: #555; margin-bottom: 4px;"><strong>MUSEO KALUZ</strong></div>         </div>         <div style="display: flex; gap: 15px; margin-bottom: 10px; font-size: 12px;">             <div style="background: #f0f4f8; padding: 6px 10px; border-radius: 4px;"><strong>⏰</strong> 20:00</div>             <div style="background: #e67e2215; color: #e67e22; padding: 6px 10px; border-radius: 4px; font-weight: 600;">Privado</div>         </div>         <div style="font-size: 12px; color: #666; margin-bottom: 8px;">             <div><strong>📍</strong> Centro</div>             <div style="margin-left: 18px;">Av. Hidalgo 85</div>         </div>         <div style="font-size: 12px; color: #444; line-height: 1.5; border-top: 1px solid #e8ecf0; padding-top: 10px; margin-top: 8px;">             Hendrix, Lagarde, Cabrera Rubio, Guzik, Glassford.         </div>     </div>     </div>`)[0];
+                popup_362684251e1089b338094d4cfa74554c.setContent(html_e76ee66b760c9c62841844c1adb74394);
+            
+        
+
+        marker_ecf0a6172b6fc513d97f0aaf99839509.bindPopup(popup_362684251e1089b338094d4cfa74554c)
+        ;
+
+        
+    
+    
+            marker_ecf0a6172b6fc513d97f0aaf99839509.bindTooltip(
+                `<div>
+                     <b>20:00</b> - MUSEO KALUZ
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+                marker_ecf0a6172b6fc513d97f0aaf99839509.setIcon(icon_9a8cf5b3b890cbf3e8e36ee3be3157dd);
+            
+    
+            feature_group_6dff3130f82b25a27a5bdc79d530bb00.addTo(map_143f787d2d0bab0def970f01d36f9a2c);
+        
+    
+            var layer_control_101028effb3efc007cb6f1b7f2d36186_layers = {
+                base_layers : {
+                    "Claro" : tile_layer_2dc788539eff66b70a66725ff97c1768,
+                    "OpenStreetMap" : tile_layer_656f71f28054793fd432f9bb796ec245,
+                },
+                overlays :  {
+                    "\ud83d\udccd Ruta sugerida" : feature_group_02673426de53bc983a607d98d5d2e3d1,
+                    "\ud83d\udd35 P\u00fablico" : feature_group_4ebc0c1aaff3d433d07f73c754c68510,
+                    "\ud83d\udfe0 Privado" : feature_group_6dff3130f82b25a27a5bdc79d530bb00,
+                },
+            };
+            let layer_control_101028effb3efc007cb6f1b7f2d36186 = L.control.layers(
+                layer_control_101028effb3efc007cb6f1b7f2d36186_layers.base_layers,
+                layer_control_101028effb3efc007cb6f1b7f2d36186_layers.overlays,
+                {
+  "position": "topleft",
+  "collapsed": false,
+  "autoZIndex": true,
+}
+            ).addTo(map_143f787d2d0bab0def970f01d36f9a2c);
+
+        
+</script>
+</html>

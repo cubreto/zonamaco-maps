@@ -1,0 +1,788 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ZonaMaco 2026 | Programa VIP</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"/>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --white: #ffffff;
+            --bg-light: #f8fafc;
+            --bg-card: #ffffff;
+            --border: #e2e8f0;
+            --border-hover: #cbd5e1;
+            --text-dark: #0f172a;
+            --text-primary: #1e3a5f;
+            --text-secondary: #475569;
+            --text-muted: #94a3b8;
+            --blue-primary: #4a90d9;
+            --blue-light: #e8f4fd;
+            --blue-dark: #1e3a5f;
+            --orange-primary: #e67e22;
+            --orange-light: #fef3e8;
+            --gold: #d4a012;
+            --gold-light: #fefce8;
+            --shadow-sm: 0 1px 2px rgba(0,0,0,0.05);
+            --shadow-md: 0 4px 12px rgba(0,0,0,0.08);
+            --shadow-lg: 0 10px 40px rgba(0,0,0,0.1);
+        }
+
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+
+        body {
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+            background: var(--bg-light);
+            color: var(--text-dark);
+            line-height: 1.6;
+        }
+
+        /* Header */
+        .header {
+            background: var(--white);
+            border-bottom: 1px solid var(--border);
+            padding: 20px 0;
+            position: sticky;
+            top: 0;
+            z-index: 100;
+        }
+
+        .header-content {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 24px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+        }
+
+        .logo {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+        }
+
+        .logo-text {
+            font-size: 1.5rem;
+            font-weight: 700;
+            color: var(--text-primary);
+            letter-spacing: -0.02em;
+        }
+
+        .logo-badge {
+            background: linear-gradient(135deg, var(--blue-primary), var(--orange-primary));
+            color: white;
+            font-size: 10px;
+            font-weight: 600;
+            padding: 4px 8px;
+            border-radius: 4px;
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+        }
+
+        .header-date {
+            font-size: 14px;
+            color: var(--text-secondary);
+        }
+
+        /* Container */
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 40px 24px;
+        }
+
+        /* Hero */
+        .hero {
+            text-align: center;
+            padding: 60px 0;
+            background: linear-gradient(180deg, var(--white) 0%, var(--bg-light) 100%);
+            margin: -40px -24px 40px;
+            padding: 60px 24px;
+        }
+
+        .hero h1 {
+            font-size: clamp(2.5rem, 6vw, 4rem);
+            font-weight: 700;
+            color: var(--text-primary);
+            letter-spacing: -0.03em;
+            margin-bottom: 12px;
+        }
+
+        .hero h1 span {
+            background: linear-gradient(135deg, var(--blue-primary), var(--orange-primary));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        .hero-subtitle {
+            font-size: 1.125rem;
+            color: var(--text-secondary);
+            margin-bottom: 40px;
+        }
+
+        /* Stats */
+        .stats-row {
+            display: flex;
+            justify-content: center;
+            gap: 48px;
+            margin-bottom: 32px;
+        }
+
+        .stat-item {
+            text-align: center;
+        }
+
+        .stat-value {
+            font-size: 3rem;
+            font-weight: 700;
+            line-height: 1;
+            margin-bottom: 4px;
+        }
+
+        .stat-value.blue { color: var(--blue-primary); }
+        .stat-value.orange { color: var(--orange-primary); }
+        .stat-value.navy { color: var(--blue-dark); }
+
+        .stat-label {
+            font-size: 12px;
+            color: var(--text-muted);
+            text-transform: uppercase;
+            letter-spacing: 0.1em;
+            font-weight: 500;
+        }
+
+        /* Category Pills */
+        .category-pills {
+            display: flex;
+            justify-content: center;
+            gap: 16px;
+            margin-bottom: 32px;
+        }
+
+        .category-pill {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            padding: 10px 20px;
+            border-radius: 100px;
+            font-size: 14px;
+            font-weight: 500;
+        }
+
+        .category-pill.publico {
+            background: var(--blue-light);
+            color: var(--blue-primary);
+        }
+
+        .category-pill.privado {
+            background: var(--orange-light);
+            color: var(--orange-primary);
+        }
+
+        .category-dot {
+            width: 8px;
+            height: 8px;
+            border-radius: 50%;
+        }
+
+        .category-dot.blue { background: var(--blue-primary); }
+        .category-dot.orange { background: var(--orange-primary); }
+
+        /* Venue Badges */
+        .venue-badges {
+            display: flex;
+            justify-content: center;
+            gap: 12px;
+            flex-wrap: wrap;
+        }
+
+        .venue-badge {
+            display: flex;
+            align-items: center;
+            gap: 6px;
+            background: var(--white);
+            border: 1px solid var(--border);
+            padding: 8px 12px;
+            border-radius: 8px;
+            font-size: 12px;
+            transition: all 0.2s ease;
+        }
+
+        .venue-badge:hover {
+            border-color: var(--border-hover);
+            box-shadow: var(--shadow-sm);
+        }
+
+        .venue-badge i { font-size: 12px; }
+        .venue-count { font-weight: 600; color: var(--text-dark); }
+        .venue-label { color: var(--text-secondary); }
+
+        /* Search */
+        .search-section {
+            max-width: 600px;
+            margin: 0 auto 32px;
+        }
+
+        .search-container {
+            position: relative;
+        }
+
+        .search-input {
+            width: 100%;
+            padding: 14px 16px 14px 48px;
+            background: var(--white);
+            border: 1px solid var(--border);
+            border-radius: 12px;
+            font-size: 15px;
+            color: var(--text-dark);
+            outline: none;
+            transition: all 0.2s ease;
+        }
+
+        .search-input::placeholder { color: var(--text-muted); }
+
+        .search-input:focus {
+            border-color: var(--blue-primary);
+            box-shadow: 0 0 0 3px var(--blue-light);
+        }
+
+        .search-icon {
+            position: absolute;
+            left: 16px;
+            top: 50%;
+            transform: translateY(-50%);
+            color: var(--text-muted);
+        }
+
+        /* Filter Tabs */
+        .filter-tabs {
+            display: flex;
+            justify-content: center;
+            gap: 8px;
+            margin-bottom: 40px;
+            flex-wrap: wrap;
+        }
+
+        .filter-tab {
+            padding: 10px 18px;
+            background: var(--white);
+            border: 1px solid var(--border);
+            border-radius: 100px;
+            font-size: 13px;
+            font-weight: 500;
+            color: var(--text-secondary);
+            cursor: pointer;
+            transition: all 0.2s ease;
+        }
+
+        .filter-tab:hover {
+            border-color: var(--border-hover);
+            color: var(--text-dark);
+        }
+
+        .filter-tab.active {
+            background: var(--blue-primary);
+            border-color: var(--blue-primary);
+            color: white;
+        }
+
+        /* Days Grid */
+        .days-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(340px, 1fr));
+            gap: 24px;
+        }
+
+        .day-card {
+            background: var(--white);
+            border: 1px solid var(--border);
+            border-radius: 16px;
+            padding: 24px;
+            transition: all 0.3s ease;
+        }
+
+        .day-card:hover {
+            border-color: var(--blue-primary);
+            box-shadow: var(--shadow-lg);
+            transform: translateY(-4px);
+        }
+
+        .day-card-header {
+            display: flex;
+            align-items: center;
+            gap: 16px;
+            margin-bottom: 20px;
+        }
+
+        .day-number {
+            font-size: 2.5rem;
+            font-weight: 700;
+            color: var(--blue-primary);
+            line-height: 1;
+            min-width: 60px;
+        }
+
+        .day-info { flex: 1; }
+
+        .day-name {
+            font-size: 1.25rem;
+            font-weight: 600;
+            color: var(--text-dark);
+        }
+
+        .day-month {
+            font-size: 13px;
+            color: var(--text-muted);
+        }
+
+        .day-card-stats {
+            display: flex;
+            gap: 8px;
+            margin-bottom: 16px;
+            flex-wrap: wrap;
+        }
+
+        .stat-pill {
+            padding: 6px 12px;
+            border-radius: 6px;
+            font-size: 12px;
+            font-weight: 500;
+        }
+
+        .stat-pill.total {
+            background: var(--bg-light);
+            color: var(--text-secondary);
+        }
+
+        .stat-pill.publico {
+            background: var(--blue-light);
+            color: var(--blue-primary);
+        }
+
+        .stat-pill.privado {
+            background: var(--orange-light);
+            color: var(--orange-primary);
+        }
+
+        .day-card-preview {
+            background: var(--bg-light);
+            border-radius: 10px;
+            padding: 12px;
+            margin-bottom: 16px;
+            max-height: 160px;
+            overflow-y: auto;
+        }
+
+        .preview-event {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            padding: 8px;
+            background: var(--white);
+            border-radius: 6px;
+            margin-bottom: 6px;
+            border-left: 3px solid transparent;
+        }
+
+        .preview-event:last-child { margin-bottom: 0; }
+
+        .preview-event.publico { border-left-color: var(--blue-primary); }
+        .preview-event.privado { border-left-color: var(--orange-primary); }
+
+        .preview-time {
+            font-size: 12px;
+            font-weight: 600;
+            color: var(--text-primary);
+            min-width: 45px;
+        }
+
+        .preview-title {
+            font-size: 12px;
+            color: var(--text-secondary);
+            white-space: nowrap;
+            overflow: hidden;
+            text-overflow: ellipsis;
+        }
+
+        .day-card-link {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 8px;
+            padding: 14px;
+            background: var(--blue-primary);
+            border-radius: 10px;
+            color: white;
+            text-decoration: none;
+            font-weight: 600;
+            font-size: 14px;
+            transition: all 0.2s ease;
+        }
+
+        .day-card-link:hover {
+            background: var(--blue-dark);
+            transform: scale(1.02);
+        }
+
+        /* Footer */
+        footer {
+            text-align: center;
+            padding: 48px 24px;
+            border-top: 1px solid var(--border);
+            margin-top: 60px;
+            background: var(--white);
+        }
+
+        .footer-text {
+            color: var(--text-muted);
+            font-size: 14px;
+        }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            .stats-row { gap: 24px; }
+            .stat-value { font-size: 2rem; }
+            .days-grid { grid-template-columns: 1fr; }
+            .header-date { display: none; }
+        }
+
+        /* Scrollbar */
+        ::-webkit-scrollbar { width: 6px; }
+        ::-webkit-scrollbar-track { background: var(--bg-light); }
+        ::-webkit-scrollbar-thumb { background: var(--border); border-radius: 3px; }
+    </style>
+</head>
+<body>
+    <header class="header">
+        <div class="header-content">
+            <div class="logo">
+                <span class="logo-text">ZonaMaco</span>
+                <span class="logo-badge">VIP 2026</span>
+            </div>
+            <div class="header-date">2 - 8 de Febrero, Ciudad de México</div>
+        </div>
+    </header>
+
+    <div class="container">
+        <section class="hero">
+            <h1>Programa <span>VIP</span></h1>
+            <p class="hero-subtitle">99 eventos exclusivos en 7 días de arte contemporáneo</p>
+
+            <div class="stats-row">
+                <div class="stat-item">
+                    <div class="stat-value navy">99</div>
+                    <div class="stat-label">Eventos</div>
+                </div>
+                <div class="stat-item">
+                    <div class="stat-value blue">58</div>
+                    <div class="stat-label">Venues</div>
+                </div>
+                <div class="stat-item">
+                    <div class="stat-value orange">7</div>
+                    <div class="stat-label">Días</div>
+                </div>
+            </div>
+
+            <div class="category-pills">
+                <div class="category-pill publico">
+                    <span class="category-dot blue"></span>
+                    <strong>41</strong> Eventos Públicos
+                </div>
+                <div class="category-pill privado">
+                    <span class="category-dot orange"></span>
+                    <strong>58</strong> Eventos Privados
+                </div>
+            </div>
+
+            <div class="venue-badges">
+                
+                <div class="venue-badge">
+                    <i class="fa fa-university" style="color: #1e3a5f;"></i>
+                    <span class="venue-count">13</span>
+                    <span class="venue-label">Museo</span>
+                </div>
+            
+                <div class="venue-badge">
+                    <i class="fa fa-image" style="color: #4a90d9;"></i>
+                    <span class="venue-count">67</span>
+                    <span class="venue-label">Galería</span>
+                </div>
+            
+                <div class="venue-badge">
+                    <i class="fa fa-bed" style="color: #2ecc71;"></i>
+                    <span class="venue-count">5</span>
+                    <span class="venue-label">Hotel</span>
+                </div>
+            
+                <div class="venue-badge">
+                    <i class="fa fa-paint-brush" style="color: #e67e22;"></i>
+                    <span class="venue-count">4</span>
+                    <span class="venue-label">Estudio</span>
+                </div>
+            
+                <div class="venue-badge">
+                    <i class="fa fa-landmark" style="color: #f39c12;"></i>
+                    <span class="venue-count">7</span>
+                    <span class="venue-label">Fundación</span>
+                </div>
+            
+                <div class="venue-badge">
+                    <i class="fa fa-star" style="color: #e74c3c;"></i>
+                    <span class="venue-count">3</span>
+                    <span class="venue-label">Especial</span>
+                </div>
+            
+            </div>
+        </section>
+
+        <div class="search-section">
+            <div class="search-container">
+                <i class="fas fa-search search-icon"></i>
+                <input type="text" class="search-input" id="searchInput" placeholder="Buscar evento, galería o artista...">
+            </div>
+        </div>
+
+        <div class="filter-tabs">
+            <button class="filter-tab active" data-filter="all">Todos</button>
+            <button class="filter-tab" data-filter="publico">Públicos</button>
+            <button class="filter-tab" data-filter="privado">Privados</button>
+            <button class="filter-tab" data-filter="morning">☀️ Mañana</button>
+            <button class="filter-tab" data-filter="afternoon">🌤️ Tarde</button>
+            <button class="filter-tab" data-filter="evening">🌙 Noche</button>
+        </div>
+
+        <div class="days-grid">
+            
+            <div class="day-card" data-day="0" data-filename="2026-02-02_Lunes.html">
+                <div class="day-card-header">
+                    <div class="day-number">2</div>
+                    <div class="day-info">
+                        <div class="day-name">Lunes</div>
+                        <div class="day-month">Febrero 2026</div>
+                    </div>
+                </div>
+                <div class="day-card-stats">
+                    <div class="stat-pill total">4 eventos</div>
+                    <div class="stat-pill publico">2 públicos</div>
+                    <div class="stat-pill privado">2 privados</div>
+                </div>
+                <div class="day-card-preview" id="preview-0"></div>
+                <a href="2026-02-02_Lunes.html" class="day-card-link">
+                    Ver mapa interactivo
+                    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5">
+                        <path d="M5 12h14M12 5l7 7-7 7"/>
+                    </svg>
+                </a>
+            </div>
+        
+            <div class="day-card" data-day="1" data-filename="2026-02-03_Martes.html">
+                <div class="day-card-header">
+                    <div class="day-number">3</div>
+                    <div class="day-info">
+                        <div class="day-name">Martes</div>
+                        <div class="day-month">Febrero 2026</div>
+                    </div>
+                </div>
+                <div class="day-card-stats">
+                    <div class="stat-pill total">36 eventos</div>
+                    <div class="stat-pill publico">21 públicos</div>
+                    <div class="stat-pill privado">15 privados</div>
+                </div>
+                <div class="day-card-preview" id="preview-1"></div>
+                <a href="2026-02-03_Martes.html" class="day-card-link">
+                    Ver mapa interactivo
+                    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5">
+                        <path d="M5 12h14M12 5l7 7-7 7"/>
+                    </svg>
+                </a>
+            </div>
+        
+            <div class="day-card" data-day="2" data-filename="2026-02-04_Miércoles.html">
+                <div class="day-card-header">
+                    <div class="day-number">4</div>
+                    <div class="day-info">
+                        <div class="day-name">Miércoles</div>
+                        <div class="day-month">Febrero 2026</div>
+                    </div>
+                </div>
+                <div class="day-card-stats">
+                    <div class="stat-pill total">5 eventos</div>
+                    <div class="stat-pill publico">2 públicos</div>
+                    <div class="stat-pill privado">3 privados</div>
+                </div>
+                <div class="day-card-preview" id="preview-2"></div>
+                <a href="2026-02-04_Miércoles.html" class="day-card-link">
+                    Ver mapa interactivo
+                    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5">
+                        <path d="M5 12h14M12 5l7 7-7 7"/>
+                    </svg>
+                </a>
+            </div>
+        
+            <div class="day-card" data-day="3" data-filename="2026-02-05_Jueves.html">
+                <div class="day-card-header">
+                    <div class="day-number">5</div>
+                    <div class="day-info">
+                        <div class="day-name">Jueves</div>
+                        <div class="day-month">Febrero 2026</div>
+                    </div>
+                </div>
+                <div class="day-card-stats">
+                    <div class="stat-pill total">19 eventos</div>
+                    <div class="stat-pill publico">6 públicos</div>
+                    <div class="stat-pill privado">13 privados</div>
+                </div>
+                <div class="day-card-preview" id="preview-3"></div>
+                <a href="2026-02-05_Jueves.html" class="day-card-link">
+                    Ver mapa interactivo
+                    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5">
+                        <path d="M5 12h14M12 5l7 7-7 7"/>
+                    </svg>
+                </a>
+            </div>
+        
+            <div class="day-card" data-day="4" data-filename="2026-02-06_Viernes.html">
+                <div class="day-card-header">
+                    <div class="day-number">6</div>
+                    <div class="day-info">
+                        <div class="day-name">Viernes</div>
+                        <div class="day-month">Febrero 2026</div>
+                    </div>
+                </div>
+                <div class="day-card-stats">
+                    <div class="stat-pill total">19 eventos</div>
+                    <div class="stat-pill publico">5 públicos</div>
+                    <div class="stat-pill privado">14 privados</div>
+                </div>
+                <div class="day-card-preview" id="preview-4"></div>
+                <a href="2026-02-06_Viernes.html" class="day-card-link">
+                    Ver mapa interactivo
+                    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5">
+                        <path d="M5 12h14M12 5l7 7-7 7"/>
+                    </svg>
+                </a>
+            </div>
+        
+            <div class="day-card" data-day="5" data-filename="2026-02-07_Sábado.html">
+                <div class="day-card-header">
+                    <div class="day-number">7</div>
+                    <div class="day-info">
+                        <div class="day-name">Sábado</div>
+                        <div class="day-month">Febrero 2026</div>
+                    </div>
+                </div>
+                <div class="day-card-stats">
+                    <div class="stat-pill total">13 eventos</div>
+                    <div class="stat-pill publico">5 públicos</div>
+                    <div class="stat-pill privado">8 privados</div>
+                </div>
+                <div class="day-card-preview" id="preview-5"></div>
+                <a href="2026-02-07_Sábado.html" class="day-card-link">
+                    Ver mapa interactivo
+                    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5">
+                        <path d="M5 12h14M12 5l7 7-7 7"/>
+                    </svg>
+                </a>
+            </div>
+        
+            <div class="day-card" data-day="6" data-filename="2026-02-08_Domingo.html">
+                <div class="day-card-header">
+                    <div class="day-number">8</div>
+                    <div class="day-info">
+                        <div class="day-name">Domingo</div>
+                        <div class="day-month">Febrero 2026</div>
+                    </div>
+                </div>
+                <div class="day-card-stats">
+                    <div class="stat-pill total">3 eventos</div>
+                    <div class="stat-pill publico">0 públicos</div>
+                    <div class="stat-pill privado">3 privados</div>
+                </div>
+                <div class="day-card-preview" id="preview-6"></div>
+                <a href="2026-02-08_Domingo.html" class="day-card-link">
+                    Ver mapa interactivo
+                    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5">
+                        <path d="M5 12h14M12 5l7 7-7 7"/>
+                    </svg>
+                </a>
+            </div>
+        
+        </div>
+    </div>
+
+    <footer>
+        <p class="footer-text">ZonaMaco 2026 • Mapas interactivos del programa VIP</p>
+    </footer>
+
+    <script>
+        const events = [{"date": "2026-02-02T11:00:00", "time": "11:00", "organizer": "LABOR", "title": "Inauguración 'A Espessura dos Días' - Eduardo Berliner", "description": "La primera exposición del artista carioca Eduardo Berliner en Labor.", "category": "Público", "neighborhood": "Roma Norte", "venue_type": "gallery", "time_period": "morning"}, {"date": "2026-02-02T11:00:00", "time": "11:00", "organizer": "LA BIBI + REUS", "title": "Almuerzo y experiencia artística en Hacienda Acamilpa", "description": "Almuerzo exclusivo y experiencia artística en el marco de ZonaMaco.", "category": "Privado", "neighborhood": "Morelos", "venue_type": "special", "time_period": "morning"}, {"date": "2026-02-02T17:00:00", "time": "17:00", "organizer": "LATINOU", "title": "Exposición individual de Chavis Mármol", "description": "Chavis Mármol regresa al color con mezcla de materiales y texturas únicas.", "category": "Privado", "neighborhood": "Roma Norte", "venue_type": "gallery", "time_period": "afternoon"}, {"date": "2026-02-02T18:00:00", "time": "18:00", "organizer": "BODEGA OMR", "title": "Inauguración 'Dorian Ulises: Mexicano'", "description": "Nueva exposición de Dorian Ulises.", "category": "Público", "neighborhood": "Roma Sur", "venue_type": "gallery", "time_period": "evening"}, {"date": "2026-02-03T10:00:00", "time": "10:00", "organizer": "GALERIE NORDENHAKE", "title": "Exposición individual de Sarah Crowner", "description": "Exhibición individual de la artista estadounidense Sarah Crowner.", "category": "Privado", "neighborhood": "Roma Norte", "venue_type": "gallery", "time_period": "morning"}, {"date": "2026-02-03T10:00:00", "time": "10:00", "organizer": "FUNDACIÓN CASA WABI", "title": "Mesa de Centro - Cristina Umaña", "description": "Obra nueva de la artista colombiana Cristina Umaña, curada por Andrea Bustillos.", "category": "Privado", "neighborhood": "Roma Norte", "venue_type": "foundation", "time_period": "morning"}, {"date": "2026-02-03T10:00:00", "time": "10:00", "organizer": "FUNDACIÓN CASA WABI", "title": "Cristalización Especular - María Naidich", "description": "Obra nueva de María Naidich en la terraza de Casa Wabi CDMX.", "category": "Privado", "neighborhood": "Roma Norte", "venue_type": "foundation", "time_period": "morning"}, {"date": "2026-02-03T10:00:00", "time": "10:00", "organizer": "ARRÓNIZ", "title": "Inauguración: Madeline Jiménez, Ria Bosman, Karlo Andrei Ibarra", "description": "Tres exposiciones simultáneas de artistas internacionales.", "category": "Público", "neighborhood": "Roma Norte", "venue_type": "gallery", "time_period": "morning"}, {"date": "2026-02-03T10:00:00", "time": "10:00", "organizer": "FUNDACIÓN CASA WABI", "title": "Sísifo Dichoso - Bosco Sodi", "description": "La obra de Bosco Sodi habita el esfuerzo eterno del mito de Sísifo.", "category": "Privado", "neighborhood": "Roma Norte", "venue_type": "foundation", "time_period": "morning"}, {"date": "2026-02-03T10:00:00", "time": "10:00", "organizer": "GATHERING", "title": "Visita privada al estudio de Stefan Brüggemann", "description": "Acceso exclusivo al espacio de trabajo del artista.", "category": "Privado", "neighborhood": "Roma Norte", "venue_type": "studio", "time_period": "morning"}, {"date": "2026-02-03T10:00:00", "time": "10:00", "organizer": "SAENGER GALERÍA", "title": "Visita guiada: Gregor Hildebrandt en Casa Gilardi", "description": "La arquitectura de Barragán en diálogo con la obra de Hildebrandt.", "category": "Privado", "neighborhood": "Roma Norte", "venue_type": "gallery", "time_period": "morning"}, {"date": "2026-02-03T11:00:00", "time": "11:00", "organizer": "BANDA MUNICIPAL", "title": "Inauguración 'Sol Nocturno' - Renata Cassiano Álvarez", "description": "Últimas obras de la artista mexicana.", "category": "Público", "neighborhood": "Roma Norte", "venue_type": "gallery", "time_period": "morning"}, {"date": "2026-02-03T11:00:00", "time": "11:00", "organizer": "SAENGER GALERÍA", "title": "Visita guiada: Yoab Vera y Diego Rivera", "description": "Paisajes marinos y las puestas de sol en Acapulco.", "category": "Privado", "neighborhood": "Roma Norte", "venue_type": "gallery", "time_period": "morning"}, {"date": "2026-02-03T11:00:00", "time": "11:00", "organizer": "ALEJANDRA TOPETE GALLERY", "title": "Performance callejero de Randy Shull", "description": "Performance para inaugurar 'I Have Never Worn a Watch'.", "category": "Público", "neighborhood": "Roma Norte", "venue_type": "gallery", "time_period": "morning"}, {"date": "2026-02-03T11:00:00", "time": "11:00", "organizer": "SORONDO PROJECTS", "title": "Sorondo x Adhesivo", "description": "Dos galerías fundadas por mujeres venezolanas se unen.", "category": "Público", "neighborhood": "Roma Norte", "venue_type": "gallery", "time_period": "morning"}, {"date": "2026-02-03T12:00:00", "time": "12:00", "organizer": "FUNDACIÓN CASA WABI", "title": "Mesa de Centro (horario público)", "description": "Exposición abierta al público.", "category": "Público", "neighborhood": "Roma Norte", "venue_type": "foundation", "time_period": "afternoon"}, {"date": "2026-02-03T12:00:00", "time": "12:00", "organizer": "FUNDACIÓN CASA WABI", "title": "Cristalización Especular (horario público)", "description": "Exposición abierta al público.", "category": "Público", "neighborhood": "Roma Norte", "venue_type": "foundation", "time_period": "afternoon"}, {"date": "2026-02-03T12:00:00", "time": "12:00", "organizer": "TRAVESÍA CUATRO", "title": "Inauguración: Tania Pérez Córdova", "description": "Exposición individual de la artista.", "category": "Privado", "neighborhood": "Roma Norte", "venue_type": "gallery", "time_period": "afternoon"}, {"date": "2026-02-03T12:00:00", "time": "12:00", "organizer": "MARIANE IBRAHIM", "title": "Exposición individual de Carmen Neely", "description": "Primera presentación en México de Carmen Neely.", "category": "Público", "neighborhood": "Roma Norte", "venue_type": "gallery", "time_period": "afternoon"}, {"date": "2026-02-03T12:00:00", "time": "12:00", "organizer": "ALEJANDRA TOPETE GALLERY", "title": "'I Have Never Worn a Watch' - Randy Shull", "description": "Exposición del artista estadounidense.", "category": "Público", "neighborhood": "Roma Norte", "venue_type": "gallery", "time_period": "afternoon"}, {"date": "2026-02-03T12:10:00", "time": "12:10", "organizer": "FUNDACIÓN CASA WABI", "title": "Sísifo Dichoso (horario público)", "description": "Exposición abierta al público.", "category": "Público", "neighborhood": "Roma Norte", "venue_type": "foundation", "time_period": "afternoon"}, {"date": "2026-02-03T16:00:00", "time": "16:00", "organizer": "GEORGINA POUNDS GALLERY EN CASA LAMM", "title": "'Paraíso de Monstruos' - Vanessa Raw", "description": "Pinturas de la artista en Casa Lamm.", "category": "Privado", "neighborhood": "Roma Norte", "venue_type": "gallery", "time_period": "afternoon"}, {"date": "2026-02-03T16:00:00", "time": "16:00", "organizer": "PROYECTOS MONCLOVA GALLERY", "title": "Inauguración: Macaparana, Juan Parada, Gabriel Garcilazo", "description": "Exposición colectiva.", "category": "Público", "neighborhood": "Roma Norte", "venue_type": "gallery", "time_period": "afternoon"}, {"date": "2026-02-03T17:00:00", "time": "17:00", "organizer": "ALMANAQUE FOTOGRÁFICA", "title": "'Madre Tierra' - Exposición colectiva", "description": "Fotografía contemporánea de artistas destacados.", "category": "Público", "neighborhood": "Roma Norte", "venue_type": "gallery", "time_period": "afternoon"}, {"date": "2026-02-03T17:00:00", "time": "17:00", "organizer": "TEREZA DIAQUE LA LAGUNA TALLER ÁNFORA \"LA MEJOR\"", "title": "Presentación de Krytzia Dabdoub", "description": "Presentación de la artista.", "category": "Público", "neighborhood": "Roma Norte", "venue_type": "studio", "time_period": "afternoon"}, {"date": "2026-02-03T17:00:00", "time": "17:00", "organizer": "GALERÍA DE ARTE MEXICANO GAM", "title": "'Extreme Words' - Stefan Brüggemann", "description": "Nueva exposición del artista conceptual.", "category": "Público", "neighborhood": "Juárez", "venue_type": "gallery", "time_period": "afternoon"}, {"date": "2026-02-03T17:00:00", "time": "17:00", "organizer": "CUERNAVACA3", "title": "Inauguración de Cuernavaca3", "description": "Nueva fundación del coleccionista Jeff Magid.", "category": "Privado", "neighborhood": "Roma Norte", "venue_type": "special", "time_period": "afternoon"}, {"date": "2026-02-03T18:00:00", "time": "18:00", "organizer": "PROYECTO H", "title": "Inauguración: Pablo Armesto, Patrick Hughes, José Romussi", "description": "Tres exposiciones y residencia artística.", "category": "Privado", "neighborhood": "Roma Norte", "venue_type": "gallery", "time_period": "evening"}, {"date": "2026-02-03T18:00:00", "time": "18:00", "organizer": "GALERIE NORDENHAKE", "title": "'Loose Geometries' - Selección de Sarah Crowner", "description": "Obras históricas curadas por la artista.", "category": "Privado", "neighborhood": "Roma Norte", "venue_type": "gallery", "time_period": "evening"}, {"date": "2026-02-03T18:00:00", "time": "18:00", "organizer": "KURIMANZUTTO", "title": "Preview: Oscar Murillo 'El Pozo de Agua'", "description": "Adelanto de la nueva exposición.", "category": "Público", "neighborhood": "San Miguel Chapultepec", "venue_type": "gallery", "time_period": "evening"}, {"date": "2026-02-03T18:00:00", "time": "18:00", "organizer": "GALERÍA KAREN HUBER", "title": "'Goodbye Ebony Horse' - Ian Grose + 'Rise and Shine'", "description": "Dos exposiciones simultáneas.", "category": "Público", "neighborhood": "Roma Norte", "venue_type": "gallery", "time_period": "evening"}, {"date": "2026-02-03T18:00:00", "time": "18:00", "organizer": "GALERÍA DANIELA ELBAHARA", "title": "Exposición individual de Hugo Robledo", "description": "Pinturas y cerámicas entre lo físico y lo mental.", "category": "Público", "neighborhood": "Roma Norte", "venue_type": "gallery", "time_period": "evening"}, {"date": "2026-02-03T18:00:00", "time": "18:00", "organizer": "GALERÍA ENRIQUE GUERRERO", "title": "'Néctar' - Fernanda Caballero", "description": "Segunda exposición personal de la artista.", "category": "Público", "neighborhood": "Roma Norte", "venue_type": "gallery", "time_period": "evening"}, {"date": "2026-02-03T18:00:00", "time": "18:00", "organizer": "DANIEL OROZCO ESTUDIO", "title": "Subasta benéfica para LADLE", "description": "Piezas intervenidas por diversos artistas.", "category": "Privado", "neighborhood": "Roma Norte", "venue_type": "studio", "time_period": "evening"}, {"date": "2026-02-03T18:00:00", "time": "18:00", "organizer": "PUG SEAL", "title": "Subasta de arte curada", "description": "Piezas selectas en torno a los hoteles Pug Seal.", "category": "Público", "neighborhood": "Roma Norte", "venue_type": "hotel", "time_period": "evening"}, {"date": "2026-02-03T18:00:00", "time": "18:00", "organizer": "OMR", "title": "Inauguración: Marcel Dzama y Leonora Carrington", "description": "Diálogo entre dos universos artísticos.", "category": "Público", "neighborhood": "Roma Norte", "venue_type": "gallery", "time_period": "evening"}, {"date": "2026-02-03T18:00:00", "time": "18:00", "organizer": "GALERÍA RGR", "title": "Inauguración: Roberto Matta", "description": "Primera vez de la obra de Matta en RGR.", "category": "Público", "neighborhood": "Roma Norte", "venue_type": "gallery", "time_period": "evening"}, {"date": "2026-02-03T19:00:00", "time": "19:00", "organizer": "RICARDO REYES", "title": "'Serenísimo Pop' - Salustiano", "description": "Pintura y obras en papel del artista sevillano.", "category": "Público", "neighborhood": "Roma Norte", "venue_type": "gallery", "time_period": "evening"}, {"date": "2026-02-03T19:00:00", "time": "19:00", "organizer": "HOTEL ALEXANDER X CAM GALERÍA", "title": "Pop-up Alejandra España en Caviar Bar", "description": "Exhibición activa toda la semana.", "category": "Privado", "neighborhood": "Condesa", "venue_type": "hotel", "time_period": "evening"}, {"date": "2026-02-03T20:30:00", "time": "20:30", "organizer": "GALERIE NORDENHAKE", "title": "Cena de inauguración 'Loose Geometries'", "description": "Cena exclusiva para coleccionistas.", "category": "Privado", "neighborhood": "Roma Norte", "venue_type": "gallery", "time_period": "evening"}, {"date": "2026-02-04T19:00:00", "time": "19:00", "organizer": "LS / GALERÍA", "title": "'Echoes of the Unseen' - Carrington, Lempicka, Costa, Carrillo", "description": "Creadoras que transformaron el arte.", "category": "Privado", "neighborhood": "Roma Norte", "venue_type": "gallery", "time_period": "evening"}, {"date": "2026-02-04T19:00:00", "time": "19:00", "organizer": "HOTEL VOLGA", "title": "Cóctel de kickoff ZonaMaco", "description": "Inicio oficial de la semana en Hotel Volga.", "category": "Público", "neighborhood": "Roma Norte", "venue_type": "hotel", "time_period": "evening"}, {"date": "2026-02-04T19:30:00", "time": "19:30", "organizer": "TLC ART EDITIONS", "title": "TLC Art Editions en Artemis Project", "description": "Graciela Iturbide, Jan Hendrix y más.", "category": "Público", "neighborhood": "Roma Norte", "venue_type": "gallery", "time_period": "evening"}, {"date": "2026-02-04T19:30:00", "time": "19:30", "organizer": "CAM GALERÍA", "title": "'Túnel y Vislumbre' - Alejandra España", "description": "Obra inédita curada por Charles Moore.", "category": "Privado", "neighborhood": "Roma Norte", "venue_type": "gallery", "time_period": "evening"}, {"date": "2026-02-04T20:00:00", "time": "20:00", "organizer": "MUSEO DE ARTE MODERNO", "title": "Pre-inauguración: Rafael Lozano-Hemmer 'Jardín Inconcluso'", "description": "Paseo nocturno por la instalación.", "category": "Privado", "neighborhood": "Chapultepec", "venue_type": "museum", "time_period": "evening"}, {"date": "2026-02-05T09:30:00", "time": "09:30", "organizer": "LATINOU", "title": "Visita al estudio de Chavis Mármol + desayuno", "description": "Recorrido exclusivo para coleccionistas.", "category": "Privado", "neighborhood": "Roma Norte", "venue_type": "gallery", "time_period": "morning"}, {"date": "2026-02-05T10:00:00", "time": "10:00", "organizer": "MUSEO JUMEX", "title": "Recorridos guiados + firma: Gabriel de la Mora", "description": "Presentación del catálogo 'La Petite Mort'.", "category": "Privado", "neighborhood": "Polanco", "venue_type": "museum", "time_period": "morning"}, {"date": "2026-02-05T10:00:00", "time": "10:00", "organizer": "DANIEL OROZCO ESTUDIO", "title": "Showroom abierto al público", "description": "Visita al showroom del estudio.", "category": "Público", "neighborhood": "Roma Norte", "venue_type": "studio", "time_period": "morning"}, {"date": "2026-02-05T10:00:00", "time": "10:00", "organizer": "SAENGER GALERÍA EN CASA GILARDI", "title": "Visita guiada: Gregor Hildebrandt", "description": "La música como silencio y materia.", "category": "Privado", "neighborhood": "San Miguel Chapultepec", "venue_type": "gallery", "time_period": "morning"}, {"date": "2026-02-05T10:00:00", "time": "10:00", "organizer": "GALERIE NORDENHAKE", "title": "Exposición: Sarah Crowner", "description": "Exhibición individual de la artista.", "category": "Privado", "neighborhood": "Roma Norte", "venue_type": "gallery", "time_period": "morning"}, {"date": "2026-02-05T10:00:00", "time": "10:00", "organizer": "SAENGER GALERÍA", "title": "Visita al estudio de Robert Janitz", "description": "Nómada entre NY y CDMX.", "category": "Privado", "neighborhood": "Roma Norte", "venue_type": "gallery", "time_period": "morning"}, {"date": "2026-02-05T10:30:00", "time": "10:30", "organizer": "AMBAR QUIJANO", "title": "Visita al estudio de Mariana Paniagua", "description": "Trayectoria sólida y presencia institucional.", "category": "Privado", "neighborhood": "Roma Norte", "venue_type": "gallery", "time_period": "morning"}, {"date": "2026-02-05T11:00:00", "time": "11:00", "organizer": "SAENGER GALERÍA EN MUSEO DOLORES OLMEDO", "title": "Visitas guiadas: Yoab Vera y Diego Rivera", "description": "Paisajes y puestas de sol.", "category": "Privado", "neighborhood": "Xochimilco", "venue_type": "gallery", "time_period": "morning"}, {"date": "2026-02-05T11:00:00", "time": "11:00", "organizer": "SALA DE ARTE PÚBLICO SIQUEIROS", "title": "'Fusiones' + performance Valentina Díaz", "description": "El legado de Siqueiros explorado.", "category": "Público", "neighborhood": "Polanco", "venue_type": "museum", "time_period": "morning"}, {"date": "2026-02-05T12:00:00", "time": "12:00", "organizer": "GALERÍA RODRIGO RIVERO LAKE", "title": "Visita guiada: colección privada", "description": "Elementos arquitectónicos de la época virreinal.", "category": "Privado", "neighborhood": "Centro", "venue_type": "gallery", "time_period": "afternoon"}, {"date": "2026-02-05T12:00:00", "time": "12:00", "organizer": "MUSEO DEL PALACIO DE BELLAS ARTES", "title": "'Colosos' - Intervención de Diego Vega", "description": "Coreografía del laboratorio Cuerpos Arquitectos.", "category": "Público", "neighborhood": "Centro", "venue_type": "museum", "time_period": "afternoon"}, {"date": "2026-02-05T18:00:00", "time": "18:00", "organizer": "PUG SEAL", "title": "Cóctel + performance para expositores EJES", "description": "Arts, drinks and fun.", "category": "Privado", "neighborhood": "Roma Norte", "venue_type": "hotel", "time_period": "evening"}, {"date": "2026-02-05T19:00:00", "time": "19:00", "organizer": "LS / GALERÍA", "title": "Cena 25 aniversario", "description": "Un cuarto de siglo dedicado al arte.", "category": "Privado", "neighborhood": "Roma Norte", "venue_type": "gallery", "time_period": "evening"}, {"date": "2026-02-05T19:00:00", "time": "19:00", "organizer": "MUSEO DE ARTE MODERNO", "title": "'Pánico en el Interior Externo' - Conversación", "description": "Con Lozano-Hemmer, Medina, Szántó.", "category": "Privado", "neighborhood": "Chapultepec", "venue_type": "museum", "time_period": "evening"}, {"date": "2026-02-05T19:00:00", "time": "19:00", "organizer": "MUSEO UNIVERSITARIO DEL CHOPO", "title": "'San Pedro - Carrera de Patos' - Elyla", "description": "Monólogo teatral con música en vivo.", "category": "Privado", "neighborhood": "Santa María la Ribera", "venue_type": "museum", "time_period": "evening"}, {"date": "2026-02-05T19:30:00", "time": "19:30", "organizer": "GALERÍA ANA TEJEDA", "title": "Recorrido curatorial: Karen Cordero Reiman", "description": "Exposición colectiva de artistas.", "category": "Público", "neighborhood": "Roma Norte", "venue_type": "gallery", "time_period": "evening"}, {"date": "2026-02-05T19:30:00", "time": "19:30", "organizer": "HOTEL ALEXANDER", "title": "Pop-up: Marcos Cojab", "description": "Esculturas y gráficas con humor y simbolismo.", "category": "Público", "neighborhood": "Condesa", "venue_type": "hotel", "time_period": "evening"}, {"date": "2026-02-05T20:00:00", "time": "20:00", "organizer": "JOVIAN FINE ART", "title": "'Umbrales' - Nicolás Beltrán y Kevin Artavia", "description": "Inauguración de Roma Sur, Proyectos Curatoriales.", "category": "Público", "neighborhood": "Roma Sur", "venue_type": "gallery", "time_period": "evening"}, {"date": "2026-02-05T20:00:00", "time": "20:00", "organizer": "ALMANAQUE FOTOGRÁFICA", "title": "Cóctel 10 aniversario - Madre Tierra", "description": "Celebración de una década de fotografía.", "category": "Privado", "neighborhood": "Roma Norte", "venue_type": "gallery", "time_period": "evening"}, {"date": "2026-02-06T09:30:00", "time": "09:30", "organizer": "MUSEO DE ARTE CARRILLO GIL", "title": "Brunch MACG + recorridos", "description": "Gerzso, Botánica de Asfalto, y más.", "category": "Privado", "neighborhood": "San Ángel", "venue_type": "museum", "time_period": "morning"}, {"date": "2026-02-06T09:30:00", "time": "09:30", "organizer": "LATINOU", "title": "Visita al estudio de Raúl Cordero", "description": "Visión íntima del proceso creativo.", "category": "Privado", "neighborhood": "Roma Norte", "venue_type": "gallery", "time_period": "morning"}, {"date": "2026-02-06T10:00:00", "time": "10:00", "organizer": "LAGOALGO", "title": "'Alucinaciones' + 'Rafa Esparza: Juntxs'", "description": "Trevor Paglen, Troika y Rafa Esparza.", "category": "Público", "neighborhood": "Chapultepec", "venue_type": "foundation", "time_period": "morning"}, {"date": "2026-02-06T10:00:00", "time": "10:00", "organizer": "SAENGER GALERÍA", "title": "Visita guiada: Gregor Hildebrandt", "description": "Repetición de módulos, lleno y vacío.", "category": "Privado", "neighborhood": "Roma Norte", "venue_type": "gallery", "time_period": "morning"}, {"date": "2026-02-06T10:00:00", "time": "10:00", "organizer": "AMBAR QUIJANO", "title": "Visita al estudio de Andrea Bores", "description": "Diálogo íntimo con los materiales.", "category": "Privado", "neighborhood": "Roma Norte", "venue_type": "gallery", "time_period": "morning"}, {"date": "2026-02-06T10:00:00", "time": "10:00", "organizer": "SAENGER GALERÍA", "title": "Visita al estudio de Yoab Vera", "description": "Casa familiar convertida en estudio.", "category": "Privado", "neighborhood": "Roma Norte", "venue_type": "gallery", "time_period": "morning"}, {"date": "2026-02-06T11:00:00", "time": "11:00", "organizer": "MARCHANTE ARTE CONTEMPORÁNEO & PROYECTO H", "title": "Visita al estudio de Román de Castro", "description": "Espacio de creación del artista.", "category": "Privado", "neighborhood": "Roma Norte", "venue_type": "gallery", "time_period": "morning"}, {"date": "2026-02-06T11:00:00", "time": "11:00", "organizer": "LS / GALERÍA & CASA ABIERTA MONTE", "title": "Diálogo: Coen, Tzucumo, Candiani, Rojo", "description": "Arte y arquitectura en conversación.", "category": "Privado", "neighborhood": "Roma Norte", "venue_type": "gallery", "time_period": "morning"}, {"date": "2026-02-06T11:00:00", "time": "11:00", "organizer": "MUAC", "title": "Brunch + preview: 'Los Grupos' y Néstor Jiménez", "description": "Exposiciones próximas a inaugurar.", "category": "Privado", "neighborhood": "Ciudad Universitaria", "venue_type": "museum", "time_period": "morning"}, {"date": "2026-02-06T11:00:00", "time": "11:00", "organizer": "GALERÍA KAREN HUBER", "title": "Visita al estudio de César Rangel Ramos", "description": "Imágenes perfeccionadas por años.", "category": "Privado", "neighborhood": "Roma Norte", "venue_type": "gallery", "time_period": "morning"}, {"date": "2026-02-06T11:00:00", "time": "11:00", "organizer": "SAENGER GALERÍA", "title": "Visitas guiadas: Yoab Vera y Diego Rivera", "description": "Paisajes marinos y jardines.", "category": "Privado", "neighborhood": "Roma Norte", "venue_type": "gallery", "time_period": "morning"}, {"date": "2026-02-06T11:45:00", "time": "11:45", "organizer": "AMBAR QUIJANO", "title": "Visita al estudio de Juana Subercaseaux", "description": "Pintora chilena radicada en CDMX.", "category": "Privado", "neighborhood": "Roma Norte", "venue_type": "gallery", "time_period": "morning"}, {"date": "2026-02-06T12:00:00", "time": "12:00", "organizer": "MUSEO DEL PALACIO DE BELLAS ARTES", "title": "'Colosos' - Intervención coreográfica", "description": "Cuerpos Arquitectos en acción.", "category": "Público", "neighborhood": "Centro", "venue_type": "museum", "time_period": "afternoon"}, {"date": "2026-02-06T13:00:00", "time": "13:00", "organizer": "ARRÓNIZ", "title": "Open House: Mauro Giaconi 'Temporal Ventaja'", "description": "Tour por Obrera Centro.", "category": "Público", "neighborhood": "Roma Norte", "venue_type": "gallery", "time_period": "afternoon"}, {"date": "2026-02-06T19:00:00", "time": "19:00", "organizer": "AMBAR QUIJANO", "title": "Cóctel + activación: Mariana Garibay Raeke", "description": "Diálogo con Manuela Riestra.", "category": "Público", "neighborhood": "Roma Norte", "venue_type": "gallery", "time_period": "evening"}, {"date": "2026-02-06T19:00:00", "time": "19:00", "organizer": "BREUER STUDIO", "title": "Inauguración: artistas nacionales e internacionales", "description": "Diseño con precisión y conciencia.", "category": "Público", "neighborhood": "Roma Norte", "venue_type": "gallery", "time_period": "evening"}, {"date": "2026-02-06T19:00:00", "time": "19:00", "organizer": "MUSEO DE ARTE MODERNO", "title": "Eli Keszler activa 'Jardín Inconcluso'", "description": "Performances, poesía y coreografía.", "category": "Privado", "neighborhood": "Chapultepec", "venue_type": "museum", "time_period": "evening"}, {"date": "2026-02-06T19:00:00", "time": "19:00", "organizer": "NOUVEL", "title": "Glass Reflections Cocktail", "description": "Primera vez en México, con Ciento.", "category": "Privado", "neighborhood": "Roma Norte", "venue_type": "gallery", "time_period": "evening"}, {"date": "2026-02-06T20:00:00", "time": "20:00", "organizer": "MUSEO KALUZ", "title": "Cóctel + recorrido: 'El Jardín de Velasco'", "description": "Hendrix, Lagarde, Cabrera Rubio, Guzik, Glassford.", "category": "Privado", "neighborhood": "Centro", "venue_type": "museum", "time_period": "evening"}, {"date": "2026-02-07T10:00:00", "time": "10:00", "organizer": "LS / GALERÍA", "title": "'Memoria en Construcción' - Arnaldo Coen", "description": "Procesos y capas del universo creativo.", "category": "Privado", "neighborhood": "Roma Norte", "venue_type": "gallery", "time_period": "morning"}, {"date": "2026-02-07T10:00:00", "time": "10:00", "organizer": "ARRÓNIZ", "title": "Desayuno + estudios: Giaconi y Castro", "description": "Tour por Obrera Centro.", "category": "Privado", "neighborhood": "Roma Norte", "venue_type": "gallery", "time_period": "morning"}, {"date": "2026-02-07T10:00:00", "time": "10:00", "organizer": "SAENGER GALERÍA", "title": "Visita guiada: Gregor Hildebrandt en Casa Gilardi", "description": "Arquitectura, luz y sombra.", "category": "Privado", "neighborhood": "Roma Norte", "venue_type": "gallery", "time_period": "morning"}, {"date": "2026-02-07T10:00:00", "time": "10:00", "organizer": "NOUVEL", "title": "Glass Reflections Open House", "description": "Exhibición abierta al público.", "category": "Público", "neighborhood": "Roma Norte", "venue_type": "gallery", "time_period": "morning"}, {"date": "2026-02-07T11:00:00", "time": "11:00", "organizer": "ALEJANDRA TOPETE GALLERY", "title": "Conversatorio: Lucía Lundt y Rafael Lozano-Hemmer", "description": "Topografías de lo Invisible.", "category": "Público", "neighborhood": "Roma Norte", "venue_type": "gallery", "time_period": "morning"}, {"date": "2026-02-07T11:00:00", "time": "11:00", "organizer": "SAENGER GALERÍA", "title": "Visitas guiadas: Yoab Vera y Diego Rivera", "description": "Paisajes erosionados y otros tiempos.", "category": "Privado", "neighborhood": "Roma Norte", "venue_type": "gallery", "time_period": "morning"}, {"date": "2026-02-07T11:00:00", "time": "11:00", "organizer": "SAENGER GALERÍA EN CENTRO DE ARTE LIMANTOUR", "title": "'Ebriedad Geométrica' - Visita guiada", "description": "Con curadores y artistas.", "category": "Privado", "neighborhood": "Juárez", "venue_type": "gallery", "time_period": "morning"}, {"date": "2026-02-07T11:30:00", "time": "11:30", "organizer": "PROYECTO H", "title": "Visita al estudio de Pablo de Laborde Lascaris", "description": "Escultor mexicano.", "category": "Privado", "neighborhood": "Roma Norte", "venue_type": "gallery", "time_period": "morning"}, {"date": "2026-02-07T11:30:00", "time": "11:30", "organizer": "AMBAR QUIJANO", "title": "Visita al estudio de Meryl Yana", "description": "Nacida en París, radicada en San Miguel Chapultepec.", "category": "Privado", "neighborhood": "Roma Norte", "venue_type": "gallery", "time_period": "morning"}, {"date": "2026-02-07T12:00:00", "time": "12:00", "organizer": "MARIANE IBRAHIM", "title": "Charla + libro: Carmen Neely", "description": "Conversación con la artista.", "category": "Público", "neighborhood": "Roma Norte", "venue_type": "gallery", "time_period": "afternoon"}, {"date": "2026-02-07T12:00:00", "time": "12:00", "organizer": "MUSEO DEL PALACIO DE BELLAS ARTES", "title": "'Colosos' - Recorrido coreográfico", "description": "Diego Vega y Cuerpos Arquitectos.", "category": "Privado", "neighborhood": "Centro", "venue_type": "museum", "time_period": "afternoon"}, {"date": "2026-02-07T12:00:00", "time": "12:00", "organizer": "KURIMANZUTTO", "title": "Future Dialogues: Oscar Murillo & Magali Arriola", "description": "Lanzamiento del libro 'El Pozo de Agua'.", "category": "Público", "neighborhood": "San Miguel Chapultepec", "venue_type": "gallery", "time_period": "afternoon"}, {"date": "2026-02-07T19:00:00", "time": "19:00", "organizer": "ARTSYNIGHTS X ZⓈONAMACO", "title": "Abracadabra con Blond:ish", "description": "Fiesta de cierre.", "category": "Público", "neighborhood": "Roma Norte", "venue_type": "special", "time_period": "evening"}, {"date": "2026-02-08T10:00:00", "time": "10:00", "organizer": "SAENGER GALERÍA", "title": "Visita guiada: Gregor Hildebrandt en Casa Gilardi", "description": "Última oportunidad de la semana.", "category": "Privado", "neighborhood": "Roma Norte", "venue_type": "gallery", "time_period": "morning"}, {"date": "2026-02-08T10:00:00", "time": "10:00", "organizer": "MUSEO DE LA CIUDAD DE MÉXICO", "title": "'Columna Rota' - Visita guiada", "description": "Exploración artística con organizadores.", "category": "Privado", "neighborhood": "Centro", "venue_type": "museum", "time_period": "morning"}, {"date": "2026-02-08T11:00:00", "time": "11:00", "organizer": "SAENGER GALERÍA", "title": "Visitas guiadas: Yoab Vera y Diego Rivera", "description": "Cierre de la semana.", "category": "Privado", "neighborhood": "Roma Norte", "venue_type": "gallery", "time_period": "morning"}];
+
+        const eventsByDay = {};
+        events.forEach(e => {
+            const day = new Date(e.date).getDay();
+            const dayIndex = day === 0 ? 6 : day - 1;
+            if (!eventsByDay[dayIndex]) eventsByDay[dayIndex] = [];
+            eventsByDay[dayIndex].push(e);
+        });
+
+        document.querySelectorAll('.day-card').forEach(card => {
+            const dow = parseInt(card.dataset.day);
+            const preview = card.querySelector('.day-card-preview');
+            const dayEvents = eventsByDay[dow] || [];
+
+            const html = dayEvents.slice(0, 4).map(e => `
+                <div class="preview-event ${e.category.toLowerCase()}">
+                    <span class="preview-time">${e.time}</span>
+                    <span class="preview-title">${e.organizer}</span>
+                </div>
+            `).join('');
+
+            preview.innerHTML = html || '<p style="color: var(--text-muted); font-size: 12px; text-align: center; padding: 20px;">Sin eventos</p>';
+        });
+
+        const searchInput = document.getElementById('searchInput');
+        searchInput.addEventListener('input', (e) => {
+            const query = e.target.value.toLowerCase();
+            document.querySelectorAll('.day-card').forEach(card => {
+                const dow = parseInt(card.dataset.day);
+                const dayEvents = eventsByDay[dow] || [];
+                const hasMatch = dayEvents.some(ev =>
+                    ev.title.toLowerCase().includes(query) ||
+                    ev.organizer.toLowerCase().includes(query) ||
+                    ev.description.toLowerCase().includes(query)
+                );
+                card.style.display = (query === '' || hasMatch) ? 'block' : 'none';
+            });
+        });
+
+        document.querySelectorAll('.filter-tab').forEach(tab => {
+            tab.addEventListener('click', () => {
+                document.querySelectorAll('.filter-tab').forEach(t => t.classList.remove('active'));
+                tab.classList.add('active');
+
+                const filter = tab.dataset.filter;
+
+                document.querySelectorAll('.day-card').forEach(card => {
+                    const dow = parseInt(card.dataset.day);
+                    const dayEvents = eventsByDay[dow] || [];
+
+                    let hasMatch = true;
+                    if (filter === 'publico') {
+                        hasMatch = dayEvents.some(e => e.category === 'Público');
+                    } else if (filter === 'privado') {
+                        hasMatch = dayEvents.some(e => e.category === 'Privado');
+                    } else if (['morning', 'afternoon', 'evening'].includes(filter)) {
+                        hasMatch = dayEvents.some(e => e.time_period === filter);
+                    }
+
+                    card.style.display = hasMatch ? 'block' : 'none';
+                });
+            });
+        });
+    </script>
+</body>
+</html>

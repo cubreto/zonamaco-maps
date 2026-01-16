@@ -1,0 +1,332 @@
+<!DOCTYPE html>
+<html>
+<head>
+    
+    <meta http-equiv="content-type" content="text/html; charset=UTF-8" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css"/>
+    
+        <script>
+            L_NO_TOUCH = false;
+            L_DISABLE_3D = false;
+        </script>
+    
+    <style>html, body {width: 100%;height: 100%;margin: 0;padding: 0;}</style>
+    <style>#map {position:absolute;top:0;bottom:0;right:0;left:0;}</style>
+    <script src="https://cdn.jsdelivr.net/npm/leaflet@1.9.3/dist/leaflet.js"></script>
+    <script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/Leaflet.awesome-markers/2.0.2/leaflet.awesome-markers.js"></script>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/leaflet@1.9.3/dist/leaflet.css"/>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/css/bootstrap.min.css"/>
+    <link rel="stylesheet" href="https://netdna.bootstrapcdn.com/bootstrap/3.0.0/css/bootstrap-glyphicons.css"/>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@6.2.0/css/all.min.css"/>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/Leaflet.awesome-markers/2.0.2/leaflet.awesome-markers.css"/>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/python-visualization/folium/folium/templates/leaflet.awesome.rotate.min.css"/>
+    
+            <meta name="viewport" content="width=device-width,
+                initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
+            <style>
+                #map_52819b87e6baaacbf1bc48a8ec3ba22f {
+                    position: relative;
+                    width: 100.0%;
+                    height: 100.0%;
+                    left: 0.0%;
+                    top: 0.0%;
+                }
+                .leaflet-container { font-size: 1rem; }
+            </style>
+        
+    <script src="https://cdn.jsdelivr.net/npm/leaflet-ant-path@1.1.2/dist/leaflet-ant-path.min.js"></script>
+</head>
+<body>
+    
+    <div style="position: fixed; top: 10px; right: 10px; width: 220px; max-height: 90vh; background: #f8fafc; border-radius: 12px; padding: 15px; z-index: 1000; box-shadow: 0 4px 20px rgba(0,0,0,0.1); overflow-y: auto; font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif; border: 1px solid #e2e8f0;"><div style="text-align: center; margin-bottom: 15px; padding-bottom: 10px; border-bottom: 2px solid #e2e8f0;"><div style="font-size: 18px; font-weight: 700; color: #1e3a5f;">Domingo</div><div style="font-size: 12px; color: #64748b;">8 de Febrero</div><div style="font-size: 11px; color: #94a3b8; margin-top: 4px;">3 eventos</div></div><div style="margin-bottom: 15px;"><div style="font-size: 11px; font-weight: 700; color: #f39c12; margin-bottom: 6px; padding: 4px 8px; background: #f39c1215; border-radius: 4px;">☀️ Mañana (3)</div><div style="padding: 8px 10px; margin: 4px 0; background: white; border-radius: 6px; border-left: 3px solid #e67e22; font-size: 11px; cursor: pointer; box-shadow: 0 1px 3px rgba(0,0,0,0.08);" onclick="map.setView([19.4189, -99.1658], 16)"><div style="font-weight: 600; color: #1e3a5f;">10:00</div><div style="color: #666; white-space: nowrap; overflow: hidden; text-overflow: ellipsis;">SAENGER GALERÍA</div></div><div style="padding: 8px 10px; margin: 4px 0; background: white; border-radius: 6px; border-left: 3px solid #e67e22; font-size: 11px; cursor: pointer; box-shadow: 0 1px 3px rgba(0,0,0,0.08);" onclick="map.setView([19.4285, -99.1319], 16)"><div style="font-weight: 600; color: #1e3a5f;">10:00</div><div style="color: #666; white-space: nowrap; overflow: hidden; text-overflow: ellipsis;">MUSEO DE LA CIUDAD DE MÉXICO</div></div><div style="padding: 8px 10px; margin: 4px 0; background: white; border-radius: 6px; border-left: 3px solid #e67e22; font-size: 11px; cursor: pointer; box-shadow: 0 1px 3px rgba(0,0,0,0.08);" onclick="map.setView([19.4189, -99.1658], 16)"><div style="font-weight: 600; color: #1e3a5f;">11:00</div><div style="color: #666; white-space: nowrap; overflow: hidden; text-overflow: ellipsis;">SAENGER GALERÍA</div></div></div></div>
+    <div style="position: fixed; bottom: 30px; left: 10px; z-index: 1000; background: white; padding: 12px 15px; border-radius: 8px; box-shadow: 0 2px 10px rgba(0,0,0,0.1); font-family: -apple-system, sans-serif; font-size: 11px; border: 1px solid #e2e8f0;"><div style="font-weight: 700; margin-bottom: 8px; color: #1e3a5f;">Leyenda</div><div style="margin: 4px 0;"><span style="color: #4a90d9;">●</span> Público</div><div style="margin: 4px 0;"><span style="color: #e67e22;">●</span> Privado</div><div style="margin-top: 8px; padding-top: 8px; border-top: 1px solid #e2e8f0;"><div><i class="fa fa-university"></i> Museo</div><div><i class="fa fa-image"></i> Galería</div><div><i class="fa fa-bed"></i> Hotel</div><div><i class="fa fa-paint-brush"></i> Estudio</div></div></div>
+    
+            <div class="folium-map" id="map_52819b87e6baaacbf1bc48a8ec3ba22f" ></div>
+        
+</body>
+<script>
+    
+    
+            var map_52819b87e6baaacbf1bc48a8ec3ba22f = L.map(
+                "map_52819b87e6baaacbf1bc48a8ec3ba22f",
+                {
+                    center: [19.4221, -99.1545],
+                    crs: L.CRS.EPSG3857,
+                    ...{
+  "zoom": 14,
+  "zoomControl": true,
+  "preferCanvas": false,
+}
+
+                }
+            );
+            L.control.scale().addTo(map_52819b87e6baaacbf1bc48a8ec3ba22f);
+
+            
+
+        
+    
+            var tile_layer_776cbdf51e225215a3d55e5dd6f80a1f = L.tileLayer(
+                "https://{s}.basemaps.cartocdn.com/light_all/{z}/{x}/{y}{r}.png",
+                {
+  "minZoom": 0,
+  "maxZoom": 20,
+  "maxNativeZoom": 20,
+  "noWrap": false,
+  "attribution": "\u0026copy; \u003ca href=\"https://www.openstreetmap.org/copyright\"\u003eOpenStreetMap\u003c/a\u003e contributors \u0026copy; \u003ca href=\"https://carto.com/attributions\"\u003eCARTO\u003c/a\u003e",
+  "subdomains": "abcd",
+  "detectRetina": false,
+  "tms": false,
+  "opacity": 1,
+}
+
+            );
+        
+    
+            tile_layer_776cbdf51e225215a3d55e5dd6f80a1f.addTo(map_52819b87e6baaacbf1bc48a8ec3ba22f);
+        
+    
+            var tile_layer_b98943c75a2c39fdd005b1f9ae42072e = L.tileLayer(
+                "https://tile.openstreetmap.org/{z}/{x}/{y}.png",
+                {
+  "minZoom": 0,
+  "maxZoom": 19,
+  "maxNativeZoom": 19,
+  "noWrap": false,
+  "attribution": "\u0026copy; \u003ca href=\"https://www.openstreetmap.org/copyright\"\u003eOpenStreetMap\u003c/a\u003e contributors",
+  "subdomains": "abc",
+  "detectRetina": false,
+  "tms": false,
+  "opacity": 1,
+}
+
+            );
+        
+    
+            tile_layer_b98943c75a2c39fdd005b1f9ae42072e.addTo(map_52819b87e6baaacbf1bc48a8ec3ba22f);
+        
+    
+            var feature_group_20cd36a6721bea842d7be2d9c102aceb = L.featureGroup(
+                {
+}
+            );
+        
+    
+            ant_path_b2c9e6defa3f0820745cd37e7450b4b8 = L.polyline.antPath(
+              [[19.4189, -99.1658], [19.4285, -99.1319], [19.4189, -99.1658]],
+              {
+  "stroke": true,
+  "color": "#4a90d9",
+  "weight": 3,
+  "opacity": 0.7,
+  "lineCap": "round",
+  "lineJoin": "round",
+  "dashArray": [
+10,
+20,
+],
+  "dashOffset": null,
+  "fill": false,
+  "fillColor": "#4a90d9",
+  "fillOpacity": 0.2,
+  "fillRule": "evenodd",
+  "bubblingMouseEvents": true,
+  "smoothFactor": 1.0,
+  "noClip": false,
+  "paused": false,
+  "reverse": false,
+  "hardwareAcceleration": false,
+  "delay": 1000,
+  "pulseColor": "#fff",
+}
+        ).addTo(feature_group_20cd36a6721bea842d7be2d9c102aceb);
+        
+    
+            var feature_group_5f82ac7c8565c44b424f68f9bf13dd7e = L.featureGroup(
+                {
+}
+            );
+        
+    
+            feature_group_5f82ac7c8565c44b424f68f9bf13dd7e.addTo(map_52819b87e6baaacbf1bc48a8ec3ba22f);
+        
+    
+            var feature_group_37e029f6728ea58e7a47d9a352aaf14c = L.featureGroup(
+                {
+}
+            );
+        
+    
+            var marker_ac690c3304f3bb68d116ba440183a887 = L.marker(
+                [19.4189, -99.1658],
+                {
+}
+            ).addTo(feature_group_37e029f6728ea58e7a47d9a352aaf14c);
+        
+    
+            var icon_01af7230ca1e7727813b6462096323e7 = L.AwesomeMarkers.icon(
+                {
+  "markerColor": "orange",
+  "iconColor": "white",
+  "icon": "image",
+  "prefix": "fa",
+  "extraClasses": "fa-rotate-0",
+}
+            );
+        
+    
+        var popup_08ce02fc30e3774c1b3af18aaea889fa = L.popup({
+  "maxWidth": 350,
+});
+
+        
+            
+                var html_9343001de5cca050be068ef85276b0b9 = $(`<div id="html_9343001de5cca050be068ef85276b0b9" style="width: 100.0%; height: 100.0%;">     <div style="font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif; width: 320px; padding: 5px;">         <div style="border-left: 4px solid #e67e22; padding-left: 12px; margin-bottom: 12px;">             <h3 style="margin: 0 0 8px 0; font-size: 15px; color: #1e3a5f; line-height: 1.3;">Visita guiada: Gregor Hildebrandt en Casa Gilardi</h3>             <div style="font-size: 13px; color: #555; margin-bottom: 4px;"><strong>SAENGER GALERÍA</strong></div>         </div>         <div style="display: flex; gap: 15px; margin-bottom: 10px; font-size: 12px;">             <div style="background: #f0f4f8; padding: 6px 10px; border-radius: 4px;"><strong>⏰</strong> 10:00</div>             <div style="background: #e67e2215; color: #e67e22; padding: 6px 10px; border-radius: 4px; font-weight: 600;">Privado</div>         </div>         <div style="font-size: 12px; color: #666; margin-bottom: 8px;">             <div><strong>📍</strong> Roma Norte</div>             <div style="margin-left: 18px;">Jalapa 31</div>         </div>         <div style="font-size: 12px; color: #444; line-height: 1.5; border-top: 1px solid #e8ecf0; padding-top: 10px; margin-top: 8px;">             Última oportunidad de la semana.         </div>     </div>     </div>`)[0];
+                popup_08ce02fc30e3774c1b3af18aaea889fa.setContent(html_9343001de5cca050be068ef85276b0b9);
+            
+        
+
+        marker_ac690c3304f3bb68d116ba440183a887.bindPopup(popup_08ce02fc30e3774c1b3af18aaea889fa)
+        ;
+
+        
+    
+    
+            marker_ac690c3304f3bb68d116ba440183a887.bindTooltip(
+                `<div>
+                     <b>10:00</b> - SAENGER GALERÍA
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+                marker_ac690c3304f3bb68d116ba440183a887.setIcon(icon_01af7230ca1e7727813b6462096323e7);
+            
+    
+            var marker_764f2c35e93621f710dc63467ae36425 = L.marker(
+                [19.4285, -99.1319],
+                {
+}
+            ).addTo(feature_group_37e029f6728ea58e7a47d9a352aaf14c);
+        
+    
+            var icon_a0c83567a2daf701df2b82ca7e449ded = L.AwesomeMarkers.icon(
+                {
+  "markerColor": "orange",
+  "iconColor": "white",
+  "icon": "university",
+  "prefix": "fa",
+  "extraClasses": "fa-rotate-0",
+}
+            );
+        
+    
+        var popup_381e564ae57041c88d7470cdc460d1e5 = L.popup({
+  "maxWidth": 350,
+});
+
+        
+            
+                var html_34ece64ce0c25b4de009016c630d7f64 = $(`<div id="html_34ece64ce0c25b4de009016c630d7f64" style="width: 100.0%; height: 100.0%;">     <div style="font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif; width: 320px; padding: 5px;">         <div style="border-left: 4px solid #e67e22; padding-left: 12px; margin-bottom: 12px;">             <h3 style="margin: 0 0 8px 0; font-size: 15px; color: #1e3a5f; line-height: 1.3;">'Columna Rota' - Visita guiada</h3>             <div style="font-size: 13px; color: #555; margin-bottom: 4px;"><strong>MUSEO DE LA CIUDAD DE MÉXICO</strong></div>         </div>         <div style="display: flex; gap: 15px; margin-bottom: 10px; font-size: 12px;">             <div style="background: #f0f4f8; padding: 6px 10px; border-radius: 4px;"><strong>⏰</strong> 10:00</div>             <div style="background: #e67e2215; color: #e67e22; padding: 6px 10px; border-radius: 4px; font-weight: 600;">Privado</div>         </div>         <div style="font-size: 12px; color: #666; margin-bottom: 8px;">             <div><strong>📍</strong> Centro</div>             <div style="margin-left: 18px;">Pino Suárez 30</div>         </div>         <div style="font-size: 12px; color: #444; line-height: 1.5; border-top: 1px solid #e8ecf0; padding-top: 10px; margin-top: 8px;">             Exploración artística con organizadores.         </div>     </div>     </div>`)[0];
+                popup_381e564ae57041c88d7470cdc460d1e5.setContent(html_34ece64ce0c25b4de009016c630d7f64);
+            
+        
+
+        marker_764f2c35e93621f710dc63467ae36425.bindPopup(popup_381e564ae57041c88d7470cdc460d1e5)
+        ;
+
+        
+    
+    
+            marker_764f2c35e93621f710dc63467ae36425.bindTooltip(
+                `<div>
+                     <b>10:00</b> - MUSEO DE LA CIUDAD DE MÉXICO
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+                marker_764f2c35e93621f710dc63467ae36425.setIcon(icon_a0c83567a2daf701df2b82ca7e449ded);
+            
+    
+            var marker_9309878628bf7337ab8380d341a1bf5e = L.marker(
+                [19.4189, -99.1658],
+                {
+}
+            ).addTo(feature_group_37e029f6728ea58e7a47d9a352aaf14c);
+        
+    
+            var icon_42ad5995e3baf70e6a41dad86dc1b463 = L.AwesomeMarkers.icon(
+                {
+  "markerColor": "orange",
+  "iconColor": "white",
+  "icon": "image",
+  "prefix": "fa",
+  "extraClasses": "fa-rotate-0",
+}
+            );
+        
+    
+        var popup_5616f29a06aaaf270aa5210502626af6 = L.popup({
+  "maxWidth": 350,
+});
+
+        
+            
+                var html_05f4d8cf5a68ad12df385af3e45d2a27 = $(`<div id="html_05f4d8cf5a68ad12df385af3e45d2a27" style="width: 100.0%; height: 100.0%;">     <div style="font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif; width: 320px; padding: 5px;">         <div style="border-left: 4px solid #e67e22; padding-left: 12px; margin-bottom: 12px;">             <h3 style="margin: 0 0 8px 0; font-size: 15px; color: #1e3a5f; line-height: 1.3;">Visitas guiadas: Yoab Vera y Diego Rivera</h3>             <div style="font-size: 13px; color: #555; margin-bottom: 4px;"><strong>SAENGER GALERÍA</strong></div>         </div>         <div style="display: flex; gap: 15px; margin-bottom: 10px; font-size: 12px;">             <div style="background: #f0f4f8; padding: 6px 10px; border-radius: 4px;"><strong>⏰</strong> 11:00</div>             <div style="background: #e67e2215; color: #e67e22; padding: 6px 10px; border-radius: 4px; font-weight: 600;">Privado</div>         </div>         <div style="font-size: 12px; color: #666; margin-bottom: 8px;">             <div><strong>📍</strong> Roma Norte</div>             <div style="margin-left: 18px;">Jalapa 31</div>         </div>         <div style="font-size: 12px; color: #444; line-height: 1.5; border-top: 1px solid #e8ecf0; padding-top: 10px; margin-top: 8px;">             Cierre de la semana.         </div>     </div>     </div>`)[0];
+                popup_5616f29a06aaaf270aa5210502626af6.setContent(html_05f4d8cf5a68ad12df385af3e45d2a27);
+            
+        
+
+        marker_9309878628bf7337ab8380d341a1bf5e.bindPopup(popup_5616f29a06aaaf270aa5210502626af6)
+        ;
+
+        
+    
+    
+            marker_9309878628bf7337ab8380d341a1bf5e.bindTooltip(
+                `<div>
+                     <b>11:00</b> - SAENGER GALERÍA
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+                marker_9309878628bf7337ab8380d341a1bf5e.setIcon(icon_42ad5995e3baf70e6a41dad86dc1b463);
+            
+    
+            feature_group_37e029f6728ea58e7a47d9a352aaf14c.addTo(map_52819b87e6baaacbf1bc48a8ec3ba22f);
+        
+    
+            var layer_control_d941bdba02b1106b8b4088697cec4683_layers = {
+                base_layers : {
+                    "Claro" : tile_layer_776cbdf51e225215a3d55e5dd6f80a1f,
+                    "OpenStreetMap" : tile_layer_b98943c75a2c39fdd005b1f9ae42072e,
+                },
+                overlays :  {
+                    "\ud83d\udccd Ruta sugerida" : feature_group_20cd36a6721bea842d7be2d9c102aceb,
+                    "\ud83d\udd35 P\u00fablico" : feature_group_5f82ac7c8565c44b424f68f9bf13dd7e,
+                    "\ud83d\udfe0 Privado" : feature_group_37e029f6728ea58e7a47d9a352aaf14c,
+                },
+            };
+            let layer_control_d941bdba02b1106b8b4088697cec4683 = L.control.layers(
+                layer_control_d941bdba02b1106b8b4088697cec4683_layers.base_layers,
+                layer_control_d941bdba02b1106b8b4088697cec4683_layers.overlays,
+                {
+  "position": "topleft",
+  "collapsed": false,
+  "autoZIndex": true,
+}
+            ).addTo(map_52819b87e6baaacbf1bc48a8ec3ba22f);
+
+        
+</script>
+</html>
