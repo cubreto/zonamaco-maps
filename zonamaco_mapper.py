@@ -582,15 +582,93 @@ def create_timeline_html(events: List[Event], day_date: datetime) -> str:
     def event_item(e: Event) -> str:
         cat_color = CATEGORY_COLORS.get(e.category, "#666")
         onclick_js = find_map_js % (e.lat, e.lon) if e.lat and e.lon else ""
-        return f"""<div style="padding: 8px 10px; margin: 4px 0; background: white; border-radius: 6px; border-left: 3px solid {cat_color}; font-size: 11px; cursor: pointer; box-shadow: 0 1px 3px rgba(0,0,0,0.08);" onclick="{onclick_js}"><div style="font-weight: 600; color: #1e3a5f;">{e.date.strftime('%H:%M')}</div><div style="color: #666; white-space: nowrap; overflow: hidden; text-overflow: ellipsis;">{e.organizer}</div></div>"""
+        # Add data attributes for filtering
+        search_text = f"{e.organizer} {e.title} {e.description}".lower().replace('"', '&quot;')
+        return f"""<div class="event-item" data-search="{search_text}" data-category="{e.category}" style="padding: 8px 10px; margin: 4px 0; background: white; border-radius: 6px; border-left: 3px solid {cat_color}; font-size: 11px; cursor: pointer; box-shadow: 0 1px 3px rgba(0,0,0,0.08); transition: opacity 0.2s;" onclick="{onclick_js}"><div style="font-weight: 600; color: #1e3a5f;">{e.date.strftime('%H:%M')}</div><div style="color: #666; white-space: nowrap; overflow: hidden; text-overflow: ellipsis;">{e.organizer}</div></div>"""
 
-    def period_section(title: str, events_list: List[Event], color: str) -> str:
+    def period_section(title: str, events_list: List[Event], color: str, period_id: str) -> str:
         if not events_list:
             return ""
         items = "".join(event_item(e) for e in events_list)
-        return f"""<div style="margin-bottom: 15px;"><div style="font-size: 11px; font-weight: 700; color: {color}; margin-bottom: 6px; padding: 4px 8px; background: {color}15; border-radius: 4px;">{title} ({len(events_list)})</div>{items}</div>"""
+        return f"""<div class="period-section" id="{period_id}" style="margin-bottom: 15px;"><div class="period-header" style="font-size: 11px; font-weight: 700; color: {color}; margin-bottom: 6px; padding: 4px 8px; background: {color}15; border-radius: 4px;">{title} (<span class="period-count">{len(events_list)}</span>)</div>{items}</div>"""
 
-    return f"""<div style="position: fixed; top: 10px; right: 10px; width: 220px; max-height: 90vh; background: #f8fafc; border-radius: 12px; padding: 15px; z-index: 1000; box-shadow: 0 4px 20px rgba(0,0,0,0.1); overflow-y: auto; font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif; border: 1px solid #e2e8f0;"><div style="text-align: center; margin-bottom: 15px; padding-bottom: 10px; border-bottom: 2px solid #e2e8f0;"><div style="font-size: 18px; font-weight: 700; color: #1e3a5f;">{day_name}</div><div style="font-size: 12px; color: #64748b;">{day_date.day} de {SPANISH_MONTHS[day_date.month]}</div><div style="font-size: 11px; color: #94a3b8; margin-top: 4px;">{len(events)} eventos</div></div>{period_section("☀️ Mañana", morning, "#f39c12")}{period_section("🌤️ Tarde", afternoon, "#e67e22")}{period_section("🌙 Noche", evening, "#1e3a5f")}</div>"""
+    # Search box HTML
+    search_box = """<div style="margin-bottom: 12px;"><input type="text" id="sidebarSearch" placeholder="Buscar..." style="width: 100%; padding: 8px 10px; border: 1px solid #e2e8f0; border-radius: 6px; font-size: 12px; background: white;"></div>"""
+
+    # Filter buttons
+    filter_buttons = """<div style="display: flex; gap: 4px; margin-bottom: 12px;"><button class="filter-btn active" data-filter="all" style="flex: 1; padding: 6px; border: 1px solid #e2e8f0; border-radius: 4px; font-size: 10px; cursor: pointer; background: #4a90d9; color: white;">Todos</button><button class="filter-btn" data-filter="Público" style="flex: 1; padding: 6px; border: 1px solid #e2e8f0; border-radius: 4px; font-size: 10px; cursor: pointer; background: white;">🔵 Púb</button><button class="filter-btn" data-filter="Privado" style="flex: 1; padding: 6px; border: 1px solid #e2e8f0; border-radius: 4px; font-size: 10px; cursor: pointer; background: white;">🟠 Priv</button></div>"""
+
+    # JavaScript for filtering
+    filter_script = """<script>
+    document.addEventListener('DOMContentLoaded', function() {
+        const searchInput = document.getElementById('sidebarSearch');
+        const filterBtns = document.querySelectorAll('.filter-btn');
+        const eventItems = document.querySelectorAll('.event-item');
+        let activeFilter = 'all';
+
+        function applyFilters() {
+            const searchTerm = searchInput.value.toLowerCase();
+            let visibleCount = { morning: 0, afternoon: 0, evening: 0 };
+
+            eventItems.forEach(item => {
+                const searchText = item.dataset.search;
+                const category = item.dataset.category;
+                const matchesSearch = !searchTerm || searchText.includes(searchTerm);
+                const matchesFilter = activeFilter === 'all' || category === activeFilter;
+                const show = matchesSearch && matchesFilter;
+                item.style.display = show ? 'block' : 'none';
+                item.style.opacity = show ? '1' : '0.3';
+
+                if (show) {
+                    const section = item.closest('.period-section');
+                    if (section) {
+                        if (section.id === 'morning') visibleCount.morning++;
+                        else if (section.id === 'afternoon') visibleCount.afternoon++;
+                        else if (section.id === 'evening') visibleCount.evening++;
+                    }
+                }
+            });
+
+            // Update period counts
+            document.querySelectorAll('.period-section').forEach(section => {
+                const count = section.querySelectorAll('.event-item[style*="display: block"], .event-item:not([style*="display"])').length;
+                const countEl = section.querySelector('.period-count');
+                if (countEl) countEl.textContent = Array.from(section.querySelectorAll('.event-item')).filter(i => i.style.display !== 'none').length;
+            });
+        }
+
+        searchInput.addEventListener('input', applyFilters);
+
+        filterBtns.forEach(btn => {
+            btn.addEventListener('click', function() {
+                filterBtns.forEach(b => {
+                    b.style.background = 'white';
+                    b.style.color = '#333';
+                    b.classList.remove('active');
+                });
+                this.style.background = '#4a90d9';
+                this.style.color = 'white';
+                this.classList.add('active');
+                activeFilter = this.dataset.filter;
+                applyFilters();
+            });
+        });
+
+        // Keyboard shortcut
+        document.addEventListener('keydown', e => {
+            if (e.key === '/' && e.target.tagName !== 'INPUT') {
+                e.preventDefault();
+                searchInput.focus();
+            }
+            if (e.key === 'Escape') {
+                searchInput.value = '';
+                applyFilters();
+            }
+        });
+    });
+    </script>"""
+
+    return f"""<div style="position: fixed; top: 10px; right: 10px; width: 220px; max-height: 90vh; background: #f8fafc; border-radius: 12px; padding: 15px; z-index: 1000; box-shadow: 0 4px 20px rgba(0,0,0,0.1); overflow-y: auto; font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif; border: 1px solid #e2e8f0;"><div style="text-align: center; margin-bottom: 12px; padding-bottom: 10px; border-bottom: 2px solid #e2e8f0;"><div style="font-size: 18px; font-weight: 700; color: #1e3a5f;">{day_name}</div><div style="font-size: 12px; color: #64748b;">{day_date.day} de {SPANISH_MONTHS[day_date.month]}</div><div style="font-size: 11px; color: #94a3b8; margin-top: 4px;">{len(events)} eventos</div></div>{search_box}{filter_buttons}{period_section("☀️ Mañana", morning, "#f39c12", "morning")}{period_section("🌤️ Tarde", afternoon, "#e67e22", "afternoon")}{period_section("🌙 Noche", evening, "#1e3a5f", "evening")}</div>{filter_script}"""
 
 
 def add_arrow_markers(m: folium.Map, coords: List[List[float]], color: str = "#4a90d9"):
@@ -770,6 +848,10 @@ def create_premium_index(days_info: List[dict], all_events: List[Event], output_
         if count > 0:
             venue_badges_html += f"""<div class="venue-badge"><i class="fa fa-{info['icon']}" style="color: {info['color']};"></i><span class="venue-count">{count}</span><span class="venue-label">{info['label']}</span></div>"""
 
+    # Get unique neighborhoods for filter
+    neighborhoods = sorted(set(e.venue.neighborhood for e in all_events if e.venue and e.venue.neighborhood))
+    neighborhoods_json = json.dumps(neighborhoods, ensure_ascii=False)
+
     html = f"""<!DOCTYPE html>
 <html lang="es">
 <head>
@@ -851,6 +933,24 @@ def create_premium_index(days_info: List[dict], all_events: List[Event], output_
         .venue-count {{ font-weight: 600; }}
         .venue-label {{ color: var(--text-secondary); }}
 
+        /* Search & Filter Bar */
+        .search-filter-bar {{ background: var(--white); border-bottom: 1px solid var(--border); padding: 16px 0; }}
+        .search-filter-content {{ max-width: 1200px; margin: 0 auto; padding: 0 24px; display: flex; gap: 12px; flex-wrap: wrap; align-items: center; }}
+        .search-box {{ flex: 1; min-width: 200px; position: relative; }}
+        .search-box input {{ width: 100%; padding: 10px 40px 10px 14px; border: 1px solid var(--border); border-radius: 8px; font-size: 14px; background: var(--bg-light); transition: all 0.2s; }}
+        .search-box input:focus {{ outline: none; border-color: var(--blue-primary); background: var(--white); box-shadow: 0 0 0 3px rgba(74, 144, 217, 0.1); }}
+        .search-box input::placeholder {{ color: var(--text-muted); }}
+        .search-box i {{ position: absolute; right: 14px; top: 50%; transform: translateY(-50%); color: var(--text-muted); }}
+        .filter-select {{ padding: 10px 32px 10px 12px; border: 1px solid var(--border); border-radius: 8px; font-size: 13px; background: var(--bg-light) url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='12' viewBox='0 0 24 24' fill='none' stroke='%2394a3b8' stroke-width='2'%3E%3Cpath d='M6 9l6 6 6-6'/%3E%3C/svg%3E") no-repeat right 10px center; appearance: none; cursor: pointer; min-width: 130px; }}
+        .filter-select:focus {{ outline: none; border-color: var(--blue-primary); }}
+        .clear-filters {{ padding: 10px 16px; background: transparent; border: 1px solid var(--border); border-radius: 8px; font-size: 13px; cursor: pointer; color: var(--text-secondary); transition: all 0.2s; display: flex; align-items: center; gap: 6px; }}
+        .clear-filters:hover {{ background: var(--bg-light); border-color: var(--text-muted); }}
+        .filter-count {{ background: var(--blue-primary); color: white; font-size: 11px; padding: 2px 8px; border-radius: 10px; margin-left: 8px; }}
+        .no-results {{ text-align: center; padding: 40px; background: var(--white); border-radius: 12px; border: 1px dashed var(--border); margin-top: 20px; }}
+        .no-results i {{ font-size: 48px; color: var(--text-muted); margin-bottom: 16px; }}
+        .no-results p {{ color: var(--text-secondary); font-size: 14px; }}
+        @media (max-width: 768px) {{ .search-filter-content {{ flex-direction: column; }} .search-box {{ width: 100%; }} .filter-select {{ width: 100%; }} }}
+
         /* Days Grid */
         .days-section {{ margin-top: 40px; }}
         .days-grid {{ display: grid; grid-template-columns: repeat(auto-fill, minmax(320px, 1fr)); gap: 20px; }}
@@ -889,6 +989,46 @@ def create_premium_index(days_info: List[dict], all_events: List[Event], output_
             <div style="font-size: 14px; color: var(--text-secondary);">2 - 8 de Febrero</div>
         </div>
     </header>
+
+    <div class="search-filter-bar">
+        <div class="search-filter-content">
+            <div class="search-box">
+                <input type="text" id="searchInput" placeholder="Buscar eventos, galerías, artistas...">
+                <i class="fa fa-search"></i>
+            </div>
+            <select class="filter-select" id="filterCategory">
+                <option value="">Categoría</option>
+                <option value="Público">🔵 Público</option>
+                <option value="Privado">🟠 Privado</option>
+            </select>
+            <select class="filter-select" id="filterVenueType">
+                <option value="">Tipo de venue</option>
+                <option value="museum">🏛️ Museo</option>
+                <option value="gallery">🖼️ Galería</option>
+                <option value="hotel">🏨 Hotel</option>
+                <option value="foundation">🏛️ Fundación</option>
+                <option value="studio">🎨 Estudio</option>
+                <option value="fair">🎪 Feria</option>
+                <option value="special">⭐ Especial</option>
+            </select>
+            <select class="filter-select" id="filterTimePeriod">
+                <option value="">Horario</option>
+                <option value="morning">🌅 Mañana</option>
+                <option value="afternoon">☀️ Tarde</option>
+                <option value="evening">🌙 Noche</option>
+            </select>
+            <select class="filter-select" id="filterFair">
+                <option value="">Feria</option>
+                <option value="zonamaco">💎 ZonaMaco</option>
+                <option value="material">🎨 Material</option>
+                <option value="acme">⚡ ACME</option>
+            </select>
+            <button class="clear-filters" id="clearFilters" style="display: none;">
+                <i class="fa fa-times"></i> Limpiar
+            </button>
+            <span class="filter-count" id="filterCount" style="display: none;"></span>
+        </div>
+    </div>
 
     <div class="container">
         <section class="hero">
@@ -949,20 +1089,138 @@ def create_premium_index(days_info: List[dict], all_events: List[Event], output_
 
     <script>
         const events = {events_json};
-        const eventsByDay = {{}};
-        events.forEach(e => {{
-            const day = new Date(e.date).getDay();
-            const dayIndex = day === 0 ? 6 : day - 1;
-            if (!eventsByDay[dayIndex]) eventsByDay[dayIndex] = [];
-            eventsByDay[dayIndex].push(e);
+        const neighborhoods = {neighborhoods_json};
+        let filteredEvents = [...events];
+
+        // DOM elements
+        const searchInput = document.getElementById('searchInput');
+        const filterCategory = document.getElementById('filterCategory');
+        const filterVenueType = document.getElementById('filterVenueType');
+        const filterTimePeriod = document.getElementById('filterTimePeriod');
+        const filterFair = document.getElementById('filterFair');
+        const clearFiltersBtn = document.getElementById('clearFilters');
+        const filterCountEl = document.getElementById('filterCount');
+        const daysGrid = document.querySelector('.days-grid');
+
+        function normalizeText(text) {{
+            return (text || '').toLowerCase().normalize('NFD').replace(/[\u0300-\u036f]/g, '');
+        }}
+
+        function applyFilters() {{
+            const searchTerm = normalizeText(searchInput.value);
+            const category = filterCategory.value;
+            const venueType = filterVenueType.value;
+            const timePeriod = filterTimePeriod.value;
+            const fair = filterFair.value;
+
+            filteredEvents = events.filter(e => {{
+                // Search filter (title, organizer, description, neighborhood)
+                if (searchTerm) {{
+                    const searchable = normalizeText(e.title + ' ' + e.organizer + ' ' + e.description + ' ' + e.neighborhood);
+                    if (!searchable.includes(searchTerm)) return false;
+                }}
+                // Category filter
+                if (category && e.category !== category) return false;
+                // Venue type filter
+                if (venueType && e.venue_type !== venueType) return false;
+                // Time period filter
+                if (timePeriod && e.time_period !== timePeriod) return false;
+                // Fair filter
+                if (fair && e.fair !== fair) return false;
+                return true;
+            }});
+
+            updateUI();
+        }}
+
+        function updateUI() {{
+            const hasFilters = searchInput.value || filterCategory.value || filterVenueType.value || filterTimePeriod.value || filterFair.value;
+            clearFiltersBtn.style.display = hasFilters ? 'flex' : 'none';
+
+            if (hasFilters) {{
+                filterCountEl.style.display = 'inline';
+                filterCountEl.textContent = filteredEvents.length + ' de ' + events.length;
+            }} else {{
+                filterCountEl.style.display = 'none';
+            }}
+
+            // Group filtered events by day
+            const eventsByDay = {{}};
+            filteredEvents.forEach(e => {{
+                const day = new Date(e.date).getDay();
+                const dayIndex = day === 0 ? 6 : day - 1;
+                if (!eventsByDay[dayIndex]) eventsByDay[dayIndex] = [];
+                eventsByDay[dayIndex].push(e);
+            }});
+
+            // Update day cards
+            document.querySelectorAll('.day-card').forEach(card => {{
+                const dow = parseInt(card.dataset.day);
+                const preview = card.querySelector('.day-card-preview');
+                const statsEl = card.querySelector('.day-card-stats');
+                const dayEvents = eventsByDay[dow] || [];
+
+                // Update stats
+                const publico = dayEvents.filter(e => e.category === 'Público').length;
+                const privado = dayEvents.filter(e => e.category === 'Privado').length;
+                statsEl.innerHTML = `
+                    <div class="stat-pill total">${{dayEvents.length}} eventos</div>
+                    <div class="stat-pill publico">${{publico}} púb</div>
+                    <div class="stat-pill privado">${{privado}} priv</div>
+                `;
+
+                // Update preview
+                const html = dayEvents.map(e => `<div class="preview-event ${{e.category.toLowerCase()}}"><span class="preview-time">${{e.time}}</span><span class="preview-title">${{e.organizer}}</span></div>`).join('');
+                preview.innerHTML = html || '<p style="color: var(--text-muted); font-size: 11px; text-align: center; padding: 15px;">Sin eventos</p>';
+
+                // Dim cards with no events
+                card.style.opacity = dayEvents.length === 0 && hasFilters ? '0.5' : '1';
+            }});
+
+            // Show/hide no results message
+            let noResults = document.getElementById('noResults');
+            if (filteredEvents.length === 0 && hasFilters) {{
+                if (!noResults) {{
+                    noResults = document.createElement('div');
+                    noResults.id = 'noResults';
+                    noResults.className = 'no-results';
+                    noResults.innerHTML = '<i class="fa fa-search"></i><p>No se encontraron eventos con los filtros seleccionados</p>';
+                    daysGrid.after(noResults);
+                }}
+                noResults.style.display = 'block';
+            }} else if (noResults) {{
+                noResults.style.display = 'none';
+            }}
+        }}
+
+        function clearFilters() {{
+            searchInput.value = '';
+            filterCategory.value = '';
+            filterVenueType.value = '';
+            filterTimePeriod.value = '';
+            filterFair.value = '';
+            applyFilters();
+        }}
+
+        // Event listeners
+        searchInput.addEventListener('input', applyFilters);
+        filterCategory.addEventListener('change', applyFilters);
+        filterVenueType.addEventListener('change', applyFilters);
+        filterTimePeriod.addEventListener('change', applyFilters);
+        filterFair.addEventListener('change', applyFilters);
+        clearFiltersBtn.addEventListener('click', clearFilters);
+
+        // Keyboard shortcut: Escape clears filters
+        document.addEventListener('keydown', e => {{
+            if (e.key === 'Escape') clearFilters();
+            if (e.key === '/' && e.target.tagName !== 'INPUT') {{
+                e.preventDefault();
+                searchInput.focus();
+            }}
         }});
-        document.querySelectorAll('.day-card').forEach(card => {{
-            const dow = parseInt(card.dataset.day);
-            const preview = card.querySelector('.day-card-preview');
-            const dayEvents = eventsByDay[dow] || [];
-            const html = dayEvents.map(e => `<div class="preview-event ${{e.category.toLowerCase()}}"><span class="preview-time">${{e.time}}</span><span class="preview-title">${{e.organizer}}</span></div>`).join('');
-            preview.innerHTML = html || '<p style="color: var(--text-muted); font-size: 11px; text-align: center; padding: 15px;">Sin eventos</p>';
-        }});
+
+        // Initial render
+        applyFilters();
     </script>
 </body>
 </html>
@@ -977,9 +1235,9 @@ def main():
     os.makedirs(output_dir, exist_ok=True)
 
     print("=" * 60)
-    print("   ZonaMaco 2026 - Generador de Mapas v4.1")
+    print("   ZonaMaco 2026 - Generador de Mapas v4.2")
     print("   + Material Art Fair + Salón ACME")
-    print("   + Validation + venue_key support")
+    print("   + Search & Filter (index + day maps)")
     print("=" * 60)
 
     # Parse all events
