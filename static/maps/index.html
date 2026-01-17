@@ -26,6 +26,41 @@
             --green-light: #e8f8ef;
             --shadow-lg: 0 10px 40px rgba(0,0,0,0.1);
         }
+
+        /* Dark Mode */
+        .dark {
+            --white: #1a1a2e;
+            --bg-light: #0f0f1a;
+            --border: #2d2d44;
+            --text-dark: #e8e8f0;
+            --text-primary: #a8c5e8;
+            --text-secondary: #9999b3;
+            --text-muted: #6b6b80;
+            --blue-light: #1a2a3e;
+            --orange-light: #2e2218;
+            --purple-light: #251a2e;
+            --green-light: #1a2e1f;
+            --shadow-lg: 0 10px 40px rgba(0,0,0,0.4);
+        }
+        .dark body { background: var(--bg-light); }
+        .dark .fair-card { background: var(--white); }
+        .dark .day-card { background: var(--white); }
+        .dark .venue-badge { background: var(--bg-light); }
+        .dark .search-box input { background: var(--white); color: var(--text-dark); }
+        .dark .filter-select { background-color: var(--white); color: var(--text-dark); }
+        .dark .preview-event { background: var(--bg-light); }
+        .dark footer { background: var(--white); }
+
+        /* Theme Toggle */
+        .theme-toggle { display: flex; align-items: center; gap: 8px; }
+        .theme-toggle-btn { width: 44px; height: 24px; border-radius: 12px; background: var(--border); border: none; cursor: pointer; position: relative; transition: all 0.3s ease; }
+        .theme-toggle-btn::after { content: ''; position: absolute; width: 18px; height: 18px; border-radius: 50%; background: var(--white); top: 3px; left: 3px; transition: all 0.3s ease; box-shadow: 0 2px 4px rgba(0,0,0,0.2); }
+        .dark .theme-toggle-btn { background: var(--blue-primary); }
+        .dark .theme-toggle-btn::after { left: 23px; }
+        .theme-icon { font-size: 16px; color: var(--text-muted); transition: all 0.3s; }
+        .dark .theme-icon.sun { opacity: 0.4; }
+        .dark .theme-icon.moon { color: var(--blue-primary); }
+
         * { margin: 0; padding: 0; box-sizing: border-box; }
         body { font-family: 'Inter', -apple-system, sans-serif; background: var(--bg-light); color: var(--text-dark); }
         .header { background: var(--white); border-bottom: 1px solid var(--border); padding: 20px 0; position: sticky; top: 0; z-index: 100; }
@@ -132,7 +167,14 @@
                 <span class="logo-text">Art Week CDMX</span>
                 <span class="logo-badge">2026</span>
             </div>
-            <div style="font-size: 14px; color: var(--text-secondary);">2 - 8 de Febrero</div>
+            <div style="display: flex; align-items: center; gap: 20px;">
+                <div style="font-size: 14px; color: var(--text-secondary);">2 - 8 de Febrero</div>
+                <div class="theme-toggle">
+                    <i class="fa fa-sun theme-icon sun"></i>
+                    <button class="theme-toggle-btn" id="themeToggle" aria-label="Toggle dark mode"></button>
+                    <i class="fa fa-moon theme-icon moon"></i>
+                </div>
+            </div>
         </div>
     </header>
 
@@ -500,6 +542,28 @@
 
         // Initial render
         applyFilters();
+
+        // Theme Toggle
+        const themeToggle = document.getElementById('themeToggle');
+        const html = document.documentElement;
+
+        // Load saved theme
+        const savedTheme = localStorage.getItem('theme');
+        if (savedTheme === 'dark' || (!savedTheme && window.matchMedia('(prefers-color-scheme: dark)').matches)) {
+            html.classList.add('dark');
+        }
+
+        themeToggle.addEventListener('click', () => {
+            html.classList.toggle('dark');
+            localStorage.setItem('theme', html.classList.contains('dark') ? 'dark' : 'light');
+        });
+
+        // Listen for system theme changes
+        window.matchMedia('(prefers-color-scheme: dark)').addEventListener('change', e => {
+            if (!localStorage.getItem('theme')) {
+                html.classList.toggle('dark', e.matches);
+            }
+        });
     </script>
 </body>
 </html>

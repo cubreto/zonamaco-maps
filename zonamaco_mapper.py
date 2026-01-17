@@ -675,13 +675,47 @@ def create_timeline_html(events: List[Event], day_date: datetime) -> str:
     # Filter buttons
     filter_buttons = """<div style="display: flex; gap: 4px; margin-bottom: 12px;"><button class="filter-btn active" data-filter="all" style="flex: 1; padding: 6px; border: 1px solid #e2e8f0; border-radius: 4px; font-size: 10px; cursor: pointer; background: #4a90d9; color: white;">Todos</button><button class="filter-btn" data-filter="Público" style="flex: 1; padding: 6px; border: 1px solid #e2e8f0; border-radius: 4px; font-size: 10px; cursor: pointer; background: white;">🔵 Púb</button><button class="filter-btn" data-filter="Privado" style="flex: 1; padding: 6px; border: 1px solid #e2e8f0; border-radius: 4px; font-size: 10px; cursor: pointer; background: white;">🟠 Priv</button></div>"""
 
-    # JavaScript for filtering
+    # Dark mode styles for sidebar
+    dark_mode_styles = """<style>
+    .sidebar-dark { background: #1a1a2e !important; border-color: #2d2d44 !important; }
+    .sidebar-dark .sidebar-header { border-color: #2d2d44 !important; }
+    .sidebar-dark .sidebar-title { color: #a8c5e8 !important; }
+    .sidebar-dark .sidebar-subtitle { color: #9999b3 !important; }
+    .sidebar-dark .sidebar-count { color: #6b6b80 !important; }
+    .sidebar-dark #sidebarSearch { background: #0f0f1a !important; border-color: #2d2d44 !important; color: #e8e8f0 !important; }
+    .sidebar-dark .filter-btn { background: #0f0f1a !important; border-color: #2d2d44 !important; color: #9999b3 !important; }
+    .sidebar-dark .filter-btn.active { background: #4a90d9 !important; color: white !important; }
+    .sidebar-dark .event-item { background: #0f0f1a !important; }
+    .sidebar-dark .event-item .event-time { color: #a8c5e8 !important; }
+    .sidebar-dark .event-item .event-org { color: #9999b3 !important; }
+    .theme-toggle-mini { position: absolute; top: 10px; right: 10px; width: 28px; height: 28px; border-radius: 50%; border: 1px solid #e2e8f0; background: white; cursor: pointer; display: flex; align-items: center; justify-content: center; font-size: 12px; transition: all 0.3s; }
+    .sidebar-dark .theme-toggle-mini { background: #2d2d44; border-color: #3d3d54; }
+    </style>"""
+
+    # JavaScript for filtering and dark mode
     filter_script = """<script>
     document.addEventListener('DOMContentLoaded', function() {
         const searchInput = document.getElementById('sidebarSearch');
         const filterBtns = document.querySelectorAll('.filter-btn');
         const eventItems = document.querySelectorAll('.event-item');
+        const sidebar = document.getElementById('eventSidebar');
+        const themeBtn = document.getElementById('sidebarThemeToggle');
         let activeFilter = 'all';
+
+        // Dark mode
+        function applyTheme() {
+            const isDark = localStorage.getItem('theme') === 'dark' ||
+                (!localStorage.getItem('theme') && window.matchMedia('(prefers-color-scheme: dark)').matches);
+            sidebar.classList.toggle('sidebar-dark', isDark);
+            themeBtn.textContent = isDark ? '☀️' : '🌙';
+        }
+        applyTheme();
+
+        themeBtn.addEventListener('click', () => {
+            const isDark = sidebar.classList.contains('sidebar-dark');
+            localStorage.setItem('theme', isDark ? 'light' : 'dark');
+            applyTheme();
+        });
 
         function applyFilters() {
             const searchTerm = searchInput.value.toLowerCase();
@@ -718,9 +752,10 @@ def create_timeline_html(events: List[Event], day_date: datetime) -> str:
 
         filterBtns.forEach(btn => {
             btn.addEventListener('click', function() {
+                const isDark = sidebar.classList.contains('sidebar-dark');
                 filterBtns.forEach(b => {
-                    b.style.background = 'white';
-                    b.style.color = '#333';
+                    b.style.background = isDark ? '#0f0f1a' : 'white';
+                    b.style.color = isDark ? '#9999b3' : '#333';
                     b.classList.remove('active');
                 });
                 this.style.background = '#4a90d9';
@@ -745,7 +780,7 @@ def create_timeline_html(events: List[Event], day_date: datetime) -> str:
     });
     </script>"""
 
-    return f"""<div style="position: fixed; top: 10px; right: 10px; width: 220px; max-height: 90vh; background: #f8fafc; border-radius: 12px; padding: 15px; z-index: 1000; box-shadow: 0 4px 20px rgba(0,0,0,0.1); overflow-y: auto; font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif; border: 1px solid #e2e8f0;"><div style="text-align: center; margin-bottom: 12px; padding-bottom: 10px; border-bottom: 2px solid #e2e8f0;"><div style="font-size: 18px; font-weight: 700; color: #1e3a5f;">{day_name}</div><div style="font-size: 12px; color: #64748b;">{day_date.day} de {SPANISH_MONTHS[day_date.month]}</div><div style="font-size: 11px; color: #94a3b8; margin-top: 4px;">{len(events)} eventos</div></div>{search_box}{filter_buttons}{period_section("☀️ Mañana", morning, "#f39c12", "morning")}{period_section("🌤️ Tarde", afternoon, "#e67e22", "afternoon")}{period_section("🌙 Noche", evening, "#1e3a5f", "evening")}</div>{filter_script}"""
+    return f"""{dark_mode_styles}<div id="eventSidebar" style="position: fixed; top: 10px; right: 10px; width: 220px; max-height: 90vh; background: #f8fafc; border-radius: 12px; padding: 15px; z-index: 1000; box-shadow: 0 4px 20px rgba(0,0,0,0.1); overflow-y: auto; font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif; border: 1px solid #e2e8f0;"><button id="sidebarThemeToggle" class="theme-toggle-mini">🌙</button><div class="sidebar-header" style="text-align: center; margin-bottom: 12px; padding-bottom: 10px; border-bottom: 2px solid #e2e8f0;"><div class="sidebar-title" style="font-size: 18px; font-weight: 700; color: #1e3a5f;">{day_name}</div><div class="sidebar-subtitle" style="font-size: 12px; color: #64748b;">{day_date.day} de {SPANISH_MONTHS[day_date.month]}</div><div class="sidebar-count" style="font-size: 11px; color: #94a3b8; margin-top: 4px;">{len(events)} eventos</div></div>{search_box}{filter_buttons}{period_section("☀️ Mañana", morning, "#f39c12", "morning")}{period_section("🌤️ Tarde", afternoon, "#e67e22", "afternoon")}{period_section("🌙 Noche", evening, "#1e3a5f", "evening")}</div>{filter_script}"""
 
 
 def add_arrow_markers(m: folium.Map, coords: List[List[float]], color: str = "#4a90d9"):
@@ -957,6 +992,41 @@ def create_premium_index(days_info: List[dict], all_events: List[Event], output_
             --green-light: #e8f8ef;
             --shadow-lg: 0 10px 40px rgba(0,0,0,0.1);
         }}
+
+        /* Dark Mode */
+        .dark {{
+            --white: #1a1a2e;
+            --bg-light: #0f0f1a;
+            --border: #2d2d44;
+            --text-dark: #e8e8f0;
+            --text-primary: #a8c5e8;
+            --text-secondary: #9999b3;
+            --text-muted: #6b6b80;
+            --blue-light: #1a2a3e;
+            --orange-light: #2e2218;
+            --purple-light: #251a2e;
+            --green-light: #1a2e1f;
+            --shadow-lg: 0 10px 40px rgba(0,0,0,0.4);
+        }}
+        .dark body {{ background: var(--bg-light); }}
+        .dark .fair-card {{ background: var(--white); }}
+        .dark .day-card {{ background: var(--white); }}
+        .dark .venue-badge {{ background: var(--bg-light); }}
+        .dark .search-box input {{ background: var(--white); color: var(--text-dark); }}
+        .dark .filter-select {{ background-color: var(--white); color: var(--text-dark); }}
+        .dark .preview-event {{ background: var(--bg-light); }}
+        .dark footer {{ background: var(--white); }}
+
+        /* Theme Toggle */
+        .theme-toggle {{ display: flex; align-items: center; gap: 8px; }}
+        .theme-toggle-btn {{ width: 44px; height: 24px; border-radius: 12px; background: var(--border); border: none; cursor: pointer; position: relative; transition: all 0.3s ease; }}
+        .theme-toggle-btn::after {{ content: ''; position: absolute; width: 18px; height: 18px; border-radius: 50%; background: var(--white); top: 3px; left: 3px; transition: all 0.3s ease; box-shadow: 0 2px 4px rgba(0,0,0,0.2); }}
+        .dark .theme-toggle-btn {{ background: var(--blue-primary); }}
+        .dark .theme-toggle-btn::after {{ left: 23px; }}
+        .theme-icon {{ font-size: 16px; color: var(--text-muted); transition: all 0.3s; }}
+        .dark .theme-icon.sun {{ opacity: 0.4; }}
+        .dark .theme-icon.moon {{ color: var(--blue-primary); }}
+
         * {{ margin: 0; padding: 0; box-sizing: border-box; }}
         body {{ font-family: 'Inter', -apple-system, sans-serif; background: var(--bg-light); color: var(--text-dark); }}
         .header {{ background: var(--white); border-bottom: 1px solid var(--border); padding: 20px 0; position: sticky; top: 0; z-index: 100; }}
@@ -1063,7 +1133,14 @@ def create_premium_index(days_info: List[dict], all_events: List[Event], output_
                 <span class="logo-text">Art Week CDMX</span>
                 <span class="logo-badge">2026</span>
             </div>
-            <div style="font-size: 14px; color: var(--text-secondary);">2 - 8 de Febrero</div>
+            <div style="display: flex; align-items: center; gap: 20px;">
+                <div style="font-size: 14px; color: var(--text-secondary);">2 - 8 de Febrero</div>
+                <div class="theme-toggle">
+                    <i class="fa fa-sun theme-icon sun"></i>
+                    <button class="theme-toggle-btn" id="themeToggle" aria-label="Toggle dark mode"></button>
+                    <i class="fa fa-moon theme-icon moon"></i>
+                </div>
+            </div>
         </div>
     </header>
 
@@ -1298,6 +1375,28 @@ def create_premium_index(days_info: List[dict], all_events: List[Event], output_
 
         // Initial render
         applyFilters();
+
+        // Theme Toggle
+        const themeToggle = document.getElementById('themeToggle');
+        const html = document.documentElement;
+
+        // Load saved theme
+        const savedTheme = localStorage.getItem('theme');
+        if (savedTheme === 'dark' || (!savedTheme && window.matchMedia('(prefers-color-scheme: dark)').matches)) {{
+            html.classList.add('dark');
+        }}
+
+        themeToggle.addEventListener('click', () => {{
+            html.classList.toggle('dark');
+            localStorage.setItem('theme', html.classList.contains('dark') ? 'dark' : 'light');
+        }});
+
+        // Listen for system theme changes
+        window.matchMedia('(prefers-color-scheme: dark)').addEventListener('change', e => {{
+            if (!localStorage.getItem('theme')) {{
+                html.classList.toggle('dark', e.matches);
+            }}
+        }});
     </script>
 </body>
 </html>
@@ -1312,9 +1411,9 @@ def main():
     os.makedirs(output_dir, exist_ok=True)
 
     print("=" * 60)
-    print("   ZonaMaco 2026 - Generador de Mapas v4.3")
+    print("   ZonaMaco 2026 - Generador de Mapas v4.4")
     print("   + Material Art Fair + Salón ACME")
-    print("   + Search & Filter + Calendar Export")
+    print("   + Search & Filter + Calendar + Dark Mode")
     print("=" * 60)
 
     # Parse all events
