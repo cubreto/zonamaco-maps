@@ -26,7 +26,7 @@
             <meta name="viewport" content="width=device-width,
                 initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
             <style>
-                #map_98e0018f0934383fbb61366306ef16ff {
+                #map_8978b751852cc18c5795d6b45a4a7054 {
                     position: relative;
                     width: 100.0%;
                     height: 100.0%;
@@ -52,9 +52,10 @@
     .sidebar-dark .event-item { background: #0f0f1a !important; }
     .sidebar-dark .event-item .event-time { color: #a8c5e8 !important; }
     .sidebar-dark .event-item .event-org { color: #9999b3 !important; }
+    .sidebar-dark .walk-indicator span { background: #2d2d44 !important; color: #6b6b80 !important; }
     .theme-toggle-mini { position: absolute; top: 10px; right: 10px; width: 28px; height: 28px; border-radius: 50%; border: 1px solid #e2e8f0; background: white; cursor: pointer; display: flex; align-items: center; justify-content: center; font-size: 12px; transition: all 0.3s; }
     .sidebar-dark .theme-toggle-mini { background: #2d2d44; border-color: #3d3d54; }
-    </style><div id="eventSidebar" style="position: fixed; top: 10px; right: 10px; width: 220px; max-height: 90vh; background: #f8fafc; border-radius: 12px; padding: 15px; z-index: 1000; box-shadow: 0 4px 20px rgba(0,0,0,0.1); overflow-y: auto; font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif; border: 1px solid #e2e8f0;"><button id="sidebarThemeToggle" class="theme-toggle-mini">🌙</button><div class="sidebar-header" style="text-align: center; margin-bottom: 12px; padding-bottom: 10px; border-bottom: 2px solid #e2e8f0;"><div class="sidebar-title" style="font-size: 18px; font-weight: 700; color: #1e3a5f;">Domingo</div><div class="sidebar-subtitle" style="font-size: 12px; color: #64748b;">8 de Febrero</div><div class="sidebar-count" style="font-size: 11px; color: #94a3b8; margin-top: 4px;">4 eventos</div></div><div style="margin-bottom: 12px;"><input type="text" id="sidebarSearch" placeholder="Buscar..." style="width: 100%; padding: 8px 10px; border: 1px solid #e2e8f0; border-radius: 6px; font-size: 12px; background: white;"></div><div style="display: flex; gap: 4px; margin-bottom: 12px;"><button class="filter-btn active" data-filter="all" style="flex: 1; padding: 6px; border: 1px solid #e2e8f0; border-radius: 4px; font-size: 10px; cursor: pointer; background: #4a90d9; color: white;">Todos</button><button class="filter-btn" data-filter="Público" style="flex: 1; padding: 6px; border: 1px solid #e2e8f0; border-radius: 4px; font-size: 10px; cursor: pointer; background: white;">🔵 Púb</button><button class="filter-btn" data-filter="Privado" style="flex: 1; padding: 6px; border: 1px solid #e2e8f0; border-radius: 4px; font-size: 10px; cursor: pointer; background: white;">🟠 Priv</button></div><div class="period-section" id="morning" style="margin-bottom: 15px;"><div class="period-header" style="font-size: 11px; font-weight: 700; color: #f39c12; margin-bottom: 6px; padding: 4px 8px; background: #f39c1215; border-radius: 4px;">☀️ Mañana (<span class="period-count">4</span>)</div><div class="event-item" data-search="centro banamex zonamaco día 4 - cierre último día de la feria zonamaco 2026." data-category="Público" style="padding: 8px 10px; margin: 4px 0; background: white; border-radius: 6px; border-left: 3px solid #4a90d9; font-size: 11px; cursor: pointer; box-shadow: 0 1px 3px rgba(0,0,0,0.08); transition: opacity 0.2s;" onclick="(function(){var m=Object.values(window).find(function(v){return v&&v._leaflet_id&&v.setView});if(m){m.setView([19.459,-99.203],16)}})()"><div style="font-weight: 600; color: #1e3a5f;">10:00</div><div style="color: #666; white-space: nowrap; overflow: hidden; text-overflow: ellipsis;">CENTRO BANAMEX</div></div><div class="event-item" data-search="saenger galería visita guiada: gregor hildebrandt en casa gilardi última oportunidad de la semana." data-category="Privado" style="padding: 8px 10px; margin: 4px 0; background: white; border-radius: 6px; border-left: 3px solid #e67e22; font-size: 11px; cursor: pointer; box-shadow: 0 1px 3px rgba(0,0,0,0.08); transition: opacity 0.2s;" onclick="(function(){var m=Object.values(window).find(function(v){return v&&v._leaflet_id&&v.setView});if(m){m.setView([19.4189,-99.1658],16)}})()"><div style="font-weight: 600; color: #1e3a5f;">10:00</div><div style="color: #666; white-space: nowrap; overflow: hidden; text-overflow: ellipsis;">SAENGER GALERÍA</div></div><div class="event-item" data-search="museo de la ciudad de méxico 'columna rota' - visita guiada exploración artística con organizadores." data-category="Privado" style="padding: 8px 10px; margin: 4px 0; background: white; border-radius: 6px; border-left: 3px solid #e67e22; font-size: 11px; cursor: pointer; box-shadow: 0 1px 3px rgba(0,0,0,0.08); transition: opacity 0.2s;" onclick="(function(){var m=Object.values(window).find(function(v){return v&&v._leaflet_id&&v.setView});if(m){m.setView([19.4285,-99.1319],16)}})()"><div style="font-weight: 600; color: #1e3a5f;">10:00</div><div style="color: #666; white-space: nowrap; overflow: hidden; text-overflow: ellipsis;">MUSEO DE LA CIUDAD DE MÉXICO</div></div><div class="event-item" data-search="saenger galería visitas guiadas: yoab vera y diego rivera cierre de la semana." data-category="Privado" style="padding: 8px 10px; margin: 4px 0; background: white; border-radius: 6px; border-left: 3px solid #e67e22; font-size: 11px; cursor: pointer; box-shadow: 0 1px 3px rgba(0,0,0,0.08); transition: opacity 0.2s;" onclick="(function(){var m=Object.values(window).find(function(v){return v&&v._leaflet_id&&v.setView});if(m){m.setView([19.4189,-99.1658],16)}})()"><div style="font-weight: 600; color: #1e3a5f;">11:00</div><div style="color: #666; white-space: nowrap; overflow: hidden; text-overflow: ellipsis;">SAENGER GALERÍA</div></div></div></div><script>
+    </style><div id="eventSidebar" style="position: fixed; top: 10px; right: 10px; width: 220px; max-height: 90vh; background: #f8fafc; border-radius: 12px; padding: 15px; z-index: 1000; box-shadow: 0 4px 20px rgba(0,0,0,0.1); overflow-y: auto; font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif; border: 1px solid #e2e8f0;"><button id="sidebarThemeToggle" class="theme-toggle-mini">🌙</button><div class="sidebar-header" style="text-align: center; margin-bottom: 12px; padding-bottom: 10px; border-bottom: 2px solid #e2e8f0;"><div class="sidebar-title" style="font-size: 18px; font-weight: 700; color: #1e3a5f;">Domingo</div><div class="sidebar-subtitle" style="font-size: 12px; color: #64748b;">8 de Febrero</div><div class="sidebar-count" style="font-size: 11px; color: #94a3b8; margin-top: 4px;">4 eventos</div></div><div style="margin-bottom: 12px;"><input type="text" id="sidebarSearch" placeholder="Buscar..." style="width: 100%; padding: 8px 10px; border: 1px solid #e2e8f0; border-radius: 6px; font-size: 12px; background: white;"></div><div style="display: flex; gap: 4px; margin-bottom: 12px;"><button class="filter-btn active" data-filter="all" style="flex: 1; padding: 6px; border: 1px solid #e2e8f0; border-radius: 4px; font-size: 10px; cursor: pointer; background: #4a90d9; color: white;">Todos</button><button class="filter-btn" data-filter="Público" style="flex: 1; padding: 6px; border: 1px solid #e2e8f0; border-radius: 4px; font-size: 10px; cursor: pointer; background: white;">🔵 Púb</button><button class="filter-btn" data-filter="Privado" style="flex: 1; padding: 6px; border: 1px solid #e2e8f0; border-radius: 4px; font-size: 10px; cursor: pointer; background: white;">🟠 Priv</button></div><div class="period-section" id="morning" style="margin-bottom: 15px;"><div class="period-header" style="font-size: 11px; font-weight: 700; color: #f39c12; margin-bottom: 6px; padding: 4px 8px; background: #f39c1215; border-radius: 4px;">☀️ Mañana (<span class="period-count">4</span>)</div><div class="event-item" data-search="centro banamex zonamaco día 4 - cierre último día de la feria zonamaco 2026." data-category="Público" style="padding: 8px 10px; margin: 4px 0; background: white; border-radius: 6px; border-left: 3px solid #4a90d9; font-size: 11px; cursor: pointer; box-shadow: 0 1px 3px rgba(0,0,0,0.08); transition: opacity 0.2s;" onclick="(function(){var m=Object.values(window).find(function(v){return v&&v._leaflet_id&&v.setView});if(m){m.setView([19.459,-99.203],16)}})()"><div style="font-weight: 600; color: #1e3a5f;">10:00</div><div style="color: #666; white-space: nowrap; overflow: hidden; text-overflow: ellipsis;">CENTRO BANAMEX</div></div><div class="walk-indicator" style="display: flex; align-items: center; justify-content: center; padding: 4px 0; margin: 2px 0; font-size: 9px; color: #94a3b8;"><span style="background: #f0f4f8; padding: 2px 8px; border-radius: 10px;">🚶 1h 11min · 5.9 km</span></div><div class="event-item" data-search="saenger galería visita guiada: gregor hildebrandt en casa gilardi última oportunidad de la semana." data-category="Privado" style="padding: 8px 10px; margin: 4px 0; background: white; border-radius: 6px; border-left: 3px solid #e67e22; font-size: 11px; cursor: pointer; box-shadow: 0 1px 3px rgba(0,0,0,0.08); transition: opacity 0.2s;" onclick="(function(){var m=Object.values(window).find(function(v){return v&&v._leaflet_id&&v.setView});if(m){m.setView([19.4189,-99.1658],16)}})()"><div style="font-weight: 600; color: #1e3a5f;">10:00</div><div style="color: #666; white-space: nowrap; overflow: hidden; text-overflow: ellipsis;">SAENGER GALERÍA</div></div><div class="walk-indicator" style="display: flex; align-items: center; justify-content: center; padding: 4px 0; margin: 2px 0; font-size: 9px; color: #94a3b8;"><span style="background: #f0f4f8; padding: 2px 8px; border-radius: 10px;">🚶 45 min · 3.7 km</span></div><div class="event-item" data-search="museo de la ciudad de méxico 'columna rota' - visita guiada exploración artística con organizadores." data-category="Privado" style="padding: 8px 10px; margin: 4px 0; background: white; border-radius: 6px; border-left: 3px solid #e67e22; font-size: 11px; cursor: pointer; box-shadow: 0 1px 3px rgba(0,0,0,0.08); transition: opacity 0.2s;" onclick="(function(){var m=Object.values(window).find(function(v){return v&&v._leaflet_id&&v.setView});if(m){m.setView([19.4285,-99.1319],16)}})()"><div style="font-weight: 600; color: #1e3a5f;">10:00</div><div style="color: #666; white-space: nowrap; overflow: hidden; text-overflow: ellipsis;">MUSEO DE LA CIUDAD DE MÉXICO</div></div><div class="walk-indicator" style="display: flex; align-items: center; justify-content: center; padding: 4px 0; margin: 2px 0; font-size: 9px; color: #94a3b8;"><span style="background: #f0f4f8; padding: 2px 8px; border-radius: 10px;">🚶 45 min · 3.7 km</span></div><div class="event-item" data-search="saenger galería visitas guiadas: yoab vera y diego rivera cierre de la semana." data-category="Privado" style="padding: 8px 10px; margin: 4px 0; background: white; border-radius: 6px; border-left: 3px solid #e67e22; font-size: 11px; cursor: pointer; box-shadow: 0 1px 3px rgba(0,0,0,0.08); transition: opacity 0.2s;" onclick="(function(){var m=Object.values(window).find(function(v){return v&&v._leaflet_id&&v.setView});if(m){m.setView([19.4189,-99.1658],16)}})()"><div style="font-weight: 600; color: #1e3a5f;">11:00</div><div style="color: #666; white-space: nowrap; overflow: hidden; text-overflow: ellipsis;">SAENGER GALERÍA</div></div></div></div><script>
     document.addEventListener('DOMContentLoaded', function() {
         const searchInput = document.getElementById('sidebarSearch');
         const filterBtns = document.querySelectorAll('.filter-btn');
@@ -142,14 +143,14 @@
     </script>
     <div style="position: fixed; bottom: 30px; left: 10px; z-index: 1000; background: white; padding: 12px 15px; border-radius: 8px; box-shadow: 0 2px 10px rgba(0,0,0,0.1); font-family: -apple-system, sans-serif; font-size: 11px; border: 1px solid #e2e8f0;"><div style="font-weight: 700; margin-bottom: 8px; color: #1e3a5f;">Leyenda</div><div style="margin: 4px 0;"><span style="color: #4a90d9;">●</span> Público</div><div style="margin: 4px 0;"><span style="color: #e67e22;">●</span> Privado</div><div style="margin: 4px 0;"><span style="color: #4a90d9;">➤</span> Ruta sugerida</div><div style="margin-top: 8px; padding-top: 8px; border-top: 1px solid #e2e8f0;"><div><i class="fa fa-university"></i> Museo</div><div><i class="fa fa-image"></i> Galería</div><div><i class="fa fa-building"></i> Feria</div><div><i class="fa fa-bed"></i> Hotel</div></div></div>
     
-            <div class="folium-map" id="map_98e0018f0934383fbb61366306ef16ff" ></div>
+            <div class="folium-map" id="map_8978b751852cc18c5795d6b45a4a7054" ></div>
         
 </body>
 <script>
     
     
-            var map_98e0018f0934383fbb61366306ef16ff = L.map(
-                "map_98e0018f0934383fbb61366306ef16ff",
+            var map_8978b751852cc18c5795d6b45a4a7054 = L.map(
+                "map_8978b751852cc18c5795d6b45a4a7054",
                 {
                     center: [19.431325, -99.16662500000001],
                     crs: L.CRS.EPSG3857,
@@ -161,13 +162,13 @@
 
                 }
             );
-            L.control.scale().addTo(map_98e0018f0934383fbb61366306ef16ff);
+            L.control.scale().addTo(map_8978b751852cc18c5795d6b45a4a7054);
 
             
 
         
     
-            var tile_layer_31b1cd19f86673157cf2b63334a868e9 = L.tileLayer(
+            var tile_layer_890041b93f95fd905cbed617bf4c7aec = L.tileLayer(
                 "https://{s}.basemaps.cartocdn.com/light_all/{z}/{x}/{y}{r}.png",
                 {
   "minZoom": 0,
@@ -184,10 +185,10 @@
             );
         
     
-            tile_layer_31b1cd19f86673157cf2b63334a868e9.addTo(map_98e0018f0934383fbb61366306ef16ff);
+            tile_layer_890041b93f95fd905cbed617bf4c7aec.addTo(map_8978b751852cc18c5795d6b45a4a7054);
         
     
-            var tile_layer_1f86f3a821dcd014942a247449a3b651 = L.tileLayer(
+            var tile_layer_a0a515c364e31402df519831029d575f = L.tileLayer(
                 "https://tile.openstreetmap.org/{z}/{x}/{y}.png",
                 {
   "minZoom": 0,
@@ -204,23 +205,23 @@
             );
         
     
-            tile_layer_1f86f3a821dcd014942a247449a3b651.addTo(map_98e0018f0934383fbb61366306ef16ff);
+            tile_layer_a0a515c364e31402df519831029d575f.addTo(map_8978b751852cc18c5795d6b45a4a7054);
         
     
-            var feature_group_f63110d611bd0f1382da966f63adbe08 = L.featureGroup(
+            var feature_group_2055c35540e354b0a8cfbba353c28622 = L.featureGroup(
                 {
 }
             );
         
     
-            var marker_5fb3b0bb61ea781db79bf2ebd28b09d0 = L.marker(
+            var marker_c8689fc79e89940a7f1da8ce73ea45ee = L.marker(
                 [19.459, -99.203],
                 {
 }
-            ).addTo(feature_group_f63110d611bd0f1382da966f63adbe08);
+            ).addTo(feature_group_2055c35540e354b0a8cfbba353c28622);
         
     
-            var icon_c297cebd4c8c6bf882694de85a8ed9cc = L.AwesomeMarkers.icon(
+            var icon_f15b7908cbe98096b360d2e6d646ca34 = L.AwesomeMarkers.icon(
                 {
   "markerColor": "blue",
   "iconColor": "white",
@@ -231,24 +232,24 @@
             );
         
     
-        var popup_99af7bf889585c34e3d3cd2fb4df76c2 = L.popup({
+        var popup_0da8cc1fd567a9e3645418cef9811712 = L.popup({
   "maxWidth": 370,
 });
 
         
             
-                var html_7cec9bca0fcdb9b9f914228029cb18cd = $(`<div id="html_7cec9bca0fcdb9b9f914228029cb18cd" style="width: 100.0%; height: 100.0%;">     <div style="font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif; width: 340px; padding: 5px;">         <div style="border-left: 4px solid #4a90d9; padding-left: 12px; margin-bottom: 12px;">             <h3 style="margin: 0 0 8px 0; font-size: 15px; color: #1e3a5f; line-height: 1.3;">ZonaMaco Día 4 - Cierre</h3>             <div style="font-size: 13px; color: #555; margin-bottom: 4px;"><strong>CENTRO BANAMEX</strong></div>         </div>         <div style="display: flex; gap: 15px; margin-bottom: 10px; font-size: 12px;">             <div style="background: #f0f4f8; padding: 6px 10px; border-radius: 4px;"><strong>⏰</strong> 10:00</div>             <div style="background: #4a90d915; color: #4a90d9; padding: 6px 10px; border-radius: 4px; font-weight: 600;">Público</div>         </div>         <div style="font-size: 12px; color: #666; margin-bottom: 10px;">             <div><strong>📍</strong> San Ángel</div>             <div style="margin-left: 18px; color: #888;">Av. del Conscripto 311</div>         </div>         <div style="background: #f8fafc; border-radius: 8px; padding: 10px; margin-bottom: 10px; font-size: 11px;">             <div style="font-weight: 600; color: #1e3a5f; margin-bottom: 6px;">📞 Contacto</div>             <div style="margin: 3px 0;"><i class="fa fa-phone" style="width: 16px; color: #4a90d9;"></i> <a href="tel:+52 55 5268 2000" style="color: #4a90d9; text-decoration: none;">+52 55 5268 2000</a></div><div style="margin: 3px 0;"><i class="fa fa-envelope" style="width: 16px; color: #4a90d9;"></i> <a href="mailto:info@zonamaco.com" style="color: #4a90d9; text-decoration: none;">info@zonamaco.com</a></div><div style="margin: 3px 0;"><i class="fa fa-globe" style="width: 16px; color: #4a90d9;"></i> <a href="https://zonamaco.com" target="_blank" style="color: #4a90d9; text-decoration: none;">zonamaco.com</a></div>         </div>         <div style="font-size: 12px; color: #444; line-height: 1.5;">             Último día de la feria ZonaMaco 2026.         </div>                  <div style="display: flex; gap: 8px; margin-top: 10px; padding-top: 10px; border-top: 1px solid #e8ecf0;">             <a href="https://calendar.google.com/calendar/render?action=TEMPLATE&text=ZonaMaco%20D%C3%ADa%204%20-%20Cierre&dates=20260208T100000/20260208T120000&details=%C3%9Altimo%20d%C3%ADa%20de%20la%20feria%20ZonaMaco%202026.%5Cn%5CnOrganiza%3A%20CENTRO%20BANAMEX&location=Centro%20Banamex%2C%20Av.%20del%20Conscripto%20311%2C%20CDMX&sf=true" target="_blank" style="flex: 1; display: flex; align-items: center; justify-content: center; gap: 6px; padding: 8px; background: #4285f4; color: white; border-radius: 6px; text-decoration: none; font-size: 11px; font-weight: 500;">                 <i class="fab fa-google"></i> Google             </a>             <a href="data:text/calendar;base64,QkVHSU46VkNBTEVOREFSClZFUlNJT046Mi4wClBST0RJRDotLy9ab25hTWFjbyAyMDI2Ly9BcnQgV2VlayBDRE1YLy9FUwpCRUdJTjpWRVZFTlQKVUlEOjIwMjYwMjA4MTAwMDAwLUNFTlRST0JBTkFNRVhAem9uYW1hY28yMDI2CkRUU1RBUlQ6MjAyNjAyMDhUMTAwMDAwCkRURU5EOjIwMjYwMjA4VDEyMDAwMApTVU1NQVJZOlpvbmFNYWNvIETDrWEgNCAtIENpZXJyZQpERVNDUklQVElPTjrDmmx0aW1vIGTDrWEgZGUgbGEgZmVyaWEgWm9uYU1hY28gMjAyNi4KTE9DQVRJT046Q2VudHJvIEJhbmFtZXhcLCBBdi4gZGVsIENvbnNjcmlwdG8gMzExXCwgU2FuIMOBbmdlbFwsIENETVgKT1JHQU5JWkVSOkNOPUNFTlRSTyBCQU5BTUVYClNUQVRVUzpDT05GSVJNRUQKRU5EOlZFVkVOVApFTkQ6VkNBTEVOREFS" download="20260208_CENTRO_BANAMEX.ics" style="flex: 1; display: flex; align-items: center; justify-content: center; gap: 6px; padding: 8px; background: #1e3a5f; color: white; border-radius: 6px; text-decoration: none; font-size: 11px; font-weight: 500;">                 <i class="fa fa-calendar-plus"></i> iCal             </a>         </div>          </div>     </div>`)[0];
-                popup_99af7bf889585c34e3d3cd2fb4df76c2.setContent(html_7cec9bca0fcdb9b9f914228029cb18cd);
+                var html_d82b0af9ed6e9ffaff6bae2774bf7725 = $(`<div id="html_d82b0af9ed6e9ffaff6bae2774bf7725" style="width: 100.0%; height: 100.0%;">     <div style="font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif; width: 340px; padding: 5px;">         <div style="border-left: 4px solid #4a90d9; padding-left: 12px; margin-bottom: 12px;">             <h3 style="margin: 0 0 8px 0; font-size: 15px; color: #1e3a5f; line-height: 1.3;">ZonaMaco Día 4 - Cierre</h3>             <div style="font-size: 13px; color: #555; margin-bottom: 4px;"><strong>CENTRO BANAMEX</strong></div>         </div>         <div style="display: flex; gap: 15px; margin-bottom: 10px; font-size: 12px;">             <div style="background: #f0f4f8; padding: 6px 10px; border-radius: 4px;"><strong>⏰</strong> 10:00</div>             <div style="background: #4a90d915; color: #4a90d9; padding: 6px 10px; border-radius: 4px; font-weight: 600;">Público</div>         </div>         <div style="font-size: 12px; color: #666; margin-bottom: 10px;">             <div><strong>📍</strong> San Ángel</div>             <div style="margin-left: 18px; color: #888;">Av. del Conscripto 311</div>         </div>         <div style="background: #f8fafc; border-radius: 8px; padding: 10px; margin-bottom: 10px; font-size: 11px;">             <div style="font-weight: 600; color: #1e3a5f; margin-bottom: 6px;">📞 Contacto</div>             <div style="margin: 3px 0;"><i class="fa fa-phone" style="width: 16px; color: #4a90d9;"></i> <a href="tel:+52 55 5268 2000" style="color: #4a90d9; text-decoration: none;">+52 55 5268 2000</a></div><div style="margin: 3px 0;"><i class="fa fa-envelope" style="width: 16px; color: #4a90d9;"></i> <a href="mailto:info@zonamaco.com" style="color: #4a90d9; text-decoration: none;">info@zonamaco.com</a></div><div style="margin: 3px 0;"><i class="fa fa-globe" style="width: 16px; color: #4a90d9;"></i> <a href="https://zonamaco.com" target="_blank" style="color: #4a90d9; text-decoration: none;">zonamaco.com</a></div>         </div>         <div style="font-size: 12px; color: #444; line-height: 1.5;">             Último día de la feria ZonaMaco 2026.         </div>                  <div style="display: flex; gap: 8px; margin-top: 10px; padding-top: 10px; border-top: 1px solid #e8ecf0;">             <a href="https://calendar.google.com/calendar/render?action=TEMPLATE&text=ZonaMaco%20D%C3%ADa%204%20-%20Cierre&dates=20260208T100000/20260208T120000&details=%C3%9Altimo%20d%C3%ADa%20de%20la%20feria%20ZonaMaco%202026.%5Cn%5CnOrganiza%3A%20CENTRO%20BANAMEX&location=Centro%20Banamex%2C%20Av.%20del%20Conscripto%20311%2C%20CDMX&sf=true" target="_blank" style="flex: 1; display: flex; align-items: center; justify-content: center; gap: 6px; padding: 8px; background: #4285f4; color: white; border-radius: 6px; text-decoration: none; font-size: 11px; font-weight: 500;">                 <i class="fab fa-google"></i> Google             </a>             <a href="data:text/calendar;base64,QkVHSU46VkNBTEVOREFSClZFUlNJT046Mi4wClBST0RJRDotLy9ab25hTWFjbyAyMDI2Ly9BcnQgV2VlayBDRE1YLy9FUwpCRUdJTjpWRVZFTlQKVUlEOjIwMjYwMjA4MTAwMDAwLUNFTlRST0JBTkFNRVhAem9uYW1hY28yMDI2CkRUU1RBUlQ6MjAyNjAyMDhUMTAwMDAwCkRURU5EOjIwMjYwMjA4VDEyMDAwMApTVU1NQVJZOlpvbmFNYWNvIETDrWEgNCAtIENpZXJyZQpERVNDUklQVElPTjrDmmx0aW1vIGTDrWEgZGUgbGEgZmVyaWEgWm9uYU1hY28gMjAyNi4KTE9DQVRJT046Q2VudHJvIEJhbmFtZXhcLCBBdi4gZGVsIENvbnNjcmlwdG8gMzExXCwgU2FuIMOBbmdlbFwsIENETVgKT1JHQU5JWkVSOkNOPUNFTlRSTyBCQU5BTUVYClNUQVRVUzpDT05GSVJNRUQKRU5EOlZFVkVOVApFTkQ6VkNBTEVOREFS" download="20260208_CENTRO_BANAMEX.ics" style="flex: 1; display: flex; align-items: center; justify-content: center; gap: 6px; padding: 8px; background: #1e3a5f; color: white; border-radius: 6px; text-decoration: none; font-size: 11px; font-weight: 500;">                 <i class="fa fa-calendar-plus"></i> iCal             </a>         </div>          </div>     </div>`)[0];
+                popup_0da8cc1fd567a9e3645418cef9811712.setContent(html_d82b0af9ed6e9ffaff6bae2774bf7725);
             
         
 
-        marker_5fb3b0bb61ea781db79bf2ebd28b09d0.bindPopup(popup_99af7bf889585c34e3d3cd2fb4df76c2)
+        marker_c8689fc79e89940a7f1da8ce73ea45ee.bindPopup(popup_0da8cc1fd567a9e3645418cef9811712)
         ;
 
         
     
     
-            marker_5fb3b0bb61ea781db79bf2ebd28b09d0.bindTooltip(
+            marker_c8689fc79e89940a7f1da8ce73ea45ee.bindTooltip(
                 `<div>
                      
     <div style="font-family: -apple-system, sans-serif; padding: 8px; min-width: 200px;">
@@ -264,26 +265,26 @@
             );
         
     
-                marker_5fb3b0bb61ea781db79bf2ebd28b09d0.setIcon(icon_c297cebd4c8c6bf882694de85a8ed9cc);
+                marker_c8689fc79e89940a7f1da8ce73ea45ee.setIcon(icon_f15b7908cbe98096b360d2e6d646ca34);
             
     
-            feature_group_f63110d611bd0f1382da966f63adbe08.addTo(map_98e0018f0934383fbb61366306ef16ff);
+            feature_group_2055c35540e354b0a8cfbba353c28622.addTo(map_8978b751852cc18c5795d6b45a4a7054);
         
     
-            var feature_group_3f1d2d68e4180b994a26bde2356634f7 = L.featureGroup(
+            var feature_group_8d73312cfb28bc54aa9eb4e6b5c24e7c = L.featureGroup(
                 {
 }
             );
         
     
-            var marker_01a14fb87110e631509faf4661a4e8c9 = L.marker(
+            var marker_ec6c22a39601932c68ca8bbb511e4c5e = L.marker(
                 [19.4189, -99.1658],
                 {
 }
-            ).addTo(feature_group_3f1d2d68e4180b994a26bde2356634f7);
+            ).addTo(feature_group_8d73312cfb28bc54aa9eb4e6b5c24e7c);
         
     
-            var icon_92854d9450f008dc22332d13d5fa1fa9 = L.AwesomeMarkers.icon(
+            var icon_99148c368796af91f3cb96047f45fbde = L.AwesomeMarkers.icon(
                 {
   "markerColor": "orange",
   "iconColor": "white",
@@ -294,24 +295,24 @@
             );
         
     
-        var popup_d3e6c812e61c8668b811d422ed22cd7f = L.popup({
+        var popup_f76e4b4621f972831b1df706a3625528 = L.popup({
   "maxWidth": 370,
 });
 
         
             
-                var html_0e33cdb6d3155ea3195326b0c726a1fe = $(`<div id="html_0e33cdb6d3155ea3195326b0c726a1fe" style="width: 100.0%; height: 100.0%;">     <div style="font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif; width: 340px; padding: 5px;">         <div style="border-left: 4px solid #e67e22; padding-left: 12px; margin-bottom: 12px;">             <h3 style="margin: 0 0 8px 0; font-size: 15px; color: #1e3a5f; line-height: 1.3;">Visita guiada: Gregor Hildebrandt en Casa Gilardi</h3>             <div style="font-size: 13px; color: #555; margin-bottom: 4px;"><strong>SAENGER GALERÍA</strong></div>         </div>         <div style="display: flex; gap: 15px; margin-bottom: 10px; font-size: 12px;">             <div style="background: #f0f4f8; padding: 6px 10px; border-radius: 4px;"><strong>⏰</strong> 10:00</div>             <div style="background: #e67e2215; color: #e67e22; padding: 6px 10px; border-radius: 4px; font-weight: 600;">Privado</div>         </div>         <div style="font-size: 12px; color: #666; margin-bottom: 10px;">             <div><strong>📍</strong> Roma Norte</div>             <div style="margin-left: 18px; color: #888;">Jalapa 31</div>         </div>         <div style="background: #f8fafc; border-radius: 8px; padding: 10px; margin-bottom: 10px; font-size: 11px;">             <div style="font-weight: 600; color: #1e3a5f; margin-bottom: 6px;">📞 Contacto</div>             <div style="margin: 3px 0;"><i class="fa fa-phone" style="width: 16px; color: #4a90d9;"></i> <a href="tel:+52 55 5256 2032" style="color: #4a90d9; text-decoration: none;">+52 55 5256 2032</a></div><div style="margin: 3px 0;"><i class="fa fa-envelope" style="width: 16px; color: #4a90d9;"></i> <a href="mailto:info@saengergaleria.com" style="color: #4a90d9; text-decoration: none;">info@saengergaleria.com</a></div><div style="margin: 3px 0;"><i class="fa fa-globe" style="width: 16px; color: #4a90d9;"></i> <a href="https://saengergaleria.com" target="_blank" style="color: #4a90d9; text-decoration: none;">saengergaleria.com</a></div>         </div>         <div style="font-size: 12px; color: #444; line-height: 1.5;">             Última oportunidad de la semana.         </div>                  <div style="display: flex; gap: 8px; margin-top: 10px; padding-top: 10px; border-top: 1px solid #e8ecf0;">             <a href="https://calendar.google.com/calendar/render?action=TEMPLATE&text=Visita%20guiada%3A%20Gregor%20Hildebrandt%20en%20Casa%20Gilardi&dates=20260208T100000/20260208T120000&details=%C3%9Altima%20oportunidad%20de%20la%20semana.%5Cn%5CnOrganiza%3A%20SAENGER%20GALER%C3%8DA&location=Saenger%20Galer%C3%ADa%2C%20Jalapa%2031%2C%20CDMX&sf=true" target="_blank" style="flex: 1; display: flex; align-items: center; justify-content: center; gap: 6px; padding: 8px; background: #4285f4; color: white; border-radius: 6px; text-decoration: none; font-size: 11px; font-weight: 500;">                 <i class="fab fa-google"></i> Google             </a>             <a href="data:text/calendar;base64,QkVHSU46VkNBTEVOREFSClZFUlNJT046Mi4wClBST0RJRDotLy9ab25hTWFjbyAyMDI2Ly9BcnQgV2VlayBDRE1YLy9FUwpCRUdJTjpWRVZFTlQKVUlEOjIwMjYwMjA4MTAwMDAwLVNBRU5HRVJHQUxFUsONQUB6b25hbWFjbzIwMjYKRFRTVEFSVDoyMDI2MDIwOFQxMDAwMDAKRFRFTkQ6MjAyNjAyMDhUMTIwMDAwClNVTU1BUlk6VmlzaXRhIGd1aWFkYTogR3JlZ29yIEhpbGRlYnJhbmR0IGVuIENhc2EgR2lsYXJkaQpERVNDUklQVElPTjrDmmx0aW1hIG9wb3J0dW5pZGFkIGRlIGxhIHNlbWFuYS4KTE9DQVRJT046U2FlbmdlciBHYWxlcsOtYVwsIEphbGFwYSAzMVwsIFJvbWEgTm9ydGVcLCBDRE1YCk9SR0FOSVpFUjpDTj1TQUVOR0VSIEdBTEVSw41BClNUQVRVUzpDT05GSVJNRUQKRU5EOlZFVkVOVApFTkQ6VkNBTEVOREFS" download="20260208_SAENGER_GALERÍA.ics" style="flex: 1; display: flex; align-items: center; justify-content: center; gap: 6px; padding: 8px; background: #1e3a5f; color: white; border-radius: 6px; text-decoration: none; font-size: 11px; font-weight: 500;">                 <i class="fa fa-calendar-plus"></i> iCal             </a>         </div>          </div>     </div>`)[0];
-                popup_d3e6c812e61c8668b811d422ed22cd7f.setContent(html_0e33cdb6d3155ea3195326b0c726a1fe);
+                var html_b811011f6d1db45bd1023e3de2997b4a = $(`<div id="html_b811011f6d1db45bd1023e3de2997b4a" style="width: 100.0%; height: 100.0%;">     <div style="font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif; width: 340px; padding: 5px;">         <div style="border-left: 4px solid #e67e22; padding-left: 12px; margin-bottom: 12px;">             <h3 style="margin: 0 0 8px 0; font-size: 15px; color: #1e3a5f; line-height: 1.3;">Visita guiada: Gregor Hildebrandt en Casa Gilardi</h3>             <div style="font-size: 13px; color: #555; margin-bottom: 4px;"><strong>SAENGER GALERÍA</strong></div>         </div>         <div style="display: flex; gap: 15px; margin-bottom: 10px; font-size: 12px;">             <div style="background: #f0f4f8; padding: 6px 10px; border-radius: 4px;"><strong>⏰</strong> 10:00</div>             <div style="background: #e67e2215; color: #e67e22; padding: 6px 10px; border-radius: 4px; font-weight: 600;">Privado</div>         </div>         <div style="font-size: 12px; color: #666; margin-bottom: 10px;">             <div><strong>📍</strong> Roma Norte</div>             <div style="margin-left: 18px; color: #888;">Jalapa 31</div>         </div>         <div style="background: #f8fafc; border-radius: 8px; padding: 10px; margin-bottom: 10px; font-size: 11px;">             <div style="font-weight: 600; color: #1e3a5f; margin-bottom: 6px;">📞 Contacto</div>             <div style="margin: 3px 0;"><i class="fa fa-phone" style="width: 16px; color: #4a90d9;"></i> <a href="tel:+52 55 5256 2032" style="color: #4a90d9; text-decoration: none;">+52 55 5256 2032</a></div><div style="margin: 3px 0;"><i class="fa fa-envelope" style="width: 16px; color: #4a90d9;"></i> <a href="mailto:info@saengergaleria.com" style="color: #4a90d9; text-decoration: none;">info@saengergaleria.com</a></div><div style="margin: 3px 0;"><i class="fa fa-globe" style="width: 16px; color: #4a90d9;"></i> <a href="https://saengergaleria.com" target="_blank" style="color: #4a90d9; text-decoration: none;">saengergaleria.com</a></div>         </div>         <div style="font-size: 12px; color: #444; line-height: 1.5;">             Última oportunidad de la semana.         </div>                  <div style="display: flex; gap: 8px; margin-top: 10px; padding-top: 10px; border-top: 1px solid #e8ecf0;">             <a href="https://calendar.google.com/calendar/render?action=TEMPLATE&text=Visita%20guiada%3A%20Gregor%20Hildebrandt%20en%20Casa%20Gilardi&dates=20260208T100000/20260208T120000&details=%C3%9Altima%20oportunidad%20de%20la%20semana.%5Cn%5CnOrganiza%3A%20SAENGER%20GALER%C3%8DA&location=Saenger%20Galer%C3%ADa%2C%20Jalapa%2031%2C%20CDMX&sf=true" target="_blank" style="flex: 1; display: flex; align-items: center; justify-content: center; gap: 6px; padding: 8px; background: #4285f4; color: white; border-radius: 6px; text-decoration: none; font-size: 11px; font-weight: 500;">                 <i class="fab fa-google"></i> Google             </a>             <a href="data:text/calendar;base64,QkVHSU46VkNBTEVOREFSClZFUlNJT046Mi4wClBST0RJRDotLy9ab25hTWFjbyAyMDI2Ly9BcnQgV2VlayBDRE1YLy9FUwpCRUdJTjpWRVZFTlQKVUlEOjIwMjYwMjA4MTAwMDAwLVNBRU5HRVJHQUxFUsONQUB6b25hbWFjbzIwMjYKRFRTVEFSVDoyMDI2MDIwOFQxMDAwMDAKRFRFTkQ6MjAyNjAyMDhUMTIwMDAwClNVTU1BUlk6VmlzaXRhIGd1aWFkYTogR3JlZ29yIEhpbGRlYnJhbmR0IGVuIENhc2EgR2lsYXJkaQpERVNDUklQVElPTjrDmmx0aW1hIG9wb3J0dW5pZGFkIGRlIGxhIHNlbWFuYS4KTE9DQVRJT046U2FlbmdlciBHYWxlcsOtYVwsIEphbGFwYSAzMVwsIFJvbWEgTm9ydGVcLCBDRE1YCk9SR0FOSVpFUjpDTj1TQUVOR0VSIEdBTEVSw41BClNUQVRVUzpDT05GSVJNRUQKRU5EOlZFVkVOVApFTkQ6VkNBTEVOREFS" download="20260208_SAENGER_GALERÍA.ics" style="flex: 1; display: flex; align-items: center; justify-content: center; gap: 6px; padding: 8px; background: #1e3a5f; color: white; border-radius: 6px; text-decoration: none; font-size: 11px; font-weight: 500;">                 <i class="fa fa-calendar-plus"></i> iCal             </a>         </div>          </div>     </div>`)[0];
+                popup_f76e4b4621f972831b1df706a3625528.setContent(html_b811011f6d1db45bd1023e3de2997b4a);
             
         
 
-        marker_01a14fb87110e631509faf4661a4e8c9.bindPopup(popup_d3e6c812e61c8668b811d422ed22cd7f)
+        marker_ec6c22a39601932c68ca8bbb511e4c5e.bindPopup(popup_f76e4b4621f972831b1df706a3625528)
         ;
 
         
     
     
-            marker_01a14fb87110e631509faf4661a4e8c9.bindTooltip(
+            marker_ec6c22a39601932c68ca8bbb511e4c5e.bindTooltip(
                 `<div>
                      
     <div style="font-family: -apple-system, sans-serif; padding: 8px; min-width: 200px;">
@@ -327,17 +328,17 @@
             );
         
     
-                marker_01a14fb87110e631509faf4661a4e8c9.setIcon(icon_92854d9450f008dc22332d13d5fa1fa9);
+                marker_ec6c22a39601932c68ca8bbb511e4c5e.setIcon(icon_99148c368796af91f3cb96047f45fbde);
             
     
-            var marker_401bdb85f14c17444fed0841d07b63af = L.marker(
+            var marker_376545367fc1cda4d8c403049b49d5f9 = L.marker(
                 [19.4285, -99.1319],
                 {
 }
-            ).addTo(feature_group_3f1d2d68e4180b994a26bde2356634f7);
+            ).addTo(feature_group_8d73312cfb28bc54aa9eb4e6b5c24e7c);
         
     
-            var icon_22d7b7a3d7fb043103e9cbf85338e4b5 = L.AwesomeMarkers.icon(
+            var icon_6f8525c0a76126240cafb060717a8d56 = L.AwesomeMarkers.icon(
                 {
   "markerColor": "orange",
   "iconColor": "white",
@@ -348,24 +349,24 @@
             );
         
     
-        var popup_e95736bfab75bca1f7ed9b9a96f14c6d = L.popup({
+        var popup_603004fe9cad7a4c7892f6c2236db7b6 = L.popup({
   "maxWidth": 370,
 });
 
         
             
-                var html_3f7e8fea1e4183b305550a406a027fa0 = $(`<div id="html_3f7e8fea1e4183b305550a406a027fa0" style="width: 100.0%; height: 100.0%;">     <div style="font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif; width: 340px; padding: 5px;">         <div style="border-left: 4px solid #e67e22; padding-left: 12px; margin-bottom: 12px;">             <h3 style="margin: 0 0 8px 0; font-size: 15px; color: #1e3a5f; line-height: 1.3;">'Columna Rota' - Visita guiada</h3>             <div style="font-size: 13px; color: #555; margin-bottom: 4px;"><strong>MUSEO DE LA CIUDAD DE MÉXICO</strong></div>         </div>         <div style="display: flex; gap: 15px; margin-bottom: 10px; font-size: 12px;">             <div style="background: #f0f4f8; padding: 6px 10px; border-radius: 4px;"><strong>⏰</strong> 10:00</div>             <div style="background: #e67e2215; color: #e67e22; padding: 6px 10px; border-radius: 4px; font-weight: 600;">Privado</div>         </div>         <div style="font-size: 12px; color: #666; margin-bottom: 10px;">             <div><strong>📍</strong> Centro</div>             <div style="margin-left: 18px; color: #888;">Pino Suárez 30</div>         </div>         <div style="background: #f8fafc; border-radius: 8px; padding: 10px; margin-bottom: 10px; font-size: 11px;">             <div style="font-weight: 600; color: #1e3a5f; margin-bottom: 6px;">📞 Contacto</div>             <div style="margin: 3px 0;"><i class="fa fa-phone" style="width: 16px; color: #4a90d9;"></i> <a href="tel:+52 55 5522 9936" style="color: #4a90d9; text-decoration: none;">+52 55 5522 9936</a></div><div style="margin: 3px 0;"><i class="fa fa-envelope" style="width: 16px; color: #4a90d9;"></i> <a href="mailto:mcm@cultura.cdmx.gob.mx" style="color: #4a90d9; text-decoration: none;">mcm@cultura.cdmx.gob.mx</a></div><div style="margin: 3px 0;"><i class="fa fa-globe" style="width: 16px; color: #4a90d9;"></i> <a href="https://cultura.cdmx.gob.mx" target="_blank" style="color: #4a90d9; text-decoration: none;">cultura.cdmx.gob.mx</a></div>         </div>         <div style="font-size: 12px; color: #444; line-height: 1.5;">             Exploración artística con organizadores.         </div>                  <div style="display: flex; gap: 8px; margin-top: 10px; padding-top: 10px; border-top: 1px solid #e8ecf0;">             <a href="https://calendar.google.com/calendar/render?action=TEMPLATE&text=%27Columna%20Rota%27%20-%20Visita%20guiada&dates=20260208T100000/20260208T120000&details=Exploraci%C3%B3n%20art%C3%ADstica%20con%20organizadores.%5Cn%5CnOrganiza%3A%20MUSEO%20DE%20LA%20CIUDAD%20DE%20M%C3%89XICO&location=Museo%20de%20la%20Ciudad%20de%20M%C3%A9xico%2C%20Pino%20Su%C3%A1rez%2030%2C%20CDMX&sf=true" target="_blank" style="flex: 1; display: flex; align-items: center; justify-content: center; gap: 6px; padding: 8px; background: #4285f4; color: white; border-radius: 6px; text-decoration: none; font-size: 11px; font-weight: 500;">                 <i class="fab fa-google"></i> Google             </a>             <a href="data:text/calendar;base64,QkVHSU46VkNBTEVOREFSClZFUlNJT046Mi4wClBST0RJRDotLy9ab25hTWFjbyAyMDI2Ly9BcnQgV2VlayBDRE1YLy9FUwpCRUdJTjpWRVZFTlQKVUlEOjIwMjYwMjA4MTAwMDAwLU1VU0VPREVMQUNJVURBRERFTcOJWElDT0B6b25hbWFjbzIwMjYKRFRTVEFSVDoyMDI2MDIwOFQxMDAwMDAKRFRFTkQ6MjAyNjAyMDhUMTIwMDAwClNVTU1BUlk6J0NvbHVtbmEgUm90YScgLSBWaXNpdGEgZ3VpYWRhCkRFU0NSSVBUSU9OOkV4cGxvcmFjacOzbiBhcnTDrXN0aWNhIGNvbiBvcmdhbml6YWRvcmVzLgpMT0NBVElPTjpNdXNlbyBkZSBsYSBDaXVkYWQgZGUgTcOpeGljb1wsIFBpbm8gU3XDoXJleiAzMFwsIENlbnRyb1wsIENETVgKT1JHQU5JWkVSOkNOPU1VU0VPIERFIExBIENJVURBRCBERSBNw4lYSUNPClNUQVRVUzpDT05GSVJNRUQKRU5EOlZFVkVOVApFTkQ6VkNBTEVOREFS" download="20260208_MUSEO_DE_LA_CIUDAD_D.ics" style="flex: 1; display: flex; align-items: center; justify-content: center; gap: 6px; padding: 8px; background: #1e3a5f; color: white; border-radius: 6px; text-decoration: none; font-size: 11px; font-weight: 500;">                 <i class="fa fa-calendar-plus"></i> iCal             </a>         </div>          </div>     </div>`)[0];
-                popup_e95736bfab75bca1f7ed9b9a96f14c6d.setContent(html_3f7e8fea1e4183b305550a406a027fa0);
+                var html_080c1d5aff357cfc1b9f962cc13d6e9e = $(`<div id="html_080c1d5aff357cfc1b9f962cc13d6e9e" style="width: 100.0%; height: 100.0%;">     <div style="font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif; width: 340px; padding: 5px;">         <div style="border-left: 4px solid #e67e22; padding-left: 12px; margin-bottom: 12px;">             <h3 style="margin: 0 0 8px 0; font-size: 15px; color: #1e3a5f; line-height: 1.3;">'Columna Rota' - Visita guiada</h3>             <div style="font-size: 13px; color: #555; margin-bottom: 4px;"><strong>MUSEO DE LA CIUDAD DE MÉXICO</strong></div>         </div>         <div style="display: flex; gap: 15px; margin-bottom: 10px; font-size: 12px;">             <div style="background: #f0f4f8; padding: 6px 10px; border-radius: 4px;"><strong>⏰</strong> 10:00</div>             <div style="background: #e67e2215; color: #e67e22; padding: 6px 10px; border-radius: 4px; font-weight: 600;">Privado</div>         </div>         <div style="font-size: 12px; color: #666; margin-bottom: 10px;">             <div><strong>📍</strong> Centro</div>             <div style="margin-left: 18px; color: #888;">Pino Suárez 30</div>         </div>         <div style="background: #f8fafc; border-radius: 8px; padding: 10px; margin-bottom: 10px; font-size: 11px;">             <div style="font-weight: 600; color: #1e3a5f; margin-bottom: 6px;">📞 Contacto</div>             <div style="margin: 3px 0;"><i class="fa fa-phone" style="width: 16px; color: #4a90d9;"></i> <a href="tel:+52 55 5522 9936" style="color: #4a90d9; text-decoration: none;">+52 55 5522 9936</a></div><div style="margin: 3px 0;"><i class="fa fa-envelope" style="width: 16px; color: #4a90d9;"></i> <a href="mailto:mcm@cultura.cdmx.gob.mx" style="color: #4a90d9; text-decoration: none;">mcm@cultura.cdmx.gob.mx</a></div><div style="margin: 3px 0;"><i class="fa fa-globe" style="width: 16px; color: #4a90d9;"></i> <a href="https://cultura.cdmx.gob.mx" target="_blank" style="color: #4a90d9; text-decoration: none;">cultura.cdmx.gob.mx</a></div>         </div>         <div style="font-size: 12px; color: #444; line-height: 1.5;">             Exploración artística con organizadores.         </div>                  <div style="display: flex; gap: 8px; margin-top: 10px; padding-top: 10px; border-top: 1px solid #e8ecf0;">             <a href="https://calendar.google.com/calendar/render?action=TEMPLATE&text=%27Columna%20Rota%27%20-%20Visita%20guiada&dates=20260208T100000/20260208T120000&details=Exploraci%C3%B3n%20art%C3%ADstica%20con%20organizadores.%5Cn%5CnOrganiza%3A%20MUSEO%20DE%20LA%20CIUDAD%20DE%20M%C3%89XICO&location=Museo%20de%20la%20Ciudad%20de%20M%C3%A9xico%2C%20Pino%20Su%C3%A1rez%2030%2C%20CDMX&sf=true" target="_blank" style="flex: 1; display: flex; align-items: center; justify-content: center; gap: 6px; padding: 8px; background: #4285f4; color: white; border-radius: 6px; text-decoration: none; font-size: 11px; font-weight: 500;">                 <i class="fab fa-google"></i> Google             </a>             <a href="data:text/calendar;base64,QkVHSU46VkNBTEVOREFSClZFUlNJT046Mi4wClBST0RJRDotLy9ab25hTWFjbyAyMDI2Ly9BcnQgV2VlayBDRE1YLy9FUwpCRUdJTjpWRVZFTlQKVUlEOjIwMjYwMjA4MTAwMDAwLU1VU0VPREVMQUNJVURBRERFTcOJWElDT0B6b25hbWFjbzIwMjYKRFRTVEFSVDoyMDI2MDIwOFQxMDAwMDAKRFRFTkQ6MjAyNjAyMDhUMTIwMDAwClNVTU1BUlk6J0NvbHVtbmEgUm90YScgLSBWaXNpdGEgZ3VpYWRhCkRFU0NSSVBUSU9OOkV4cGxvcmFjacOzbiBhcnTDrXN0aWNhIGNvbiBvcmdhbml6YWRvcmVzLgpMT0NBVElPTjpNdXNlbyBkZSBsYSBDaXVkYWQgZGUgTcOpeGljb1wsIFBpbm8gU3XDoXJleiAzMFwsIENlbnRyb1wsIENETVgKT1JHQU5JWkVSOkNOPU1VU0VPIERFIExBIENJVURBRCBERSBNw4lYSUNPClNUQVRVUzpDT05GSVJNRUQKRU5EOlZFVkVOVApFTkQ6VkNBTEVOREFS" download="20260208_MUSEO_DE_LA_CIUDAD_D.ics" style="flex: 1; display: flex; align-items: center; justify-content: center; gap: 6px; padding: 8px; background: #1e3a5f; color: white; border-radius: 6px; text-decoration: none; font-size: 11px; font-weight: 500;">                 <i class="fa fa-calendar-plus"></i> iCal             </a>         </div>          </div>     </div>`)[0];
+                popup_603004fe9cad7a4c7892f6c2236db7b6.setContent(html_080c1d5aff357cfc1b9f962cc13d6e9e);
             
         
 
-        marker_401bdb85f14c17444fed0841d07b63af.bindPopup(popup_e95736bfab75bca1f7ed9b9a96f14c6d)
+        marker_376545367fc1cda4d8c403049b49d5f9.bindPopup(popup_603004fe9cad7a4c7892f6c2236db7b6)
         ;
 
         
     
     
-            marker_401bdb85f14c17444fed0841d07b63af.bindTooltip(
+            marker_376545367fc1cda4d8c403049b49d5f9.bindTooltip(
                 `<div>
                      
     <div style="font-family: -apple-system, sans-serif; padding: 8px; min-width: 200px;">
@@ -381,17 +382,17 @@
             );
         
     
-                marker_401bdb85f14c17444fed0841d07b63af.setIcon(icon_22d7b7a3d7fb043103e9cbf85338e4b5);
+                marker_376545367fc1cda4d8c403049b49d5f9.setIcon(icon_6f8525c0a76126240cafb060717a8d56);
             
     
-            var marker_1deeb8e76eefd7dc2b1e7dfdb1f14487 = L.marker(
+            var marker_79a80c8da6c8d1d88229c21228e67de2 = L.marker(
                 [19.4189, -99.1658],
                 {
 }
-            ).addTo(feature_group_3f1d2d68e4180b994a26bde2356634f7);
+            ).addTo(feature_group_8d73312cfb28bc54aa9eb4e6b5c24e7c);
         
     
-            var icon_9b00ef9f41f03f2e9ba191c04a075058 = L.AwesomeMarkers.icon(
+            var icon_8ac261f3492212473de527ed52115d08 = L.AwesomeMarkers.icon(
                 {
   "markerColor": "orange",
   "iconColor": "white",
@@ -402,24 +403,24 @@
             );
         
     
-        var popup_26cf5415aa682a1b40de7d62ec6d1f5d = L.popup({
+        var popup_ab2f9cebbc1803b2acfc87ce33747842 = L.popup({
   "maxWidth": 370,
 });
 
         
             
-                var html_3098fde284794c79aca14a9c5b8e5428 = $(`<div id="html_3098fde284794c79aca14a9c5b8e5428" style="width: 100.0%; height: 100.0%;">     <div style="font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif; width: 340px; padding: 5px;">         <div style="border-left: 4px solid #e67e22; padding-left: 12px; margin-bottom: 12px;">             <h3 style="margin: 0 0 8px 0; font-size: 15px; color: #1e3a5f; line-height: 1.3;">Visitas guiadas: Yoab Vera y Diego Rivera</h3>             <div style="font-size: 13px; color: #555; margin-bottom: 4px;"><strong>SAENGER GALERÍA</strong></div>         </div>         <div style="display: flex; gap: 15px; margin-bottom: 10px; font-size: 12px;">             <div style="background: #f0f4f8; padding: 6px 10px; border-radius: 4px;"><strong>⏰</strong> 11:00</div>             <div style="background: #e67e2215; color: #e67e22; padding: 6px 10px; border-radius: 4px; font-weight: 600;">Privado</div>         </div>         <div style="font-size: 12px; color: #666; margin-bottom: 10px;">             <div><strong>📍</strong> Roma Norte</div>             <div style="margin-left: 18px; color: #888;">Jalapa 31</div>         </div>         <div style="background: #f8fafc; border-radius: 8px; padding: 10px; margin-bottom: 10px; font-size: 11px;">             <div style="font-weight: 600; color: #1e3a5f; margin-bottom: 6px;">📞 Contacto</div>             <div style="margin: 3px 0;"><i class="fa fa-phone" style="width: 16px; color: #4a90d9;"></i> <a href="tel:+52 55 5256 2032" style="color: #4a90d9; text-decoration: none;">+52 55 5256 2032</a></div><div style="margin: 3px 0;"><i class="fa fa-envelope" style="width: 16px; color: #4a90d9;"></i> <a href="mailto:info@saengergaleria.com" style="color: #4a90d9; text-decoration: none;">info@saengergaleria.com</a></div><div style="margin: 3px 0;"><i class="fa fa-globe" style="width: 16px; color: #4a90d9;"></i> <a href="https://saengergaleria.com" target="_blank" style="color: #4a90d9; text-decoration: none;">saengergaleria.com</a></div>         </div>         <div style="font-size: 12px; color: #444; line-height: 1.5;">             Cierre de la semana.         </div>                  <div style="display: flex; gap: 8px; margin-top: 10px; padding-top: 10px; border-top: 1px solid #e8ecf0;">             <a href="https://calendar.google.com/calendar/render?action=TEMPLATE&text=Visitas%20guiadas%3A%20Yoab%20Vera%20y%20Diego%20Rivera&dates=20260208T110000/20260208T130000&details=Cierre%20de%20la%20semana.%5Cn%5CnOrganiza%3A%20SAENGER%20GALER%C3%8DA&location=Saenger%20Galer%C3%ADa%2C%20Jalapa%2031%2C%20CDMX&sf=true" target="_blank" style="flex: 1; display: flex; align-items: center; justify-content: center; gap: 6px; padding: 8px; background: #4285f4; color: white; border-radius: 6px; text-decoration: none; font-size: 11px; font-weight: 500;">                 <i class="fab fa-google"></i> Google             </a>             <a href="data:text/calendar;base64,QkVHSU46VkNBTEVOREFSClZFUlNJT046Mi4wClBST0RJRDotLy9ab25hTWFjbyAyMDI2Ly9BcnQgV2VlayBDRE1YLy9FUwpCRUdJTjpWRVZFTlQKVUlEOjIwMjYwMjA4MTEwMDAwLVNBRU5HRVJHQUxFUsONQUB6b25hbWFjbzIwMjYKRFRTVEFSVDoyMDI2MDIwOFQxMTAwMDAKRFRFTkQ6MjAyNjAyMDhUMTMwMDAwClNVTU1BUlk6VmlzaXRhcyBndWlhZGFzOiBZb2FiIFZlcmEgeSBEaWVnbyBSaXZlcmEKREVTQ1JJUFRJT046Q2llcnJlIGRlIGxhIHNlbWFuYS4KTE9DQVRJT046U2FlbmdlciBHYWxlcsOtYVwsIEphbGFwYSAzMVwsIFJvbWEgTm9ydGVcLCBDRE1YCk9SR0FOSVpFUjpDTj1TQUVOR0VSIEdBTEVSw41BClNUQVRVUzpDT05GSVJNRUQKRU5EOlZFVkVOVApFTkQ6VkNBTEVOREFS" download="20260208_SAENGER_GALERÍA.ics" style="flex: 1; display: flex; align-items: center; justify-content: center; gap: 6px; padding: 8px; background: #1e3a5f; color: white; border-radius: 6px; text-decoration: none; font-size: 11px; font-weight: 500;">                 <i class="fa fa-calendar-plus"></i> iCal             </a>         </div>          </div>     </div>`)[0];
-                popup_26cf5415aa682a1b40de7d62ec6d1f5d.setContent(html_3098fde284794c79aca14a9c5b8e5428);
+                var html_b9c376e0912be5e4c147e32309f3042e = $(`<div id="html_b9c376e0912be5e4c147e32309f3042e" style="width: 100.0%; height: 100.0%;">     <div style="font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif; width: 340px; padding: 5px;">         <div style="border-left: 4px solid #e67e22; padding-left: 12px; margin-bottom: 12px;">             <h3 style="margin: 0 0 8px 0; font-size: 15px; color: #1e3a5f; line-height: 1.3;">Visitas guiadas: Yoab Vera y Diego Rivera</h3>             <div style="font-size: 13px; color: #555; margin-bottom: 4px;"><strong>SAENGER GALERÍA</strong></div>         </div>         <div style="display: flex; gap: 15px; margin-bottom: 10px; font-size: 12px;">             <div style="background: #f0f4f8; padding: 6px 10px; border-radius: 4px;"><strong>⏰</strong> 11:00</div>             <div style="background: #e67e2215; color: #e67e22; padding: 6px 10px; border-radius: 4px; font-weight: 600;">Privado</div>         </div>         <div style="font-size: 12px; color: #666; margin-bottom: 10px;">             <div><strong>📍</strong> Roma Norte</div>             <div style="margin-left: 18px; color: #888;">Jalapa 31</div>         </div>         <div style="background: #f8fafc; border-radius: 8px; padding: 10px; margin-bottom: 10px; font-size: 11px;">             <div style="font-weight: 600; color: #1e3a5f; margin-bottom: 6px;">📞 Contacto</div>             <div style="margin: 3px 0;"><i class="fa fa-phone" style="width: 16px; color: #4a90d9;"></i> <a href="tel:+52 55 5256 2032" style="color: #4a90d9; text-decoration: none;">+52 55 5256 2032</a></div><div style="margin: 3px 0;"><i class="fa fa-envelope" style="width: 16px; color: #4a90d9;"></i> <a href="mailto:info@saengergaleria.com" style="color: #4a90d9; text-decoration: none;">info@saengergaleria.com</a></div><div style="margin: 3px 0;"><i class="fa fa-globe" style="width: 16px; color: #4a90d9;"></i> <a href="https://saengergaleria.com" target="_blank" style="color: #4a90d9; text-decoration: none;">saengergaleria.com</a></div>         </div>         <div style="font-size: 12px; color: #444; line-height: 1.5;">             Cierre de la semana.         </div>                  <div style="display: flex; gap: 8px; margin-top: 10px; padding-top: 10px; border-top: 1px solid #e8ecf0;">             <a href="https://calendar.google.com/calendar/render?action=TEMPLATE&text=Visitas%20guiadas%3A%20Yoab%20Vera%20y%20Diego%20Rivera&dates=20260208T110000/20260208T130000&details=Cierre%20de%20la%20semana.%5Cn%5CnOrganiza%3A%20SAENGER%20GALER%C3%8DA&location=Saenger%20Galer%C3%ADa%2C%20Jalapa%2031%2C%20CDMX&sf=true" target="_blank" style="flex: 1; display: flex; align-items: center; justify-content: center; gap: 6px; padding: 8px; background: #4285f4; color: white; border-radius: 6px; text-decoration: none; font-size: 11px; font-weight: 500;">                 <i class="fab fa-google"></i> Google             </a>             <a href="data:text/calendar;base64,QkVHSU46VkNBTEVOREFSClZFUlNJT046Mi4wClBST0RJRDotLy9ab25hTWFjbyAyMDI2Ly9BcnQgV2VlayBDRE1YLy9FUwpCRUdJTjpWRVZFTlQKVUlEOjIwMjYwMjA4MTEwMDAwLVNBRU5HRVJHQUxFUsONQUB6b25hbWFjbzIwMjYKRFRTVEFSVDoyMDI2MDIwOFQxMTAwMDAKRFRFTkQ6MjAyNjAyMDhUMTMwMDAwClNVTU1BUlk6VmlzaXRhcyBndWlhZGFzOiBZb2FiIFZlcmEgeSBEaWVnbyBSaXZlcmEKREVTQ1JJUFRJT046Q2llcnJlIGRlIGxhIHNlbWFuYS4KTE9DQVRJT046U2FlbmdlciBHYWxlcsOtYVwsIEphbGFwYSAzMVwsIFJvbWEgTm9ydGVcLCBDRE1YCk9SR0FOSVpFUjpDTj1TQUVOR0VSIEdBTEVSw41BClNUQVRVUzpDT05GSVJNRUQKRU5EOlZFVkVOVApFTkQ6VkNBTEVOREFS" download="20260208_SAENGER_GALERÍA.ics" style="flex: 1; display: flex; align-items: center; justify-content: center; gap: 6px; padding: 8px; background: #1e3a5f; color: white; border-radius: 6px; text-decoration: none; font-size: 11px; font-weight: 500;">                 <i class="fa fa-calendar-plus"></i> iCal             </a>         </div>          </div>     </div>`)[0];
+                popup_ab2f9cebbc1803b2acfc87ce33747842.setContent(html_b9c376e0912be5e4c147e32309f3042e);
             
         
 
-        marker_1deeb8e76eefd7dc2b1e7dfdb1f14487.bindPopup(popup_26cf5415aa682a1b40de7d62ec6d1f5d)
+        marker_79a80c8da6c8d1d88229c21228e67de2.bindPopup(popup_ab2f9cebbc1803b2acfc87ce33747842)
         ;
 
         
     
     
-            marker_1deeb8e76eefd7dc2b1e7dfdb1f14487.bindTooltip(
+            marker_79a80c8da6c8d1d88229c21228e67de2.bindTooltip(
                 `<div>
                      
     <div style="font-family: -apple-system, sans-serif; padding: 8px; min-width: 200px;">
@@ -435,19 +436,19 @@
             );
         
     
-                marker_1deeb8e76eefd7dc2b1e7dfdb1f14487.setIcon(icon_9b00ef9f41f03f2e9ba191c04a075058);
+                marker_79a80c8da6c8d1d88229c21228e67de2.setIcon(icon_8ac261f3492212473de527ed52115d08);
             
     
-            feature_group_3f1d2d68e4180b994a26bde2356634f7.addTo(map_98e0018f0934383fbb61366306ef16ff);
+            feature_group_8d73312cfb28bc54aa9eb4e6b5c24e7c.addTo(map_8978b751852cc18c5795d6b45a4a7054);
         
     
-            var feature_group_b3f48269dd79ebe48c659688c84d6173 = L.featureGroup(
+            var feature_group_3769dbf99f4eae77662bf8595756c5f3 = L.featureGroup(
                 {
 }
             );
         
     
-            ant_path_31524d321304fcb13cd81b7ad200fdfa = L.polyline.antPath(
+            ant_path_f45e035083280145f52383924271c989 = L.polyline.antPath(
               [[19.459, -99.203], [19.4189, -99.1658], [19.4285, -99.1319], [19.4189, -99.1658]],
               {
   "stroke": true,
@@ -474,89 +475,89 @@
   "delay": 800,
   "pulseColor": "#fff",
 }
-        ).addTo(feature_group_b3f48269dd79ebe48c659688c84d6173);
+        ).addTo(feature_group_3769dbf99f4eae77662bf8595756c5f3);
         
     
-            var marker_20d136bfa62b1331657ae5008e9695fd = L.marker(
+            var marker_40a263b306084e51bd431927ee478c09 = L.marker(
                 [19.43895, -99.18440000000001],
                 {
 }
-            ).addTo(feature_group_b3f48269dd79ebe48c659688c84d6173);
+            ).addTo(feature_group_3769dbf99f4eae77662bf8595756c5f3);
         
     
-            var div_icon_6499cab00e52a8207eaac82d1728675a = L.divIcon({
-  "html": "\u003cdiv style=\"\n                font-size: 16px;\n                color: #1e3a5f;\n                transform: rotate(-47.14851064314064deg);\n                text-shadow: 1px 1px 2px white, -1px -1px 2px white;\n                font-weight: bold;\n            \"\u003e\u27a4\u003c/div\u003e",
-  "iconSize": [20, 20],
-  "iconAnchor": [10, 10],
+            var div_icon_1689482d6bf2b29ad91e3d48c8b09ea5 = L.divIcon({
+  "html": "\u003cdiv style=\"text-align: center;\"\u003e\n                    \u003cdiv style=\"font-size: 14px; color: #1e3a5f; transform: rotate(-47.14851064314064deg); text-shadow: 1px 1px 2px white, -1px -1px 2px white; font-weight: bold;\"\u003e\u27a4\u003c/div\u003e\n                    \u003cdiv style=\"font-size: 9px; background: white; color: #666; padding: 1px 4px; border-radius: 8px; box-shadow: 0 1px 3px rgba(0,0,0,0.2); white-space: nowrap; margin-top: 2px;\"\u003e\ud83d\udeb6 1h 11min\u003c/div\u003e\n                \u003c/div\u003e",
+  "iconSize": [60, 40],
+  "iconAnchor": [30, 20],
   "className": "empty",
 });
-            marker_20d136bfa62b1331657ae5008e9695fd.setIcon(div_icon_6499cab00e52a8207eaac82d1728675a);
+            marker_40a263b306084e51bd431927ee478c09.setIcon(div_icon_1689482d6bf2b29ad91e3d48c8b09ea5);
         
     
-                marker_20d136bfa62b1331657ae5008e9695fd.setIcon(div_icon_6499cab00e52a8207eaac82d1728675a);
+                marker_40a263b306084e51bd431927ee478c09.setIcon(div_icon_1689482d6bf2b29ad91e3d48c8b09ea5);
             
     
-            var marker_fd7148ea7ca7e9c7e3fd511852db77a6 = L.marker(
+            var marker_87a54e1a8e31cfcfb8747b9650d10bc8 = L.marker(
                 [19.4237, -99.14885000000001],
                 {
 }
-            ).addTo(feature_group_b3f48269dd79ebe48c659688c84d6173);
+            ).addTo(feature_group_3769dbf99f4eae77662bf8595756c5f3);
         
     
-            var div_icon_64e696c27ef24f988d31a9a20f888ea9 = L.divIcon({
-  "html": "\u003cdiv style=\"\n                font-size: 16px;\n                color: #1e3a5f;\n                transform: rotate(15.811370930135595deg);\n                text-shadow: 1px 1px 2px white, -1px -1px 2px white;\n                font-weight: bold;\n            \"\u003e\u27a4\u003c/div\u003e",
-  "iconSize": [20, 20],
-  "iconAnchor": [10, 10],
+            var div_icon_bacb0f0ae251e8dec81e50b18dfbd374 = L.divIcon({
+  "html": "\u003cdiv style=\"text-align: center;\"\u003e\n                    \u003cdiv style=\"font-size: 14px; color: #1e3a5f; transform: rotate(15.811370930135595deg); text-shadow: 1px 1px 2px white, -1px -1px 2px white; font-weight: bold;\"\u003e\u27a4\u003c/div\u003e\n                    \u003cdiv style=\"font-size: 9px; background: white; color: #666; padding: 1px 4px; border-radius: 8px; box-shadow: 0 1px 3px rgba(0,0,0,0.2); white-space: nowrap; margin-top: 2px;\"\u003e\ud83d\udeb6 45 min\u003c/div\u003e\n                \u003c/div\u003e",
+  "iconSize": [60, 40],
+  "iconAnchor": [30, 20],
   "className": "empty",
 });
-            marker_fd7148ea7ca7e9c7e3fd511852db77a6.setIcon(div_icon_64e696c27ef24f988d31a9a20f888ea9);
+            marker_87a54e1a8e31cfcfb8747b9650d10bc8.setIcon(div_icon_bacb0f0ae251e8dec81e50b18dfbd374);
         
     
-                marker_fd7148ea7ca7e9c7e3fd511852db77a6.setIcon(div_icon_64e696c27ef24f988d31a9a20f888ea9);
+                marker_87a54e1a8e31cfcfb8747b9650d10bc8.setIcon(div_icon_bacb0f0ae251e8dec81e50b18dfbd374);
             
     
-            var marker_43c3468df8d467a4b1053d56d74e715a = L.marker(
+            var marker_1dbd41ab4f55aa02ef24c38fb13f69ec = L.marker(
                 [19.4237, -99.14885000000001],
                 {
 }
-            ).addTo(feature_group_b3f48269dd79ebe48c659688c84d6173);
+            ).addTo(feature_group_3769dbf99f4eae77662bf8595756c5f3);
         
     
-            var div_icon_786456a574790fc05da5245dbb98fa2f = L.divIcon({
-  "html": "\u003cdiv style=\"\n                font-size: 16px;\n                color: #1e3a5f;\n                transform: rotate(195.81137093013558deg);\n                text-shadow: 1px 1px 2px white, -1px -1px 2px white;\n                font-weight: bold;\n            \"\u003e\u27a4\u003c/div\u003e",
-  "iconSize": [20, 20],
-  "iconAnchor": [10, 10],
+            var div_icon_65778ec87e3b7769dc1e6d0501d7cbfe = L.divIcon({
+  "html": "\u003cdiv style=\"text-align: center;\"\u003e\n                    \u003cdiv style=\"font-size: 14px; color: #1e3a5f; transform: rotate(195.81137093013558deg); text-shadow: 1px 1px 2px white, -1px -1px 2px white; font-weight: bold;\"\u003e\u27a4\u003c/div\u003e\n                    \u003cdiv style=\"font-size: 9px; background: white; color: #666; padding: 1px 4px; border-radius: 8px; box-shadow: 0 1px 3px rgba(0,0,0,0.2); white-space: nowrap; margin-top: 2px;\"\u003e\ud83d\udeb6 45 min\u003c/div\u003e\n                \u003c/div\u003e",
+  "iconSize": [60, 40],
+  "iconAnchor": [30, 20],
   "className": "empty",
 });
-            marker_43c3468df8d467a4b1053d56d74e715a.setIcon(div_icon_786456a574790fc05da5245dbb98fa2f);
+            marker_1dbd41ab4f55aa02ef24c38fb13f69ec.setIcon(div_icon_65778ec87e3b7769dc1e6d0501d7cbfe);
         
     
-                marker_43c3468df8d467a4b1053d56d74e715a.setIcon(div_icon_786456a574790fc05da5245dbb98fa2f);
+                marker_1dbd41ab4f55aa02ef24c38fb13f69ec.setIcon(div_icon_65778ec87e3b7769dc1e6d0501d7cbfe);
             
     
-            feature_group_b3f48269dd79ebe48c659688c84d6173.addTo(map_98e0018f0934383fbb61366306ef16ff);
+            feature_group_3769dbf99f4eae77662bf8595756c5f3.addTo(map_8978b751852cc18c5795d6b45a4a7054);
         
     
-            var layer_control_314dddbff20a6806615f896d2f012858_layers = {
+            var layer_control_9c3a67928c2ca924bc0a7572f837bd59_layers = {
                 base_layers : {
-                    "Claro" : tile_layer_31b1cd19f86673157cf2b63334a868e9,
-                    "OpenStreetMap" : tile_layer_1f86f3a821dcd014942a247449a3b651,
+                    "Claro" : tile_layer_890041b93f95fd905cbed617bf4c7aec,
+                    "OpenStreetMap" : tile_layer_a0a515c364e31402df519831029d575f,
                 },
                 overlays :  {
-                    "\ud83d\udd35 P\u00fablico" : feature_group_f63110d611bd0f1382da966f63adbe08,
-                    "\ud83d\udfe0 Privado" : feature_group_3f1d2d68e4180b994a26bde2356634f7,
-                    "\u27a1\ufe0f Ruta sugerida" : feature_group_b3f48269dd79ebe48c659688c84d6173,
+                    "\ud83d\udd35 P\u00fablico" : feature_group_2055c35540e354b0a8cfbba353c28622,
+                    "\ud83d\udfe0 Privado" : feature_group_8d73312cfb28bc54aa9eb4e6b5c24e7c,
+                    "\u27a1\ufe0f Ruta sugerida" : feature_group_3769dbf99f4eae77662bf8595756c5f3,
                 },
             };
-            let layer_control_314dddbff20a6806615f896d2f012858 = L.control.layers(
-                layer_control_314dddbff20a6806615f896d2f012858_layers.base_layers,
-                layer_control_314dddbff20a6806615f896d2f012858_layers.overlays,
+            let layer_control_9c3a67928c2ca924bc0a7572f837bd59 = L.control.layers(
+                layer_control_9c3a67928c2ca924bc0a7572f837bd59_layers.base_layers,
+                layer_control_9c3a67928c2ca924bc0a7572f837bd59_layers.overlays,
                 {
   "position": "topleft",
   "collapsed": false,
   "autoZIndex": true,
 }
-            ).addTo(map_98e0018f0934383fbb61366306ef16ff);
+            ).addTo(map_8978b751852cc18c5795d6b45a4a7054);
 
         
 </script>

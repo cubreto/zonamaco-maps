@@ -513,6 +513,40 @@ def parse_acme_events() -> List[Event]:
     return events
 
 
+def haversine_distance(lat1: float, lon1: float, lat2: float, lon2: float) -> float:
+    """Calculate the distance between two points on Earth using Haversine formula.
+    Returns distance in kilometers."""
+    import math
+    R = 6371  # Earth's radius in kilometers
+
+    lat1_rad = math.radians(lat1)
+    lat2_rad = math.radians(lat2)
+    delta_lat = math.radians(lat2 - lat1)
+    delta_lon = math.radians(lon2 - lon1)
+
+    a = math.sin(delta_lat / 2) ** 2 + math.cos(lat1_rad) * math.cos(lat2_rad) * math.sin(delta_lon / 2) ** 2
+    c = 2 * math.atan2(math.sqrt(a), math.sqrt(1 - a))
+
+    return R * c
+
+
+def calculate_walking_time(distance_km: float, speed_kmh: float = 5.0) -> int:
+    """Calculate walking time in minutes. Default speed is 5 km/h (brisk walk)."""
+    return round(distance_km / speed_kmh * 60)
+
+
+def format_walking_time(minutes: int) -> str:
+    """Format walking time for display."""
+    if minutes < 1:
+        return "< 1 min"
+    elif minutes < 60:
+        return f"{minutes} min"
+    else:
+        hours = minutes // 60
+        mins = minutes % 60
+        return f"{hours}h {mins}min" if mins else f"{hours}h"
+
+
 def generate_ics_data(event: Event) -> str:
     """Generate ICS calendar data for an event."""
     # ICS format requires UTC times, we'll use local time with TZID
@@ -663,11 +697,27 @@ def create_timeline_html(events: List[Event], day_date: datetime) -> str:
         search_text = f"{e.organizer} {e.title} {e.description}".lower().replace('"', '&quot;')
         return f"""<div class="event-item" data-search="{search_text}" data-category="{e.category}" style="padding: 8px 10px; margin: 4px 0; background: white; border-radius: 6px; border-left: 3px solid {cat_color}; font-size: 11px; cursor: pointer; box-shadow: 0 1px 3px rgba(0,0,0,0.08); transition: opacity 0.2s;" onclick="{onclick_js}"><div style="font-weight: 600; color: #1e3a5f;">{e.date.strftime('%H:%M')}</div><div style="color: #666; white-space: nowrap; overflow: hidden; text-overflow: ellipsis;">{e.organizer}</div></div>"""
 
+    def walking_indicator(prev_event: Event, next_event: Event) -> str:
+        """Create a walking time indicator between two events."""
+        if not (prev_event.lat and prev_event.lon and next_event.lat and next_event.lon):
+            return ""
+        distance = haversine_distance(prev_event.lat, prev_event.lon, next_event.lat, next_event.lon)
+        walk_minutes = calculate_walking_time(distance)
+        walk_text = format_walking_time(walk_minutes)
+        distance_text = f"{distance:.1f} km" if distance >= 1 else f"{int(distance * 1000)} m"
+        return f"""<div class="walk-indicator" style="display: flex; align-items: center; justify-content: center; padding: 4px 0; margin: 2px 0; font-size: 9px; color: #94a3b8;"><span style="background: #f0f4f8; padding: 2px 8px; border-radius: 10px;">🚶 {walk_text} · {distance_text}</span></div>"""
+
     def period_section(title: str, events_list: List[Event], color: str, period_id: str) -> str:
         if not events_list:
             return ""
-        items = "".join(event_item(e) for e in events_list)
-        return f"""<div class="period-section" id="{period_id}" style="margin-bottom: 15px;"><div class="period-header" style="font-size: 11px; font-weight: 700; color: {color}; margin-bottom: 6px; padding: 4px 8px; background: {color}15; border-radius: 4px;">{title} (<span class="period-count">{len(events_list)}</span>)</div>{items}</div>"""
+        # Build items with walking indicators between them
+        items_html = ""
+        for i, e in enumerate(events_list):
+            items_html += event_item(e)
+            # Add walking indicator after each event (except the last)
+            if i < len(events_list) - 1:
+                items_html += walking_indicator(e, events_list[i + 1])
+        return f"""<div class="period-section" id="{period_id}" style="margin-bottom: 15px;"><div class="period-header" style="font-size: 11px; font-weight: 700; color: {color}; margin-bottom: 6px; padding: 4px 8px; background: {color}15; border-radius: 4px;">{title} (<span class="period-count">{len(events_list)}</span>)</div>{items_html}</div>"""
 
     # Search box HTML
     search_box = """<div style="margin-bottom: 12px;"><input type="text" id="sidebarSearch" placeholder="Buscar..." style="width: 100%; padding: 8px 10px; border: 1px solid #e2e8f0; border-radius: 6px; font-size: 12px; background: white;"></div>"""
@@ -688,6 +738,7 @@ def create_timeline_html(events: List[Event], day_date: datetime) -> str:
     .sidebar-dark .event-item { background: #0f0f1a !important; }
     .sidebar-dark .event-item .event-time { color: #a8c5e8 !important; }
     .sidebar-dark .event-item .event-org { color: #9999b3 !important; }
+    .sidebar-dark .walk-indicator span { background: #2d2d44 !important; color: #6b6b80 !important; }
     .theme-toggle-mini { position: absolute; top: 10px; right: 10px; width: 28px; height: 28px; border-radius: 50%; border: 1px solid #e2e8f0; background: white; cursor: pointer; display: flex; align-items: center; justify-content: center; font-size: 12px; transition: all 0.3s; }
     .sidebar-dark .theme-toggle-mini { background: #2d2d44; border-color: #3d3d54; }
     </style>"""
@@ -783,8 +834,8 @@ def create_timeline_html(events: List[Event], day_date: datetime) -> str:
     return f"""{dark_mode_styles}<div id="eventSidebar" style="position: fixed; top: 10px; right: 10px; width: 220px; max-height: 90vh; background: #f8fafc; border-radius: 12px; padding: 15px; z-index: 1000; box-shadow: 0 4px 20px rgba(0,0,0,0.1); overflow-y: auto; font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif; border: 1px solid #e2e8f0;"><button id="sidebarThemeToggle" class="theme-toggle-mini">🌙</button><div class="sidebar-header" style="text-align: center; margin-bottom: 12px; padding-bottom: 10px; border-bottom: 2px solid #e2e8f0;"><div class="sidebar-title" style="font-size: 18px; font-weight: 700; color: #1e3a5f;">{day_name}</div><div class="sidebar-subtitle" style="font-size: 12px; color: #64748b;">{day_date.day} de {SPANISH_MONTHS[day_date.month]}</div><div class="sidebar-count" style="font-size: 11px; color: #94a3b8; margin-top: 4px;">{len(events)} eventos</div></div>{search_box}{filter_buttons}{period_section("☀️ Mañana", morning, "#f39c12", "morning")}{period_section("🌤️ Tarde", afternoon, "#e67e22", "afternoon")}{period_section("🌙 Noche", evening, "#1e3a5f", "evening")}</div>{filter_script}"""
 
 
-def add_arrow_markers(m: folium.Map, coords: List[List[float]], color: str = "#4a90d9"):
-    """Add arrow markers along the route to show direction."""
+def add_arrow_markers(m: folium.Map, coords: List[List[float]], color: str = "#4a90d9", show_walking_time: bool = True):
+    """Add arrow markers along the route to show direction and walking time."""
     import math
 
     for i in range(len(coords) - 1):
@@ -798,18 +849,27 @@ def add_arrow_markers(m: folium.Map, coords: List[List[float]], color: str = "#4
         # Calculate angle
         angle = math.degrees(math.atan2(lon2 - lon1, lat2 - lat1))
 
-        # Create arrow marker at midpoint
-        arrow_icon = DivIcon(
-            icon_size=(20, 20),
-            icon_anchor=(10, 10),
-            html=f'''<div style="
-                font-size: 16px;
-                color: {color};
-                transform: rotate({90 - angle}deg);
-                text-shadow: 1px 1px 2px white, -1px -1px 2px white;
-                font-weight: bold;
-            ">➤</div>'''
-        )
+        # Calculate walking time
+        distance = haversine_distance(lat1, lon1, lat2, lon2)
+        walk_minutes = calculate_walking_time(distance)
+        walk_text = format_walking_time(walk_minutes)
+
+        # Create arrow marker with walking time at midpoint
+        if show_walking_time:
+            arrow_icon = DivIcon(
+                icon_size=(60, 40),
+                icon_anchor=(30, 20),
+                html=f'''<div style="text-align: center;">
+                    <div style="font-size: 14px; color: {color}; transform: rotate({90 - angle}deg); text-shadow: 1px 1px 2px white, -1px -1px 2px white; font-weight: bold;">➤</div>
+                    <div style="font-size: 9px; background: white; color: #666; padding: 1px 4px; border-radius: 8px; box-shadow: 0 1px 3px rgba(0,0,0,0.2); white-space: nowrap; margin-top: 2px;">🚶 {walk_text}</div>
+                </div>'''
+            )
+        else:
+            arrow_icon = DivIcon(
+                icon_size=(20, 20),
+                icon_anchor=(10, 10),
+                html=f'''<div style="font-size: 16px; color: {color}; transform: rotate({90 - angle}deg); text-shadow: 1px 1px 2px white, -1px -1px 2px white; font-weight: bold;">➤</div>'''
+            )
 
         folium.Marker(
             location=[mid_lat, mid_lon],
@@ -1411,9 +1471,9 @@ def main():
     os.makedirs(output_dir, exist_ok=True)
 
     print("=" * 60)
-    print("   ZonaMaco 2026 - Generador de Mapas v4.4")
+    print("   ZonaMaco 2026 - Generador de Mapas v4.5")
     print("   + Material Art Fair + Salón ACME")
-    print("   + Search & Filter + Calendar + Dark Mode")
+    print("   + Search, Calendar, Dark Mode, Walking Times")
     print("=" * 60)
 
     # Parse all events
