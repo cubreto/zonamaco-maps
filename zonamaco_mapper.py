@@ -14,7 +14,7 @@ Enhanced with:
 
 import os
 import sys
-from datetime import datetime
+from datetime import datetime, timedelta
 from typing import Dict, List, Optional, Tuple
 from dataclasses import dataclass, field
 from collections import Counter
@@ -513,6 +513,63 @@ def parse_acme_events() -> List[Event]:
     return events
 
 
+def generate_ics_data(event: Event) -> str:
+    """Generate ICS calendar data for an event."""
+    # ICS format requires UTC times, we'll use local time with TZID
+    start = event.date
+    end = start + timedelta(hours=2)  # Assume 2-hour duration
+
+    venue = event.venue
+    location = f"{venue.name}, {venue.address}, {venue.neighborhood}, CDMX" if venue else "Ciudad de México"
+
+    # Escape special characters for ICS
+    def ics_escape(text: str) -> str:
+        return text.replace("\\", "\\\\").replace(",", "\\,").replace(";", "\\;").replace("\n", "\\n")
+
+    uid = f"{start.strftime('%Y%m%d%H%M%S')}-{event.organizer.replace(' ', '')}@zonamaco2026"
+
+    ics = f"""BEGIN:VCALENDAR
+VERSION:2.0
+PRODID:-//ZonaMaco 2026//Art Week CDMX//ES
+BEGIN:VEVENT
+UID:{uid}
+DTSTART:{start.strftime('%Y%m%dT%H%M%S')}
+DTEND:{end.strftime('%Y%m%dT%H%M%S')}
+SUMMARY:{ics_escape(event.title)}
+DESCRIPTION:{ics_escape(event.description)}
+LOCATION:{ics_escape(location)}
+ORGANIZER:CN={ics_escape(event.organizer)}
+STATUS:CONFIRMED
+END:VEVENT
+END:VCALENDAR"""
+    return ics
+
+
+def generate_google_calendar_url(event: Event) -> str:
+    """Generate Google Calendar add event URL."""
+    from urllib.parse import quote
+
+    start = event.date
+    end = start + timedelta(hours=2)
+
+    venue = event.venue
+    location = f"{venue.name}, {venue.address}, CDMX" if venue else "Ciudad de México"
+
+    # Google Calendar URL format
+    base_url = "https://calendar.google.com/calendar/render"
+    params = {
+        "action": "TEMPLATE",
+        "text": event.title,
+        "dates": f"{start.strftime('%Y%m%dT%H%M%S')}/{end.strftime('%Y%m%dT%H%M%S')}",
+        "details": f"{event.description}\\n\\nOrganiza: {event.organizer}",
+        "location": location,
+        "sf": "true"
+    }
+
+    param_str = "&".join(f"{k}={quote(str(v))}" for k, v in params.items())
+    return f"{base_url}?{param_str}"
+
+
 def create_popup_html(event: Event) -> str:
     """Create popup with venue contact info."""
     cat_color = CATEGORY_COLORS.get(event.category, "#666")
@@ -530,6 +587,25 @@ def create_popup_html(event: Event) -> str:
         contact_html += f'<div style="margin: 3px 0;"><i class="fa fa-envelope" style="width: 16px; color: #4a90d9;"></i> <a href="mailto:{email}" style="color: #4a90d9; text-decoration: none;">{email}</a></div>'
     if website:
         contact_html += f'<div style="margin: 3px 0;"><i class="fa fa-globe" style="width: 16px; color: #4a90d9;"></i> <a href="https://{website}" target="_blank" style="color: #4a90d9; text-decoration: none;">{website}</a></div>'
+
+    # Generate calendar links
+    google_cal_url = generate_google_calendar_url(event)
+    ics_data = generate_ics_data(event)
+    # Encode ICS for data URI
+    import base64
+    ics_b64 = base64.b64encode(ics_data.encode('utf-8')).decode('utf-8')
+    ics_filename = f"{event.date.strftime('%Y%m%d')}_{event.organizer.replace(' ', '_')[:20]}.ics"
+
+    calendar_html = f'''
+        <div style="display: flex; gap: 8px; margin-top: 10px; padding-top: 10px; border-top: 1px solid #e8ecf0;">
+            <a href="{google_cal_url}" target="_blank" style="flex: 1; display: flex; align-items: center; justify-content: center; gap: 6px; padding: 8px; background: #4285f4; color: white; border-radius: 6px; text-decoration: none; font-size: 11px; font-weight: 500;">
+                <i class="fab fa-google"></i> Google
+            </a>
+            <a href="data:text/calendar;base64,{ics_b64}" download="{ics_filename}" style="flex: 1; display: flex; align-items: center; justify-content: center; gap: 6px; padding: 8px; background: #1e3a5f; color: white; border-radius: 6px; text-decoration: none; font-size: 11px; font-weight: 500;">
+                <i class="fa fa-calendar-plus"></i> iCal
+            </a>
+        </div>
+    '''
 
     return f"""
     <div style="font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif; width: 340px; padding: 5px;">
@@ -549,9 +625,10 @@ def create_popup_html(event: Event) -> str:
             <div style="font-weight: 600; color: #1e3a5f; margin-bottom: 6px;">📞 Contacto</div>
             {contact_html if contact_html else '<div style="color: #94a3b8;">Sin información de contacto</div>'}
         </div>
-        <div style="font-size: 12px; color: #444; line-height: 1.5; border-top: 1px solid #e8ecf0; padding-top: 10px;">
+        <div style="font-size: 12px; color: #444; line-height: 1.5;">
             {event.description[:200] + '...' if len(event.description) > 200 else event.description}
         </div>
+        {calendar_html}
     </div>
     """
 
@@ -1235,9 +1312,9 @@ def main():
     os.makedirs(output_dir, exist_ok=True)
 
     print("=" * 60)
-    print("   ZonaMaco 2026 - Generador de Mapas v4.2")
+    print("   ZonaMaco 2026 - Generador de Mapas v4.3")
     print("   + Material Art Fair + Salón ACME")
-    print("   + Search & Filter (index + day maps)")
+    print("   + Search & Filter + Calendar Export")
     print("=" * 60)
 
     # Parse all events
